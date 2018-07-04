@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <div class="van-ellipsis">这是一段宽度限制 250px 的文字，后面的内容会省略</div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
