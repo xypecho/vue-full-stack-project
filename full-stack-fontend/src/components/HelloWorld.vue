@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <div class="van-ellipsis">这是一段宽度限制 250px 的文字，后面的内容会省略</div>
+    <div class="van-ellipsis" @click='test'>这是一段宽度限制 250px 的文字，后面的内容会省略</div>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -85,11 +85,23 @@
 </template>
 
 <script>
+import data from '@/util/mock';
 export default {
   name: 'HelloWorld',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  methods: {
+    test () {
+      this.$axios.get('http://g.cn')
+        .then(function (response) {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 }
