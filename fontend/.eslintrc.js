@@ -46,7 +46,12 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "array-bracket-spacing": [2, "never"],
-    "comma-spacing": [2, { "before": true, "after": false }]
+    "no-const-assign": 2,//禁止修改const声明的变量
+    "no-dupe-keys": 2,//在创建对象字面量时不允许键重复 {a:1,a:1}
+    "no-mixed-spaces-and-tabs": [2, false],//禁止混用tab和空格
+    "no-redeclare": 2,//禁止重复声明变量
+    "no-trailing-spaces": 1,//一行结束后面不要有空格
+    "no-undef": 1,//不能有未定义的变量
+    "no-var": 0//禁用var，用let和const代替
   }
 }
