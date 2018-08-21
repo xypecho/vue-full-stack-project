@@ -1,4 +1,4 @@
-# full-stack-fontend
+# fontend
 
 > A Vue.js project
 
