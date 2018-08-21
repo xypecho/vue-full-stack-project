@@ -52,6 +52,7 @@ module.exports = {
     "no-redeclare": 2,//禁止重复声明变量
     "no-trailing-spaces": 1,//一行结束后面不要有空格
     "no-undef": 1,//不能有未定义的变量
+    'linebreak-style': 'off',
     "no-var": 0//禁用var，用let和const代替
   }
 }
