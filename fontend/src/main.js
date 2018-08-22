@@ -11,6 +11,7 @@ import router from './router';
 Vue.use(Vuex);
 Vue.use(ElementUI);
 Vue.config.productionTip = false;
+axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$axios = axios;
 
 /* eslint-disable no-new */
@@ -18,5 +19,5 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>',
+  template: '<App/>'
 });

@@ -53,6 +53,8 @@ module.exports = {
     "no-trailing-spaces": 1,//一行结束后面不要有空格
     "no-undef": 1,//不能有未定义的变量
     'linebreak-style': 'off',
-    "no-var": 0//禁用var，用let和const代替
+    'no-console': 'off',// 可以使用console
+    "no-var": 0,//禁用var，用let和const代替
+    "comma-dangle": ["error", "never"]// 去除验证尾部逗号
   }
 }
