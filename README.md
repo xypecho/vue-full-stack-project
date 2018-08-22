@@ -3,4 +3,6 @@
 
 ## 1、技术栈
 前端：vue2 、 vuex 、 vue-router 、 webpack 、 ES6/7 、 less 、 element-ui
+
+
 后端：node 、express 、 mysql
