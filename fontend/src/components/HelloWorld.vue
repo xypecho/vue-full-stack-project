@@ -65,16 +65,18 @@ export default {
     };
   },
   created() {
-    const data = {
-      token: 'MUtuRTIvNFRpdHh2R0dmN2g5UUJWQT09'
-    };
+    // const data = {
+    //   token: 'MUtuRTIvNFRpdHh2R0dmN2g5UUJWQT09'
+    // };
     this.$axios({
-      method: 'post',
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      url: '/member/Uconfirm/query',
-      params: data
+      method: 'get',
+      // headers: { 'Access-Control-Allow-Origin': '*' },
+      url: '/get_banners'
+      // params: data
     }).then((res) => {
       console.log(res);
+    }).catch((err) => {
+      console.error(err);
     });
   }
 };
