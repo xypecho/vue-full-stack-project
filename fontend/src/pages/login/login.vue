@@ -1,22 +1,88 @@
 <template>
   <div class="login">
-    <div class="signIn">
+    <div class="signIn" v-show='status'>
       <div class="signInInfo">
-        
+        <span>还没有账号？先来注册一波</span>
+        <el-button @click='changeStatus'>注册</el-button>
       </div>
       <div class="signInBox">
-
+        <p>登录</p>
+        <el-form :model="signInForm" :rules="rules" ref="signInForm" label-width="100px" class="signInForm">
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="signInForm.username"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input v-model="signInForm.password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('signInForm')">立即创建</el-button>
+            <el-button @click="resetForm('signInForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
       </div>
     </div>
-    <div class="signUp"></div>
+    <div class="signUp" v-show='!status'>
+      <div class="signUpBox">
+        <p>注册</p>
+        <el-form :model="signUpForm" :rules="rules" ref="signUpForm" label-width="100px" class="signUpForm">
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="signUpForm.username"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input v-model="signUpForm.password"></el-input>
+          </el-form-item>
+          <el-form-item label="确认密码" prop="confirmPassword">
+            <el-input v-model="signUpForm.confirmPassword"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('signUpForm')">立即创建</el-button>
+            <el-button @click="resetForm('signUpForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <div class="signUpInfo">
+        <span>已有账号，点击登录</span>
+        <el-button @click='changeStatus'>登录</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      msg: 'hello cz'
+      status: true, // false为注册，true为登录
+      signInForm: {
+        username: '',
+        password: ''
+      },
+      signUpForm: {
+        username: '',
+        password: '',
+        confirmPassword: ''
+      },
+      rules: {
+        username: [
+          { required: true, message: '请输入用户名', trigger: 'blur' }
+        ],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+      }
     };
+  },
+  methods: {
+    changeStatus() {
+      this.status = !this.status;
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    }
   }
 };
 </script>
@@ -27,6 +93,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
   justify-content: space-around;
+  align-items: center;
 
   &::before {
     background-image: url('~@/assets/images/marvin-meyer-571072-unsplash.jpg');
@@ -39,6 +106,26 @@ export default {
     width: 100%;
     z-index: -999;
   }
+}
+
+.signIn, .signUp {
+  width: 60%;
+  height: 40%;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+.signInInfo {
+  flex: 1;
+}
+
+.signInBox {
+  background-color: #fff;
+  width: 50%;
+  padding: 20px;
+  height: 110%;
+  flex: 1;
 }
 </style>
 

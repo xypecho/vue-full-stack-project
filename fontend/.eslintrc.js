@@ -55,6 +55,8 @@ module.exports = {
     'linebreak-style': 'off',
     'no-console': 'off',// 可以使用console
     "no-var": 0,//禁用var，用let和const代替
-    "comma-dangle": ["error", "never"]// 去除验证尾部逗号
+    "comma-dangle": ["error", "never"],// 去除验证尾部逗号
+    "no-alert": 0,//禁止使用alert confirm prompt
+    'max-len': ["error", { "code": 120 }]//去除最大行数长度限制
   }
 }
