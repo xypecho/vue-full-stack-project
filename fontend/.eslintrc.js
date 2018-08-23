@@ -57,6 +57,8 @@ module.exports = {
     "no-var": 0,//禁用var，用let和const代替
     "comma-dangle": ["error", "never"],// 去除验证尾部逗号
     "no-alert": 0,//禁止使用alert confirm prompt
-    'max-len': ["error", { "code": 120 }]//去除最大行数长度限制
+    'max-len': ["error", { "code": 220 }],//去除最大行数长度限制
+    "arrow-parens": 0,//箭头函数用小括号括起来
+    "arrow-spacing": 0//=>的前/后括号
   }
 }
