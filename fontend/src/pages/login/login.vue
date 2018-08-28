@@ -127,7 +127,7 @@ export default {
     background-color: #fff;
     margin-left: auto;
     margin-right: 100px;
-    padding: 43px;
+    padding: 43px 43px 15px 43px;
     font-size: 17px;
 }
 </style>
