@@ -28,7 +28,7 @@
               <el-input type="password" v-model="signInForm.password" size='small'></el-input>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" size='small'>登陆</el-button>
+              <el-button type="primary" size='small' @click='login'>登陆</el-button>
             </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -101,6 +101,9 @@ export default {
       this.$axios.get('/get_banner').then(res => {
         console.log(res);
       });
+    },
+    login(){
+      this.$router.push('index')
     }
   }
 };
