@@ -102,8 +102,8 @@ export default {
         console.log(res);
       });
     },
-    login(){
-      this.$router.push('index')
+    login() {
+      this.$router.push('index');
     }
   }
 };

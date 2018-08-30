@@ -1,15 +1,32 @@
 <template>
     <div class="index">
-        <p>这是index页面</p>
+        <nav-bar></nav-bar>
+        <vueContent></vueContent>
     </div>
 </template>
 <script>
-export default {};
+import navBar from '@/components/navBar/navBar';
+import vueContent from '@/components/content/content';
+
+export default {
+  components: {
+    navBar,
+    vueContent
+  }
+};
 </script>
 <style lang="stylus" scoped>
 .index {
-    background-color: red;
+    display: flex;
     width: 100%;
     height: 100%;
+
+    nav-bar {
+        flex: 0 0 200px;
+    }
+
+    content {
+        flex: 1;
+    }
 }
 </style>
