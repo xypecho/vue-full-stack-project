@@ -6,7 +6,11 @@
 <script>
 import vHeader from '@/components/header/header';
 
-export default {};
+export default {
+  components: {
+    vHeader
+  }
+};
 </script>
 <style lang="stylus" scoped>
 .content {
