@@ -8,6 +8,12 @@ module.exports = {
   env: {
     browser: true,
   },
+  "globals": {
+    "document": true,
+    "localStorage": true,
+    "window": true,
+    "ActiveXObject": true
+  }, // 增加全局变量，防止报'ActiveXObject' is not defined类似的错误
   // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
   // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
   extends: ['plugin:vue/essential', 'airbnb-base'],
