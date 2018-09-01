@@ -1,5 +1,5 @@
 export default {
-  increment(state) {
-    state.count++;
+  changeCollapseStatus(state) {
+    state.isCollapse = !state.isCollapse;
   }
 };

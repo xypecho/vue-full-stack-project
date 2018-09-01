@@ -35,10 +35,15 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
+  computed: {
+    ...mapGetters(['isCollapse'])
+  },
   data() {
     return {
-      isCollapse: true
+      //   isCollapse: true
     };
   },
   methods: {

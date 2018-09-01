@@ -1,7 +1,7 @@
 <template>
     <div class="vHeader">
         <div class="vHeader-left">
-            <span class="el-icon-menu"></span>
+            <span class="el-icon-menu" @click='changeCollapseStatus'></span>
         </div>
         <div class="vHeader-right">
             <div class="fullScreen">
@@ -24,6 +24,8 @@
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
@@ -45,7 +47,13 @@ export default {
           t.SendKeys('{F11}'); // t && t.SendKeys('{F11}');
         }
       }
-    }
+    },
+    changeCollapseStatus() {
+      this.CHANGECOLLAPSESTATUS();
+    },
+    ...mapMutations({
+      CHANGECOLLAPSESTATUS: 'changeCollapseStatus'
+    })
   }
 };
 </script>
