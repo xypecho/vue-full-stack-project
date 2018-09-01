@@ -16,6 +16,7 @@
             <el-form-item>
               <el-button type="primary" size='small' @click='register'>注册</el-button>
               <el-button size='small' @click="resetForm('signUpForm')">重置</el-button>
+              <input type="text" v-model="count">
             </el-form-item>
           </el-form>
         </el-tab-pane>
@@ -37,7 +38,12 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
+  computed: {
+    ...mapGetters(['count'])
+  },
   data() {
     const validConfirm = (rule, value, callback) => {
       if (value === '') {
@@ -98,13 +104,17 @@ export default {
       this.$refs[formName].resetFields();
     },
     register() {
-      this.$axios.get('/get_banner').then(res => {
-        console.log(res);
-      });
+      this.INCREMENT();
+      // this.$axios.get('/get_banner').then(res => {
+      //   console.log(res);
+      // });
     },
     login() {
       this.$router.push('index');
-    }
+    },
+    ...mapMutations({
+      INCREMENT: 'increment'
+    })
   }
 };
 </script>

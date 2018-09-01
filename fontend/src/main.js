@@ -8,6 +8,7 @@ import ElementUI from 'element-ui';
 import axios from 'axios';
 import App from './App';
 import router from './router';
+import store from './store';
 
 Vue.use(Vuex);
 Vue.use(ElementUI);
@@ -19,6 +20,7 @@ Vue.prototype.$axios = axios;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });
