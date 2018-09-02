@@ -1,6 +1,7 @@
 <template>
     <div class="content">
         <vHeader></vHeader>
+        <p>这是content</p>
     </div>
 </template>
 <script>
