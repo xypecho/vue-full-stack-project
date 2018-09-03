@@ -66,6 +66,8 @@ module.exports = {
     'max-len': ["error", { "code": 220 }],//去除最大行数长度限制
     "arrow-parens": 0,//箭头函数用小括号括起来
     "arrow-spacing": 0,//=>的前/后括号
-    "no-plusplus": 0//禁止使用++，--
+    "no-plusplus": 0,//禁止使用++，--
+    "global-require": "off",
+    "import/no-dynamic-require": 0
   }
 }

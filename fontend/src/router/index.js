@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import login from '@/pages/login/login';
 import index from '@/pages/index/index';
-import test from '@/components/test/test';
+// import test from '@/components/test/test';
 import test1 from '@/components/test1/test1';
 import fatherTEST from '@/components/fatherTEST/fatherTEST';
 import fatherTEST1 from '@/components/fatherTEST1/fatherTEST1';
@@ -27,7 +27,7 @@ export default new Router({
         // },
         {
           path: '/test',
-          component: test,
+          component: resolve => require(['@/components/test/test'], resolve),
           meta: ['添加数据test']
         },
         {
