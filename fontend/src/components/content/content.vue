@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <vHeader></vHeader>
-        <p>这是content</p>
+        <router-view></router-view>
     </div>
 </template>
 <script>
