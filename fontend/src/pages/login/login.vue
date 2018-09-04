@@ -98,9 +98,14 @@ export default {
       this.$refs[formName].resetFields();
     },
     register() {
-      this.$axios.get('/get_banner').then(res => {
-        console.log(res);
-      });
+      this.$axios
+        .post('/api/user/login', {
+          firstName: 'Fred',
+          lastName: 'Flintstone'
+        })
+        .then(res => {
+          console.log(res);
+        });
     },
     login() {
       this.$router.push('index');
