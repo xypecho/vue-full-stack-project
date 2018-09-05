@@ -98,9 +98,15 @@ export default {
       this.$refs[formName].resetFields();
     },
     register() {
-      this.$axios.post('/api/user/login').then(res => {
-        console.log(res);
-      });
+      this.$axios
+        .post('/api/user/register', {
+          username: this.signUpForm.username,
+          password: this.signUpForm.password,
+          confirmPassword: this.signUpForm.confirmPassword
+        })
+        .then(res => {
+          console.log(res);
+        });
     },
     login() {
       this.$router.push('index');
