@@ -11,11 +11,9 @@ class user {
 
     // 用户登录
     async login(ctx) {
-        // console.log(ctx)
-        // return ctx.body = '这是用户登录'
         let userInfo = await mysqlJs.queryFromMysql('SELECT * FROM users');
-        console.log(userInfo[0])
-        return ctx.body = userInfo[0];
+        console.log(userInfo)
+        return ctx.body = userInfo;
     }
 
 }
