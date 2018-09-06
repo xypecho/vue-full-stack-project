@@ -10,7 +10,7 @@
             <el-form-item prop="password" label="密码">
               <el-input type="password" v-model="signUpForm.password" size='small'></el-input>
             </el-form-item>
-            <el-form-item prop="confirmPassword" label="确认密码" @keyup.enter="register">
+            <el-form-item prop="confirmPassword" label="确认密码" @keyup.enter.native="register">
               <el-input type="password" v-model="signUpForm.confirmPassword" size='small'></el-input>
             </el-form-item>
             <el-form-item>
@@ -98,15 +98,19 @@ export default {
       this.$refs[formName].resetFields();
     },
     register() {
-      this.$axios
-        .post('/api/user/register', {
-          username: this.signUpForm.username,
-          password: this.signUpForm.password,
-          confirmPassword: this.signUpForm.confirmPassword
-        })
-        .then(res => {
-          console.log(res);
-        });
+      this.$refs.signUpForm.validate(valid => {
+        if (valid) {
+          this.$axios
+            .post('/api/user/register', {
+              username: this.signUpForm.username,
+              password: this.signUpForm.password,
+              confirmPassword: this.signUpForm.confirmPassword
+            })
+            .then(res => {
+              console.log(res.data);
+            });
+        }
+      });
     },
     login() {
       this.$router.push('index');
