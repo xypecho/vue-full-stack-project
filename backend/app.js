@@ -2,9 +2,12 @@ const Koa = require('koa');
 const logger = require('koa-logger');
 const Router = require('koa-router');
 const cors = require('@koa/cors');
+const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const router = new Router();
 const user = require('./api/user/user');//关于用户信息的接口
+
+app.use(bodyParser());
 
 app.use(cors({
     origin: function (ctx) {

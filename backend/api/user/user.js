@@ -4,8 +4,8 @@ class user {
 
     // 用户注册
     async register(ctx) {
-        console.log(ctx)
-        return ctx.body = '这是用户注册'
+        console.log(ctx.request.body)
+        return ctx.body = ctx.request.body;
     }
 
     // 用户登录
