@@ -107,7 +107,20 @@ export default {
               confirmPassword: this.signUpForm.confirmPassword
             })
             .then(res => {
-              console.log(res.data);
+              if (res.data.status === 200) {
+                this.$message({
+                  showClose: true,
+                  message: res.data.message,
+                  type: 'success'
+                });
+                this.$router.push('index');
+              } else {
+                this.$message({
+                  showClose: true,
+                  message: res.data.message,
+                  type: 'error'
+                });
+              }
             });
         }
       });
