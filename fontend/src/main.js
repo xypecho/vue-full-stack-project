@@ -15,6 +15,14 @@ Vue.use(ElementUI);
 Vue.config.productionTip = false;
 axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$axios = axios;
+Vue.prototype.$tips = ({ type, message }) => {
+  Vue.prototype.$message({
+    duration: 2000,
+    showClose: true,
+    type,
+    message
+  });
+};
 
 /* eslint-disable no-new */
 new Vue({

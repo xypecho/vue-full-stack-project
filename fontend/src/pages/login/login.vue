@@ -108,15 +108,13 @@ export default {
             })
             .then(res => {
               if (res.data.status === 200) {
-                this.$message({
-                  showClose: true,
+                this.$tips({
                   message: res.data.message,
                   type: 'success'
                 });
                 this.$router.push('index');
               } else {
-                this.$message({
-                  showClose: true,
+                this.$tips({
                   message: res.data.message,
                   type: 'error'
                 });
