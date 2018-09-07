@@ -51,7 +51,7 @@ export default {
       }
     };
     return {
-      activeName: 'signUp',
+      activeName: 'signIn',
       signUpForm: {
         username: '',
         password: '',
