@@ -37,6 +37,8 @@
   </div>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   data() {
     const validConfirm = (rule, value, callback) => {
@@ -108,6 +110,7 @@ export default {
             })
             .then(res => {
               if (res.data.status === 200) {
+                this.setUserInfo(res.data.data);
                 this.$tips({
                   message: res.data.message,
                   type: 'success'
@@ -125,7 +128,10 @@ export default {
     },
     login() {
       this.$router.push('index');
-    }
+    },
+    ...mapMutations({
+      setUserInfo: 'setUserInfo'
+    })
   }
 };
 </script>
