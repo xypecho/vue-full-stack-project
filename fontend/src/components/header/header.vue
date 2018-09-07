@@ -12,25 +12,22 @@
                 <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" alt="" height="40">
             </div>
             <div class="username">
-                admin
+                {{user.username}}
             </div>
         </div>
-        <!-- <span>
-            <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-                <el-radio-button :label="false">展开</el-radio-button>
-                <el-radio-button :label="true">收起</el-radio-button>
-            </el-radio-group>
-        </span> -->
     </div>
 </template>
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   data() {
     return {
       //   isCollapse: false
     };
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   methods: {
     fullScreen() {

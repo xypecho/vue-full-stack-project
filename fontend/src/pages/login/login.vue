@@ -1,7 +1,14 @@
+/*
+ * @Author: xypecho
+ * @Date: 2018-09-07 21:22:42
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-07 23:19:09
+ */
+
 <template>
   <div class="login">
     <div class="loginBox">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName">
         <el-tab-pane label="注册" name="signUp">
           <el-form :model="signUpForm" ref="signUpForm" label-width="100px" class="demo-dynamic" :rules="signUpFormRules">
             <el-form-item prop="username" label="用户名">
@@ -38,6 +45,7 @@
 </template>
 <script>
 import { mapMutations } from 'vuex';
+import { setLocalStorage } from '@/tools/index';
 
 export default {
   data() {
@@ -93,9 +101,6 @@ export default {
     };
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event);
-    },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
@@ -111,6 +116,7 @@ export default {
             .then(res => {
               if (res.data.status === 200) {
                 this.setUserInfo(res.data.data);
+                setLocalStorage(res.data.data);
                 this.$tips({
                   message: res.data.message,
                   type: 'success'
@@ -127,7 +133,32 @@ export default {
       });
     },
     login() {
-      this.$router.push('index');
+      this.$refs.signInForm.validate(valid => {
+        if (valid) {
+          this.$axios
+            .post('/api/user/login', {
+              username: this.signInForm.username,
+              password: this.signInForm.password
+            })
+            .then(res => {
+              console.log(res);
+              if (res.data.status === 200) {
+                this.setUserInfo(res.data.data);
+                setLocalStorage(res.data.data);
+                this.$tips({
+                  message: res.data.message,
+                  type: 'success'
+                });
+                this.$router.push('index');
+              } else {
+                this.$tips({
+                  message: res.data.message,
+                  type: 'error'
+                });
+              }
+            });
+        }
+      });
     },
     ...mapMutations({
       setUserInfo: 'setUserInfo'

@@ -69,6 +69,7 @@ module.exports = {
     "no-plusplus": 0,//禁止使用++，--
     "global-require": "off",
     "import/no-dynamic-require": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "no-restricted-syntax": 0
   }
 }

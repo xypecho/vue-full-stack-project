@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-09-06 22:26:21
+Date: 2018-09-07 23:19:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,10 +28,11 @@ CREATE TABLE `users` (
   `register_time` bigint(12) DEFAULT NULL COMMENT '注册时间',
   `status` tinyint(1) DEFAULT '1' COMMENT '状态：0为禁用，1为启用',
   `avatar` char(255) DEFAULT NULL COMMENT '头像',
+  `is_deleted` tinyint(1) DEFAULT '0' COMMENT '是否删除：0为未删除，1为已经删除',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', null);
+INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', null, '0');
