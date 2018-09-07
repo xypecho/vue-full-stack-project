@@ -68,6 +68,7 @@ module.exports = {
     "arrow-spacing": 0,//=>的前/后括号
     "no-plusplus": 0,//禁止使用++，--
     "global-require": "off",
-    "import/no-dynamic-require": 0
+    "import/no-dynamic-require": 0,
+    "import/prefer-default-export": 0
   }
 }
