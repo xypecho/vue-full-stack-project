@@ -37,11 +37,13 @@ class user {
     // 用户登录
     async login(ctx) {
         let res;
+        let last_login_time = new Date().getTime();
         let username = ctx.request.body.username;
         let password = tool.md5(ctx.request.body.password);
         let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
-        console.log(userInfo)
+        let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
         if (userInfo && userInfo.length === 1) {
+            await mysqlJs.queryFromMysql(`UPDATE users SET last_login_time = '${last_login_time}' WHERE uid = '${uid}'`);
             res = {
                 status: 200,
                 message: '登录成功',
