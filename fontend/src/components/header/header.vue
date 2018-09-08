@@ -1,3 +1,9 @@
+/*
+ * @Author: xypecho
+ * @Date: 2018-09-08 21:44:26
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-08 22:03:17
+ */
 <template>
     <div class="vHeader">
         <div class="vHeader-left">
@@ -22,9 +28,7 @@ import { mapMutations, mapGetters } from 'vuex';
 
 export default {
   data() {
-    return {
-      //   isCollapse: false
-    };
+    return {};
   },
   computed: {
     ...mapGetters(['user'])

@@ -36,9 +36,6 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  created() {
-    console.log(this.$route);
-  },
   computed: {
     ...mapGetters(['isCollapse'])
   },

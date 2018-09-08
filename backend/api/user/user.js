@@ -1,3 +1,9 @@
+/*
+ * @Author: xypecho
+ * @Date: 2018-09-08 21:44:47
+ * @Last Modified by:   xypecho
+ * @Last Modified time: 2018-09-08 21:44:47
+ */
 const mysql = require('mysql')
 const mysqlJs = require('../../common/mysql.js')
 const tool = require('../../common/tool.js');

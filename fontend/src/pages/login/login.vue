@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-07 23:19:09
+ * @Last Modified time: 2018-09-08 22:08:42
  */
 
 <template>
@@ -32,7 +32,7 @@
               <el-input v-model="signInForm.username" size='small'></el-input>
             </el-form-item>
             <el-form-item prop="password" label="密码">
-              <el-input type="password" v-model="signInForm.password" size='small'></el-input>
+              <el-input type="password" v-model="signInForm.password" size='small' @keyup.enter.native="login"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" size='small' @click='login'>登陆</el-button>
@@ -141,7 +141,6 @@ export default {
               password: this.signInForm.password
             })
             .then(res => {
-              console.log(res);
               if (res.data.status === 200) {
                 this.setUserInfo(res.data.data);
                 setLocalStorage(res.data.data);

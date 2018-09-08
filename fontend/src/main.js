@@ -23,6 +23,21 @@ Vue.prototype.$tips = ({ type, message }) => {
     message
   });
 };
+/* 路由守卫，判断用户是否登录,如果用户没有点击退出登录就关闭浏览器，则下次打开网站自动登录 */
+router.beforeEach((to, from, next) => {
+  const uid = JSON.parse(JSON.stringify(localStorage.getItem('username')));
+  if (uid === null && to.path !== '/') {
+    Vue.prototype.$tips({
+      message: '登录过期，请重新登录',
+      type: 'error'
+    });
+    next('/');
+  } else if (uid !== null && to.path === '/') {
+    next('/index');
+  } else {
+    next();
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({
