@@ -25,6 +25,7 @@ Vue.prototype.$tips = ({ type, message }) => {
 };
 /* 路由守卫，判断用户是否登录,如果用户没有点击退出登录就关闭浏览器，则下次打开网站自动登录 */
 router.beforeEach((to, from, next) => {
+  localStorage.setItem('matched', to.matched);
   const uid = JSON.parse(JSON.stringify(localStorage.getItem('username')));
   if (uid === null && to.path !== '/') {
     Vue.prototype.$tips({

@@ -24,34 +24,54 @@ export default new Router({
         {
           path: '/home',
           component: resolve => require(['@/pages/home/home'], resolve),
-          name: '工作台'
+          name: '工作台',
+          icon: 'el-icon-menu'
         },
         {
           path: '/test',
           component: resolve => require(['@/components/test/test'], resolve),
-          name: '添加数据test'
-        },
-        {
-          path: '/test1',
-          component: test1,
-          name: '添加数据1'
+          name: '添加数据test',
+          icon: 'el-icon-menu'
         },
         {
           path: '/fatherTEST1',
           component: fatherTEST1,
           name: 'fatherTEST1',
+          icon: 'el-icon-menu',
           children: [
             {
               path: '/fatherTEST',
               component: fatherTEST,
-              name: 'fatherTEST123'
+              name: 'fatherTEST123',
+              icon: 'el-icon-menu'
+            },
+            {
+              path: '/test1',
+              component: test1,
+              name: '添加数据1',
+              icon: 'el-icon-menu'
+            }
+          ]
+        },
+        {
+          path: '/system',
+          component: resolve => require(['@/pages/system/system'], resolve),
+          name: '系统设置',
+          icon: 'el-icon-menu',
+          children: [
+            {
+              path: '/user',
+              component: resolve => require(['@/pages/user/user'], resolve),
+              name: '用户管理',
+              icon: 'el-icon-menu'
             }
           ]
         },
         {
           path: '/404',
           component: notFound,
-          name: '404'
+          name: '404',
+          icon: 'el-icon-menu'
         }
       ]
     },
