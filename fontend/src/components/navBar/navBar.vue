@@ -1,34 +1,19 @@
 <template>
     <div class="navBar">
-        <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
-            <el-submenu index="1">
-                <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span slot="title">首页</span>
-                </template>
-                <el-menu-item-group>
-                    <el-menu-item index="test111111111111111555">选项1</el-menu-item>
-                    <el-menu-item index="test11111111111111133">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group>
-                    <el-menu-item index="test111111111111111">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group>
-                    <el-menu-item index="test1111111111111112">分组3</el-menu-item>
-                </el-menu-item-group>
-            </el-submenu>
-            <el-menu-item index="test">
-                <i class="el-icon-menu"></i>
-                <span slot="title">添加数据test</span>
-            </el-menu-item>
-            <el-menu-item index="test1">
-                <i class="el-icon-document"></i>
-                <span slot="title">添加数据test212</span>
-            </el-menu-item>
-            <el-menu-item index="fatherTEST">
-                <i class="el-icon-setting"></i>
-                <span slot="title">fatherTEST123</span>
-            </el-menu-item>
+        <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
+            <template v-for="(item,index) in $router.options.routes[1].children">
+                <el-submenu :index="item.path" v-if="item.children&&item.children.length>0" :key="index">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span slot="title">{{item.name}}</span>
+                    </template>
+                    <el-menu-item v-for="(child,idx) in item.children" :index="child.path" :key='idx'>{{child.name}}</el-menu-item>
+                </el-submenu>
+                <el-menu-item :index="item.path" v-if="!item.children" :key="index">
+                    <i class="el-icon-menu"></i>
+                    <span slot="title">{{item.name}}</span>
+                </el-menu-item>
+            </template>
         </el-menu>
     </div>
 </template>
@@ -40,7 +25,9 @@ export default {
     ...mapGetters(['isCollapse'])
   },
   data() {
-    return {};
+    return {
+      activeIndex: 'home'
+    };
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -48,6 +35,7 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+      console.log(this.$router.options.routes[1].children);
     }
   }
 };

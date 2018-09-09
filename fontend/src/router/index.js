@@ -19,36 +19,39 @@ export default new Router({
     {
       path: '/index',
       component: index,
-      meta: [],
+      redirect: '/home',
       children: [
-        // {
-        //   path: '',
-        //   redirect: '/index'
-        // },
+        {
+          path: '/home',
+          component: resolve => require(['@/pages/home/home'], resolve),
+          name: '工作台'
+        },
         {
           path: '/test',
           component: resolve => require(['@/components/test/test'], resolve),
-          meta: ['添加数据test']
+          name: '添加数据test'
         },
         {
           path: '/test1',
           component: test1,
-          meta: ['添加数据1']
-        },
-        {
-          path: '/fatherTEST',
-          component: fatherTEST,
-          meta: ['fatherTEST123']
+          name: '添加数据1'
         },
         {
           path: '/fatherTEST1',
           component: fatherTEST1,
-          meta: ['fatherTEST1']
+          name: 'fatherTEST1',
+          children: [
+            {
+              path: '/fatherTEST',
+              component: fatherTEST,
+              name: 'fatherTEST123'
+            }
+          ]
         },
         {
           path: '/404',
           component: notFound,
-          meta: ['404']
+          name: '404'
         }
       ]
     },
