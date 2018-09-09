@@ -4,5 +4,8 @@ export default {
   },
   setUserInfo(state, user) {
     state.user = user;
+  },
+  changeRouterMatched(state, routerMatched) {
+    state.routerMatched = routerMatched;
   }
 };

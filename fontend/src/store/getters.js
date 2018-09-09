@@ -5,5 +5,6 @@ export default {
       state.user = JSON.parse(JSON.stringify(localStorage));
     }
     return state.user;
-  }
+  },
+  routerMatched: state => state.routerMatched
 };
