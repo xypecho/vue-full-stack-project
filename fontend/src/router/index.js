@@ -20,6 +20,7 @@ export default new Router({
       path: '/index',
       component: index,
       redirect: '/home',
+      name: '首页',
       children: [
         {
           path: '/home',
