@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by:   xypecho
- * @Last Modified time: 2018-09-08 21:45:02
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-10 20:55:09
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -33,6 +33,7 @@ app.use(cors({
 router
     .post('/api/user/login', user.login)
     .post('/api/user/register', user.register)
+    .post('/api/user/list', user.list)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {

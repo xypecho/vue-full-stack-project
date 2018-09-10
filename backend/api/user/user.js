@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by:   xypecho
- * @Last Modified time: 2018-09-08 21:44:47
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-10 21:09:34
  */
 const mysql = require('mysql')
 const mysqlJs = require('../../common/mysql.js')
@@ -48,21 +48,48 @@ class user {
         let password = tool.md5(ctx.request.body.password);
         let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
         let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
-        if (userInfo && userInfo.length === 1) {
+        console.log(userInfo);
+        if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 1 && userInfo[0].status == 1) {
             await mysqlJs.queryFromMysql(`UPDATE users SET last_login_time = '${last_login_time}' WHERE uid = '${uid}'`);
             res = {
                 status: 200,
                 message: '登录成功',
                 data: userInfo[0]
             }
+        } else if (userInfo[0].is_deleted == 0) {
+            res = {
+                status: 500,
+                message: '该帐号已被注销，请重新注册'
+            }
+        } else if (userInfo[0].status == 0) {
+            res = {
+                status: 500,
+                message: '该帐号已被禁用，请联系管理员解封'
+            }
         } else {
             res = {
                 status: 500,
-                message: '用户名或密码错误'
+                message: '帐号或密码错误，请重试'
             }
         }
         return ctx.body = res;
     }
-
+    // 获取所有用户列表
+    async list(ctx) {
+        let res;
+        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users`)));
+        if (userList && userList.length > 0) {
+            res = {
+                status: 200,
+                data: userList
+            }
+        } else {
+            res = {
+                status: 404,
+                message: '获取用户列表失败，请稍候重试'
+            }
+        }
+        return ctx.body = res;
+    }
 }
 module.exports = new user();
