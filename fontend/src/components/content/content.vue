@@ -1,3 +1,9 @@
+/*
+ * @Author: xueyp
+ * @Date: 2018-09-10 14:30:11
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-10 14:43:27
+ */
 <template>
     <div class="content">
         <vHeader></vHeader>
@@ -23,6 +29,8 @@ export default {
 <style lang="stylus" scoped>
 .content {
     width: 100%;
+    height: 100%;
     background-color: #f5f7f9;
+    overflow: auto;
 }
 </style>
