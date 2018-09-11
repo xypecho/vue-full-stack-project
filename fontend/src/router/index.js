@@ -1,12 +1,12 @@
+/*
+ * @Author: xueyp
+ * @Date: 2018-09-11 17:07:52
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-11 17:10:45
+ */
 import Vue from 'vue';
 import Router from 'vue-router';
 import login from '@/pages/login/login';
-import index from '@/pages/index/index';
-// import test from '@/components/test/test';
-import test1 from '@/components/test1/test1';
-import fatherTEST from '@/components/fatherTEST/fatherTEST';
-import fatherTEST1 from '@/components/fatherTEST1/fatherTEST1';
-import notFound from '@/components/404/404';
 
 Vue.use(Router);
 
@@ -18,7 +18,7 @@ export default new Router({
     },
     {
       path: '/index',
-      component: index,
+      component: resolve => require(['@/pages/index/index'], resolve),
       redirect: '/home',
       name: '首页',
       children: [
@@ -27,32 +27,6 @@ export default new Router({
           component: resolve => require(['@/pages/home/home'], resolve),
           name: '工作台',
           icon: 'el-icon-menu'
-        },
-        {
-          path: '/test',
-          component: resolve => require(['@/components/test/test'], resolve),
-          name: '添加数据test',
-          icon: 'el-icon-menu'
-        },
-        {
-          path: '/fatherTEST1',
-          component: fatherTEST1,
-          name: 'fatherTEST1',
-          icon: 'el-icon-menu',
-          children: [
-            {
-              path: '/fatherTEST',
-              component: fatherTEST,
-              name: 'fatherTEST123',
-              icon: 'el-icon-menu'
-            },
-            {
-              path: '/test1',
-              component: test1,
-              name: '添加数据1',
-              icon: 'el-icon-menu'
-            }
-          ]
         },
         {
           path: '/system',
@@ -70,7 +44,7 @@ export default new Router({
         },
         {
           path: '/404',
-          component: notFound,
+          component: resolve => require(['@/components/404/404'], resolve),
           name: '404',
           icon: 'el-icon-menu'
         }
