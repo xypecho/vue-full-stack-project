@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 12:34:04
+ * @Last Modified time: 2018-09-11 15:19:10
  */
 const mysql = require('mysql')
 const mysqlJs = require('../../common/mysql.js')
@@ -47,20 +47,21 @@ class user {
         let username = ctx.request.body.username;
         let password = tool.md5(ctx.request.body.password);
         let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
-        let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
+        console.log(userInfo)
         if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 1 && userInfo[0].status == 1) {
+            let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
             await mysqlJs.queryFromMysql(`UPDATE users SET last_login_time = '${last_login_time}' WHERE uid = '${uid}'`);
             res = {
                 status: 200,
                 message: '登录成功',
                 data: userInfo[0]
             }
-        } else if (userInfo[0].is_deleted == 0) {
+        } else if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 0) {
             res = {
                 status: 500,
                 message: '该帐号已被注销，请重新注册'
             }
-        } else if (userInfo[0].status == 0) {
+        } else if (userInfo && userInfo.length === 1 && userInfo[0].status == 0) {
             res = {
                 status: 500,
                 message: '该帐号已被禁用，请联系管理员解封'

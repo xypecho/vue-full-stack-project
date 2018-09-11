@@ -25,6 +25,7 @@ Vue.prototype.$tips = ({ type, message }) => {
     message
   });
 };
+
 /* 路由守卫，判断用户登录状态，如果用户没有点击退出登录直接关闭浏览器，则1小时内打开网站自动登录 */
 router.beforeEach((to, from, next) => {
   store.commit('changeRouterMatched', {
