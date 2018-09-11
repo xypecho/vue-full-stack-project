@@ -1,6 +1,6 @@
 <template>
     <div class="navBar">
-        <el-menu class="el-menu-vertical-demo" :default-active="activeIndex" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
+        <el-menu class="el-menu-vertical-demo" :default-active="$route.path" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
             <template v-for="(item,index) in $router.options.routes[1].children">
                 <el-submenu :index="item.path" v-if="item.children&&item.children.length>0" :key="index">
                     <template slot="title">
@@ -25,9 +25,7 @@ export default {
     ...mapGetters(['isCollapse'])
   },
   data() {
-    return {
-      activeIndex: '/home'
-    };
+    return {};
   },
   methods: {
     handleOpen(key, keyPath) {

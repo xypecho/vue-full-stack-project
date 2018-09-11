@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 17:32:24
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-11 21:46:50
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -10,7 +10,7 @@ import login from '@/pages/login/login';
 
 Vue.use(Router);
 
-const normalRouter = [
+export const normalRouter = [
   {
     path: '/',
     component: login
@@ -38,6 +38,12 @@ const normalRouter = [
             component: resolve => require(['@/pages/user/user'], resolve),
             name: '用户管理',
             icon: 'el-icon-menu'
+          },
+          {
+            path: '/account',
+            component: resolve => require(['@/pages/account/account'], resolve),
+            name: '帐号设置',
+            icon: 'el-icon-menu'
           }
         ]
       },
@@ -54,6 +60,8 @@ const normalRouter = [
     redirect: '/404'
   }
 ];
+
+
 export default new Router({
   routes: normalRouter
 });

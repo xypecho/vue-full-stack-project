@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-09 16:05:21
+ * @Last Modified time: 2018-09-11 21:47:33
  */
 <template>
   <div class="vHeader">
@@ -26,12 +26,6 @@
         <span @click='toggleFullScreen' class="el-icon-zoom-in">
         </span>
       </div>
-      <!-- <div class="avatar">
-        <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" alt="" height="40">
-      </div>
-      <div class="username">
-        {{user.username}}
-      </div> -->
     </div>
   </div>
 </template>
@@ -87,7 +81,7 @@ export default {
     handleCommand(command) {
       switch (command) {
         case 'accountSetting':
-          console.log('click accountSetting');
+          this.$router.push('/account');
           break;
         case 'signOut':
           this.$confirm('此操作将退出系统, 是否继续?', '警告', {
