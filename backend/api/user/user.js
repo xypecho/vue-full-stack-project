@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-10 21:09:34
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-11 12:34:04
  */
 const mysql = require('mysql')
 const mysqlJs = require('../../common/mysql.js')
@@ -48,7 +48,6 @@ class user {
         let password = tool.md5(ctx.request.body.password);
         let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
         let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
-        console.log(userInfo);
         if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 1 && userInfo[0].status == 1) {
             await mysqlJs.queryFromMysql(`UPDATE users SET last_login_time = '${last_login_time}' WHERE uid = '${uid}'`);
             res = {

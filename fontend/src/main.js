@@ -10,6 +10,7 @@ import axios from 'axios';
 import App from './App';
 import router from './router';
 import store from './store';
+import { timeDifference } from './tools/index';
 
 Vue.use(Vuex);
 Vue.use(ElementUI);
@@ -24,17 +25,23 @@ Vue.prototype.$tips = ({ type, message }) => {
     message
   });
 };
-/* 路由守卫，判断用户是否登录,如果用户没有点击退出登录就关闭浏览器，则下次打开网站自动登录 */
+/* 路由守卫，判断用户登录状态，如果用户没有点击退出登录直接关闭浏览器，则1小时内打开网站自动登录 */
 router.beforeEach((to, from, next) => {
   store.commit('changeRouterMatched', {
     router: to.matched
   });
   const uid = JSON.parse(JSON.stringify(localStorage.getItem('username')));
+  const pastTime = JSON.parse(JSON.stringify(localStorage.getItem('currentTime')));
+  const currentTime = new Date().getTime();
+  const diffMinute = timeDifference(pastTime, currentTime).minute;
   if (uid === null && to.path !== '/') {
     Vue.prototype.$tips({
       message: '登录过期，请重新登录',
       type: 'error'
     });
+    next('/');
+  } else if (uid !== null && diffMinute > 59 && to.path !== '/') {
+    localStorage.clear();
     next('/');
   } else if (uid !== null && to.path === '/') {
     next('/index');
