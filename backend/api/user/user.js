@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 15:19:10
+ * @Last Modified time: 2018-09-11 15:42:48
  */
 const mysql = require('mysql')
 const mysqlJs = require('../../common/mysql.js')
@@ -18,7 +18,7 @@ class user {
         console.log(is_exist);
         if (is_exist && is_exist.length > 0) {
             res = {
-                status: 500,
+                status: 201,
                 message: '该用户名已被注册'
             }
             return ctx.body = res;
@@ -27,8 +27,8 @@ class user {
             let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = ${insertUser.insertId}`);
             if (!insertUser) {
                 res = {
-                    status: 400,
-                    message: insertUser
+                    status: 201,
+                    message: '注册失败，请稍候重试'
                 }
             } else {
                 res = {
@@ -58,17 +58,17 @@ class user {
             }
         } else if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 0) {
             res = {
-                status: 500,
+                status: 201,
                 message: '该帐号已被注销，请重新注册'
             }
         } else if (userInfo && userInfo.length === 1 && userInfo[0].status == 0) {
             res = {
-                status: 500,
+                status: 201,
                 message: '该帐号已被禁用，请联系管理员解封'
             }
         } else {
             res = {
-                status: 500,
+                status: 201,
                 message: '帐号或密码错误，请重试'
             }
         }
@@ -85,7 +85,7 @@ class user {
             }
         } else {
             res = {
-                status: 404,
+                status: 201,
                 message: '获取用户列表失败，请稍候重试'
             }
         }
