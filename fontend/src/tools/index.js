@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 16:31:52
+ * @Last Modified time: 2018-09-11 16:53:34
  */
 
 // 设置localStorage
@@ -31,9 +31,6 @@ export const formatterTime = (timestamp) => {
 
 // 计算两个时间戳之间间隔的时间
 export const timeDifference = (pastTime, currentTime) => {
-  if (currentTime - pastTime < 0 || typeof pastTime !== 'number' || typeof currentTime !== 'number') {
-    return false;
-  }
   const diff = (currentTime - pastTime) / 1000;
   const minute = Math.floor(diff / 60);
   const hours = Math.floor(diff / 3600);
