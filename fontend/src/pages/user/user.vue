@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 16:57:01
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-12 21:09:40
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -17,11 +17,11 @@
       </el-table-column>
       <el-table-column prop="is_deleted" label="帐号状态" :formatter="formatterIs_deleted">
       </el-table-column>
-      <el-table-column prop="email" label="邮箱">
+      <el-table-column prop="email" label="邮箱" width='180'>
       </el-table-column>
-      <el-table-column prop="register_time" label="注册时间" :formatter="formatterRegister_time">
+      <el-table-column prop="register_time" label="注册时间" :formatter="formatterRegister_time" width='200'>
       </el-table-column>
-      <el-table-column prop="last_login_time" label="最后登录时间" :formatter="formatterLast_login_time">
+      <el-table-column prop="last_login_time" label="最后登录时间" :formatter="formatterLast_login_time" width='200'>
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
@@ -66,7 +66,7 @@ export default {
         });
     },
     formatterUtype(row) {
-      return row.utype === 0 ? '管理员' : '普通用户';
+      return row.utype === 0 ? '管理员' : '普通会员';
     },
     formatterStatus(row) {
       return row.status === 0 ? '禁用' : '启用';

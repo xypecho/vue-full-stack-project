@@ -1,11 +1,11 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-12 16:57:11
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-12 22:42:23
  */
 <template>
-  <div class="account">
+  <div class="account" v-loading='loading'>
     <div class="account-left">
       <p class="account-header">帐号信息</p>
       <div class="account-content">
@@ -14,83 +14,131 @@
             <div class="grid-content bg-purple">帐号名称</div>
           </el-col>
           <el-col :span="20">
-            <div class="grid-content bg-purple-light">admin</div>
+            <div class="grid-content bg-purple-light">{{ userInfo.username }}</div>
           </el-col>
         </el-row>
       </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple">角色</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">{{ userInfo.utype | formatterUtype }}</div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple inputClass">邮箱</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">
+              <el-input placeholder="请输入邮箱" size='mini' suffix-icon="el-icon-message" v-model="userInfo.email">
+              </el-input>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple switchClass">是否启用</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">
+              <el-switch v-model="userInfo.status" disabled active-text="是" inactive-text="否">
+              </el-switch>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple switchClass">是否注销</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">
+              <el-switch v-model="userInfo.is_deleted" active-text="是" inactive-text="否" @change='deleteAccount'>
+              </el-switch>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <el-button type="primary" size='mini' style="margin-top:20px">提交修改</el-button>
     </div>
     <div class="account-right">
       <p class="account-header">其他信息</p>
-      <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm" size="mini">
-        <el-form-item label="帐号名称" prop="name">
-          <el-input v-model="ruleForm.name" readonly></el-input>
-        </el-form-item>
-        <el-form-item label="活动区域" prop="region">
-          <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
-            <el-option label="区域一" value="shanghai"></el-option>
-            <el-option label="区域二" value="beijing"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="活动时间" required>
-          <el-col :span="11">
-            <el-form-item prop="date1">
-              <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
-            </el-form-item>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple switchClass">头像</div>
           </el-col>
-          <el-col class="line" :span="2">-</el-col>
-          <el-col :span="11">
-            <el-form-item prop="date2">
-              <el-time-picker type="fixed-time" placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
-            </el-form-item>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">
+              <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
+                <i class="el-icon-plus"></i>
+              </el-upload>
+              <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+              </el-dialog>
+            </div>
           </el-col>
-        </el-form-item>
-        <el-form-item label="即时配送" prop="delivery">
-          <el-switch v-model="ruleForm.delivery"></el-switch>
-        </el-form-item>
-        <el-form-item label="活动性质" prop="type">
-          <el-checkbox-group v-model="ruleForm.type">
-            <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-            <el-checkbox label="地推活动" name="type"></el-checkbox>
-            <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-            <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-          </el-checkbox-group>
-        </el-form-item>
-        <el-form-item label="特殊资源" prop="resource">
-          <el-radio-group v-model="ruleForm.resource">
-            <el-radio label="线上品牌商赞助"></el-radio>
-            <el-radio label="线下场地免费"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item label="活动形式" prop="desc">
-          <el-input type="textarea" v-model="ruleForm.desc"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('ruleForm')">提交修改</el-button>
-        </el-form-item>
-      </el-form>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple inputClass">修改密码</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">
+              <el-input placeholder="请输入密码" size='mini' suffix-icon="el-icon-edit-outline" v-model="userInfo.password" type='password'>
+              </el-input>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple">注册时间</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">{{ userInfo.register_time | formatterRegisterTime }}</div>
+          </el-col>
+        </el-row>
+      </div>
+      <div class="account-content">
+        <el-row>
+          <el-col :span="4">
+            <div class="grid-content bg-purple">近期登陆</div>
+          </el-col>
+          <el-col :span="20">
+            <div class="grid-content bg-purple-light">{{ userInfo.last_login_time | formatterLastLoginTime }}</div>
+          </el-col>
+        </el-row>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import { formatterTime } from '@/tools/index';
+
 export default {
   created() {
     this.getUserInfo();
   },
   data() {
     return {
+      loading: false,
       userInfo: {},
-      ruleForm: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
-      }
+      dialogImageUrl: '',
+      dialogVisible: false
     };
   },
   computed: {
@@ -98,29 +146,74 @@ export default {
   },
   methods: {
     getUserInfo() {
-      let uid = this.user.uid;
-      this.$axios
-        .get('/api/user/userInfo', { params: { uid: uid } })
-        .then(res => {
-          if (res.status == 200) {
-            this.userInfo = res.data;
-          } else {
-            this.$tips({
-              type: 'error',
-              message: res.message
-            });
-          }
-        });
-    },
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert('submit!');
+      this.loading = true;
+      const uid = this.user.uid;
+      this.$axios.get('/api/user/userInfo', { params: { uid } }).then(res => {
+        if (res.status === 200) {
+          this.userInfo = res.data.data;
+          console.log(this.userInfo);
+        } else {
+          this.$tips({
+            type: 'error',
+            message: res.message
+          });
         }
+        this.loading = false;
       });
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    deleteAccount(val) {
+      if (val) {
+        this.$tips({
+          type: 'warning',
+          message: '您正在进行账户注销操作，继续操作您的账户将被注销'
+        });
+      }
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    beforeAvatarUpload(file) {
+      console.log(file);
+      const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
+      const allowImage = ['GIF', 'PNG', 'JPEG', 'JPG'];
+      const isImage = allowImage.indexOf(extension.toUpperCase()) === -1;
+      const isLt2M = file.size / 1024 / 1024 < 1;
+      console.log(extension);
+      if (isImage) {
+        this.$tips({
+          type: 'error',
+          message: '只能上传GIF, PNG, JPEG, JPG等格式图片'
+        });
+        return false;
+      }
+      if (!isLt2M) {
+        this.$tips({
+          type: 'error',
+          message: '上传头像图片大小不能超过1MB'
+        });
+        return false;
+      }
+      return !isImage && isLt2M;
+    }
+  },
+  filters: {
+    formatterUtype(value) {
+      switch (value) {
+        case 0:
+          return '管理员';
+        default:
+          return '普通会员';
+      }
+    },
+    formatterRegisterTime(value) {
+      return formatterTime(value);
+    },
+    formatterLastLoginTime(value) {
+      return formatterTime(value);
     }
   }
 };
@@ -148,5 +241,19 @@ export default {
   width: 100%;
   padding: 20px 0;
   border-bottom: 1px solid #e5e5e5;
+}
+
+.inputClass {
+  height: 28px;
+  line-height: 28px;
+}
+
+.el-input {
+  width: 193px;
+}
+
+.switchClass {
+  height: 20px;
+  line-height: 20px;
 }
 </style>
