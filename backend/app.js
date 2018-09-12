@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-10 20:55:09
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-12 16:42:56
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -34,6 +34,7 @@ router
     .post('/api/user/login', user.login)
     .post('/api/user/register', user.register)
     .post('/api/user/list', user.list)
+    .get('/api/user/userInfo', user.userInfo)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {

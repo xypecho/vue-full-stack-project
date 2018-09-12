@@ -2,9 +2,10 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 15:42:48
+ * @Last Modified time: 2018-09-12 16:54:49
  */
 const mysql = require('mysql')
+const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
 const tool = require('../../common/tool.js');
 class user {
@@ -15,7 +16,6 @@ class user {
         let username = ctx.request.body.username;
         let password = tool.md5(ctx.request.body.password);
         let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
-        console.log(is_exist);
         if (is_exist && is_exist.length > 0) {
             res = {
                 status: 201,
@@ -47,7 +47,6 @@ class user {
         let username = ctx.request.body.username;
         let password = tool.md5(ctx.request.body.password);
         let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
-        console.log(userInfo)
         if (userInfo && userInfo.length === 1 && userInfo[0].is_deleted == 1 && userInfo[0].status == 1) {
             let uid = JSON.parse(JSON.stringify(userInfo))[0].uid;
             await mysqlJs.queryFromMysql(`UPDATE users SET last_login_time = '${last_login_time}' WHERE uid = '${uid}'`);
@@ -87,6 +86,24 @@ class user {
             res = {
                 status: 201,
                 message: '获取用户列表失败，请稍候重试'
+            }
+        }
+        return ctx.body = res;
+    }
+    // 获取指定用户的信息
+    async userInfo(ctx) {
+        let res;
+        let uid = url.parse(ctx.request.url, true).query.uid;
+        let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
+        if (userInfo && userInfo.length == 1) {
+            res = {
+                status: 200,
+                data: userInfo[0]
+            }
+        } else {
+            res = {
+                status: 201,
+                message: '获取用户信息失败，请稍候重试'
             }
         }
         return ctx.body = res;

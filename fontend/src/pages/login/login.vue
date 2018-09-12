@@ -2,12 +2,12 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 15:20:22
+ * @Last Modified time: 2018-09-12 15:45:44
  */
 
 <template>
   <div class="login">
-    <div class="loginBox">
+    <div class="loginBox" v-loading='loading'>
       <el-tabs v-model="activeName">
         <el-tab-pane label="注册" name="signUp">
           <el-form :model="signUpForm" ref="signUpForm" label-width="100px" class="demo-dynamic" :rules="signUpFormRules">
@@ -59,6 +59,7 @@ export default {
       }
     };
     return {
+      loading: false,
       activeName: 'signIn',
       signUpForm: {
         username: '',
@@ -107,6 +108,7 @@ export default {
     register() {
       this.$refs.signUpForm.validate(valid => {
         if (valid) {
+          this.loading = true;
           this.$axios
             .post('/api/user/register', {
               username: this.signUpForm.username,
@@ -128,6 +130,7 @@ export default {
                   type: 'error'
                 });
               }
+              this.loading = false;
             });
         }
       });
@@ -135,6 +138,7 @@ export default {
     login() {
       this.$refs.signInForm.validate(valid => {
         if (valid) {
+          this.loading = true;
           this.$axios
             .post('/api/user/login', {
               username: this.signInForm.username,
@@ -155,6 +159,7 @@ export default {
                   type: 'error'
                 });
               }
+              this.loading = false;
             });
         }
       });

@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:33:55
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-11 21:33:49
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-12 15:43:29
  */
 export default {
   isCollapse: false,
