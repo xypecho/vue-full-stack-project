@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-13 15:17:01
+ * @Last Modified time: 2018-09-13 16:58:55
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -67,7 +67,7 @@
           </el-col>
         </el-row>
       </div>
-      <el-button type="primary" size='mini' style="margin-top:20px">提交修改</el-button>
+      <el-button type="primary" size='mini' style="margin-top:20px" @click="editUserInfo">提交修改</el-button>
     </div>
     <div class="account-right">
       <p class="account-header">其他信息</p>
@@ -203,6 +203,13 @@ export default {
         return false;
       }
       return !isImage && isLt2M;
+    },
+    editUserInfo() {
+      this.$axios
+        .post('/api/user/edit', { userInfo: this.userInfo })
+        .then(res => {
+          console.log(res);
+        });
     }
   },
   filters: {

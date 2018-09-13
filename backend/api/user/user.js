@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-12 16:54:49
+ * @Last Modified time: 2018-09-13 17:24:34
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -106,6 +106,27 @@ class user {
                 message: '获取用户信息失败，请稍候重试'
             }
         }
+        return ctx.body = res;
+    }
+    // 编辑用户信息
+    async edit(ctx) {
+        let res;
+        let user = ctx.request.body.userInfo;
+        let uid = user.uid;
+        let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
+        if (is_exist && is_exist.length == 1) {
+            let userInfo = await mysqlJs.queryFromMysql(`UPDATE users SET email = '${user.email}',is_deleted = '${user.is_deleted}',avatar = '${user.avatar}',password = '${tool.md5(user.password)}' WHERE uid = '${uid}'`);
+            console.log('===============')
+            console.log(userInfo)
+            console.log('================')
+        } else {
+            res = {
+                status: 201,
+                message: '编辑用户信息失败，请稍候重试'
+            }
+        }
+        console.log(uid)
+        console.log(user);
         return ctx.body = res;
     }
 }
