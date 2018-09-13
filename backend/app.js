@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-13 09:52:09
+ * @Last Modified time: 2018-09-13 14:32:03
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -14,7 +14,9 @@ const router = new Router();
 const user = require('./api/user/user');// 用户信息的接口
 const upload = require('./api/upload/upload');// 上传相关的接口
 
-app.use(bodyParser());
+app.use(bodyParser({
+    multipart: true
+}));
 
 app.use(cors({
     origin: function (ctx) {

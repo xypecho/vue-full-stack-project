@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-12 22:42:23
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-13 15:17:01
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -48,7 +48,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-switch v-model="userInfo.status" disabled active-text="是" inactive-text="否">
+              <el-switch v-model="userInfo.status" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' disabled>
               </el-switch>
             </div>
           </el-col>
@@ -61,7 +61,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-switch v-model="userInfo.is_deleted" active-text="是" inactive-text="否" @change='deleteAccount'>
+              <el-switch v-model="userInfo.is_deleted" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' @change='deleteAccount'>
               </el-switch>
             </div>
           </el-col>
@@ -78,7 +78,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
+              <el-upload action="http://localhost:8081/api/upload/image" :limit="1" :header="personal.headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
@@ -138,7 +138,12 @@ export default {
       loading: false,
       userInfo: {},
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      personal: {
+        headers: {
+          enctype: 'multipart/form-data'
+        }
+      }
     };
   },
   computed: {
