@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-12 16:42:56
+ * @Last Modified time: 2018-09-13 09:52:09
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -11,7 +11,8 @@ const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const router = new Router();
-const user = require('./api/user/user');//关于用户信息的接口
+const user = require('./api/user/user');// 用户信息的接口
+const upload = require('./api/upload/upload');// 上传相关的接口
 
 app.use(bodyParser());
 
@@ -35,6 +36,7 @@ router
     .post('/api/user/register', user.register)
     .post('/api/user/list', user.list)
     .get('/api/user/userInfo', user.userInfo)
+    .post('/api/upload/image', upload.image)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {
