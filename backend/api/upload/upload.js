@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-13 14:32:21
+ * @Last Modified time: 2018-09-14 16:40:50
  */
 const fs = require('fs');
 const buffer = require('buffer');

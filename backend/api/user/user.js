@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-13 17:24:34
+ * @Last Modified time: 2018-09-14 16:21:59
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -112,21 +112,35 @@ class user {
     async edit(ctx) {
         let res;
         let user = ctx.request.body.userInfo;
+        let username = user.username;
         let uid = user.uid;
-        let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
-        if (is_exist && is_exist.length == 1) {
-            let userInfo = await mysqlJs.queryFromMysql(`UPDATE users SET email = '${user.email}',is_deleted = '${user.is_deleted}',avatar = '${user.avatar}',password = '${tool.md5(user.password)}' WHERE uid = '${uid}'`);
-            console.log('===============')
-            console.log(userInfo)
-            console.log('================')
+        let is_admin = user.uid != '1';
+        let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}' OR username = '${username}'`);
+        console.log(is_exist)
+        if (is_admin && is_exist && is_exist.length == 1) {
+            await mysqlJs.queryFromMysql(`UPDATE users SET email = '${user.email}',username = '${user.username}',is_deleted = '${user.is_deleted}',avatar = '${user.avatar}',password = '${tool.md5(user.password)}' WHERE uid = '${uid}'`);
+            let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
+            userInfo = JSON.parse(JSON.stringify(userInfo));
+            res = {
+                status: 200,
+                data: userInfo[0]
+            }
+        } else if (is_admin && is_exist && is_exist.length != 1) {
+            res = {
+                status: 201,
+                message: '该用户名已被注册'
+            }
+        } else if (!is_admin) {
+            res = {
+                status: 201,
+                message: '管理员的信息不允许修改'
+            }
         } else {
             res = {
                 status: 201,
                 message: '编辑用户信息失败，请稍候重试'
             }
         }
-        console.log(uid)
-        console.log(user);
         return ctx.body = res;
     }
 }

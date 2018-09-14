@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-13 16:58:55
+ * @Last Modified time: 2018-09-14 16:24:19
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -11,10 +11,14 @@
       <div class="account-content">
         <el-row>
           <el-col :span="4">
-            <div class="grid-content bg-purple">帐号名称</div>
+            <div class="grid-content bg-purple inputClass">帐号名称</div>
           </el-col>
           <el-col :span="20">
-            <div class="grid-content bg-purple-light">{{ userInfo.username }}</div>
+            <!-- <div class="grid-content bg-purple-light">{{ userInfo.username }}</div> -->
+            <div class="grid-content bg-purple-light">
+              <el-input placeholder="请输入帐号名称" size='mini' suffix-icon="el-icon-edit-outline" v-model="userInfo.username">
+              </el-input>
+            </div>
           </el-col>
         </el-row>
       </div>
@@ -78,7 +82,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-upload action="http://localhost:8081/api/upload/image" :limit="1" :header="personal.headers" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
+              <el-upload action="http://localhost:8081/api/upload/image" :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
@@ -126,7 +130,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { formatterTime } from '@/tools/index';
 
 export default {
@@ -138,12 +142,7 @@ export default {
       loading: false,
       userInfo: {},
       dialogImageUrl: '',
-      dialogVisible: false,
-      personal: {
-        headers: {
-          enctype: 'multipart/form-data'
-        }
-      }
+      dialogVisible: false
     };
   },
   computed: {
@@ -208,9 +207,23 @@ export default {
       this.$axios
         .post('/api/user/edit', { userInfo: this.userInfo })
         .then(res => {
-          console.log(res);
+          if (res.data.status === 200) {
+            this.$tips({
+              type: 'success',
+              message: '编辑成功'
+            });
+            this.setUserInfo(res.data.data);
+          } else {
+            this.$tips({
+              type: 'error',
+              message: res.data.message
+            });
+          }
         });
-    }
+    },
+    ...mapMutations({
+      setUserInfo: 'setUserInfo'
+    })
   },
   filters: {
     formatterUtype(value) {
@@ -235,6 +248,7 @@ export default {
   padding: 20px;
   font-size: 14px;
   display: flex;
+  padding-bottom: 70px;
 }
 
 .account-left, .account-right {
