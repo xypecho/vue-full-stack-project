@@ -2,15 +2,17 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-14 16:40:50
+ * @Last Modified time: 2018-09-14 17:23:13
  */
 const fs = require('fs');
 const buffer = require('buffer');
 
 class upload {
     async image(ctx) {
-        const file = ctx	// 获取上传文件
+        const file = ctx.req.file	// 获取上传文件
         console.log(file);
+        console.log('===========')
+        console.log(ctx)
         if (!fs.existsSync('upload')) {
             fs.mkdirSync('upload');
             fs.mkdirSync('upload/images');
@@ -22,7 +24,7 @@ class upload {
         //         console.log('上传成功')
         //     }
         // });
-        return ctx.body = 'this is upload api';
+        return ctx.body = ctx.request.header.referer + '/' + file.filename;
     }
 }
 module.exports = new upload();
