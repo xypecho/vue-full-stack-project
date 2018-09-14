@@ -7,6 +7,11 @@
 
 <template>
   <div class="login">
+    <div class="textBox">
+      <h2>切图仔宣言</h2>
+      <p>成功将至，我从今开始发奋，至死方休。我将不毁约、不放弃、不后退。我将不耻下问，不持材自傲。我将不畏困难，不惧诱惑。我是荆棘中的利剑，战场上的勇士。</p>
+      <p> 我是抵御寒冷的烈焰，破晓时分的光线，唤醒沉睡者的号角，守护梦想的坚盾。我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
+    </div>
     <div class="loginBox" v-loading='loading'>
       <el-tabs v-model="activeName">
         <el-tab-pane label="注册" name="signUp">
@@ -181,7 +186,7 @@ export default {
   height: 100%;
 
   &:before {
-    background-image: url('~@/assets/images/code.jpg');
+    background-image: url('~@/assets/images/code.jpeg');
     background-size: cover;
     content: '';
     height: 100%;
@@ -193,11 +198,32 @@ export default {
   }
 }
 
+.textBox {
+  color: #fff;
+  width: 500px;
+  position: absolute;
+  top: 46%;
+  left: 20%;
+  transform: translate(-20%, -46%);
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+
+  & h2 {
+    line-height: 30px;
+    font-weight: 100;
+  }
+
+  & p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
 .loginBox {
   background-color: #fff;
   margin-left: auto;
   margin-right: 100px;
   padding: 43px 43px 15px 43px;
   font-size: 17px;
+  border-radius: 14px;
 }
 </style>

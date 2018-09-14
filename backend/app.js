@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-14 17:14:00
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-14 22:40:49
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -15,9 +15,14 @@ const user = require('./api/user/user');// 用户信息的接口
 const upload = require('./api/upload/upload');// 上传相关的接口
 
 /* 文件上传相关 */
+const fs = require('fs');
 const multer = require('koa-multer');//加载koa-multer模块
 const path = require('path');
 const static = require('koa-static');
+if (!fs.existsSync('upload')) {
+    fs.mkdirSync('upload');
+    fs.mkdirSync('upload/images');
+}
 var storage = multer.diskStorage({
     //文件保存路径
     destination: function (req, file, cb) {
