@@ -10,10 +10,26 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-09-15 15:17:51
+Date: 2018-09-15 16:27:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for hitokoto
+-- ----------------------------
+DROP TABLE IF EXISTS `hitokoto`;
+CREATE TABLE `hitokoto` (
+  `id` int(11) NOT NULL,
+  `hitokoto` text COMMENT '一段话',
+  `source` varchar(255) DEFAULT NULL COMMENT '来源',
+  `insert_time` bigint(12) DEFAULT NULL COMMENT '插入数据库的时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hitokoto
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for users
