@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-11 21:47:33
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-15 10:02:10
  */
 <template>
   <div class="vHeader">
@@ -12,7 +12,8 @@
     <div class="vHeader-right">
       <el-dropdown @command="handleCommand">
         <div class="avatar">
-          <img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" alt="" height="40">
+          <img v-if="user.avatar=='null'" src="~@/assets/images/avatar.gif" alt="" height="40" width="40">
+          <img v-else :src="user.avatar" alt="" height="40" width="40">
         </div>
         <div class="username">
           {{user.username}}

@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-14 16:24:19
+ * @Last Modified time: 2018-09-15 10:17:49
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -65,7 +65,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-switch v-model="userInfo.is_deleted" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' @change='deleteAccount'>
+              <el-switch v-model="userInfo.is_deleted" active-color="#13ce66" inactive-color="#ff4949" :active-value='0' :inactive-value='1' @change='deleteAccount'>
               </el-switch>
             </div>
           </el-col>
@@ -82,7 +82,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-upload action="http://localhost:8081/api/upload/image" :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload">
+              <el-upload :action='actionUrl' :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload" :on-success="handleAvatarSuccess">
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
@@ -92,7 +92,7 @@
           </el-col>
         </el-row>
       </div>
-      <div class="account-content">
+      <!-- <div class="account-content">
         <el-row>
           <el-col :span="4">
             <div class="grid-content bg-purple inputClass">修改密码</div>
@@ -104,7 +104,7 @@
             </div>
           </el-col>
         </el-row>
-      </div>
+      </div> -->
       <div class="account-content">
         <el-row>
           <el-col :span="4">
@@ -141,6 +141,7 @@ export default {
     return {
       loading: false,
       userInfo: {},
+      actionUrl: `/api/upload/image`,
       dialogImageUrl: '',
       dialogVisible: false
     };
@@ -166,12 +167,18 @@ export default {
       });
     },
     deleteAccount(val) {
-      if (val) {
+      if (!val) {
         this.$tips({
           type: 'warning',
           message: '您正在进行账户注销操作，继续操作您的账户将被注销'
         });
       }
+    },
+    handleAvatarSuccess(res, file) {
+      console.log(file.url);
+      this.userInfo.avatar = file.url;
+      this.setUserInfo(this.userInfo);
+      // URL.createObjectURL(file.raw);
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
