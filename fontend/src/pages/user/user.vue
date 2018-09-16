@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 16:55:15
+ * @Last Modified time: 2018-09-16 21:07:46
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -15,7 +15,7 @@
       </el-table-column>
       <el-table-column label="是否启用">
         <template slot-scope="scope">
-          <el-switch v-model="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' :disabled='scope.row.uid==1' @change="accountBan(scope.row)">
+          <el-switch v-model="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' :disabled='user.uid !=1 || scope.row.uid==1' @change="accountBan(scope.row)">
           </el-switch>
         </template>
       </el-table-column>
@@ -29,7 +29,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small">
+          <el-button type="text" size="small" @click='deleteUser(scope.row)'>
             删除
           </el-button>
         </template>
@@ -43,10 +43,14 @@
 </template>
 <script>
 import { formatterTime } from '@/tools/index';
+import { mapGetters } from 'vuex';
 
 export default {
   created() {
     this.getUserList();
+  },
+  computed: {
+    ...mapGetters(['user'])
   },
   data() {
     return {
@@ -117,6 +121,15 @@ export default {
             message: '操作失败请重试'
           });
         }
+      });
+    },
+    deleteUser(data) {
+      const uid = data.uid;
+      this.$axios.post('/api/user/delete', { uid }).then(res => {
+        this.$tips({
+          type: `${res.data.status === 200 ? 'success' : 'error'}`,
+          message: res.data.message
+        });
       });
     }
   }

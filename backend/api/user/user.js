@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 16:56:36
+ * @Last Modified time: 2018-09-16 21:05:51
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -78,7 +78,6 @@ class user {
         let currentPage = ctx.request.body.currentPage;//当前是第几页
         let pageSize = ctx.request.body.pageSize;//每页显示多少条
         let res;
-        console.log(`SELECT * FROM users LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`);
         let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
         let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users`)));
         if (userList && userList.length > 0) {
@@ -143,6 +142,24 @@ class user {
             res = {
                 status: 201,
                 message: '编辑用户信息失败，请稍候重试'
+            }
+        }
+        return ctx.body = res;
+    }
+    // 删除用户
+    async delete(ctx) {
+        let res;
+        let uid = ctx.request.body.uid;
+        let result = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`DELETE FROM users WHERE uid = '${uid}'`)));
+        if (result.affectedRows == 1) {
+            res = {
+                status: 200,
+                message: '删除成功'
+            }
+        } else {
+            res = {
+                status: 201,
+                message: '删除用户信息，请稍候重试'
             }
         }
         return ctx.body = res;

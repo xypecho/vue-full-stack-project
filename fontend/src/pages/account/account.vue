@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 12:56:06
+ * @Last Modified time: 2018-09-16 21:28:22
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -70,7 +70,7 @@
           </el-col>
         </el-row>
       </div>
-      <el-button type="primary" size='mini' style="margin-top:20px" @click="editUserInfo">提交修改</el-button>
+      <el-button type="primary" size='mini' style="margin-top:10px" @click="editUserInfo">提交修改</el-button>
     </div>
     <div class="account-right">
       <p class="account-header">其他信息</p>
@@ -81,7 +81,7 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-upload :action='actionUrl' :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload" :on-success="handleAvatarSuccess">
+              <el-upload :action='actionUrl()' :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload" :on-success="handleAvatarSuccess">
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
@@ -140,7 +140,6 @@ export default {
     return {
       loading: false,
       userInfo: {},
-      actionUrl: 'http://localhost:8081/api/upload/image',
       dialogImageUrl: '',
       dialogVisible: false
     };
@@ -149,6 +148,9 @@ export default {
     ...mapGetters(['user'])
   },
   methods: {
+    actionUrl() {
+      return `http://localhost:8081/api/upload/image?uid=${this.user.uid}`;
+    },
     getUserInfo() {
       this.loading = true;
       const uid = this.user.uid;
