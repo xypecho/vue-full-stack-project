@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-14 16:21:59
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-16 15:53:48
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -75,11 +75,16 @@ class user {
     }
     // 获取所有用户列表
     async list(ctx) {
+        let currentPage = ctx.request.body.currentPage;//当前是第几页
+        let pageSize = ctx.request.body.pageSize;//每页显示多少条
         let res;
-        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users`)));
+        console.log(`SELECT * FROM users LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`);
+        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
+        let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users`)));
         if (userList && userList.length > 0) {
             res = {
                 status: 200,
+                total: total[0]['COUNT(*)'],
                 data: userList
             }
         } else {

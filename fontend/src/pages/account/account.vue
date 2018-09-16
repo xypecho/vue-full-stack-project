@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-15 10:17:49
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-16 12:56:06
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -14,7 +14,6 @@
             <div class="grid-content bg-purple inputClass">帐号名称</div>
           </el-col>
           <el-col :span="20">
-            <!-- <div class="grid-content bg-purple-light">{{ userInfo.username }}</div> -->
             <div class="grid-content bg-purple-light">
               <el-input placeholder="请输入帐号名称" size='mini' suffix-icon="el-icon-edit-outline" v-model="userInfo.username">
               </el-input>
@@ -141,7 +140,7 @@ export default {
     return {
       loading: false,
       userInfo: {},
-      actionUrl: `/api/upload/image`,
+      actionUrl: 'http://localhost:8081/api/upload/image',
       dialogImageUrl: '',
       dialogVisible: false
     };

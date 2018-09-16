@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-12 21:09:40
+ * @Last Modified time: 2018-09-16 16:08:47
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -31,6 +31,10 @@
         </template>
       </el-table-column>
     </el-table>
+    <div class="block">
+      <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-sizes="[2, 5, 10, 20, 30]" :page-size="pageSize" layout="total,sizes, prev, pager, next" :total="total">
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
@@ -43,26 +47,32 @@ export default {
   data() {
     return {
       userList: [],
-      loading: false
+      loading: false,
+      currentPage: 1,
+      pageSize: 5,
+      total: 0
     };
   },
   methods: {
     getUserList() {
       this.loading = true;
       this.$axios
-        .post('/api/user/list')
+        .post('/api/user/list', {
+          currentPage: this.currentPage,
+          pageSize: this.pageSize
+        })
         .then(res => {
           if (res.data.status === 200) {
             this.userList = res.data.data;
+            this.total = res.data.total;
+            this.loading = false;
           } else {
             this.$tips({
               type: 'error',
               message: res.data.message
             });
+            this.loading = false;
           }
-        })
-        .finally(() => {
-          this.loading = false;
         });
     },
     formatterUtype(row) {
@@ -79,6 +89,14 @@ export default {
     },
     formatterLast_login_time(row) {
       return formatterTime(row.last_login_time);
+    },
+    handleSizeChange(val) {
+      this.pageSize = val;
+      this.getUserList();
+    },
+    handleCurrentChange(val) {
+      this.currentPage = val;
+      this.getUserList();
     }
   }
 };
@@ -86,5 +104,10 @@ export default {
 <style lang='stylus' scoped>
 .user {
   padding: 20px;
+}
+
+.block {
+  text-align: right;
+  margin-top: 50px;
 }
 </style>

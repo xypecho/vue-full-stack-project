@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-15 10:02:10
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-16 12:29:21
  */
 <template>
   <div class="vHeader">
@@ -12,7 +12,7 @@
     <div class="vHeader-right">
       <el-dropdown @command="handleCommand">
         <div class="avatar">
-          <img v-if="user.avatar=='null'" src="~@/assets/images/avatar.gif" alt="" height="40" width="40">
+          <img v-if="!user.avatar" src="~@/assets/images/avatar.gif" alt="" height="40" width="40">
           <img v-else :src="user.avatar" alt="" height="40" width="40">
         </div>
         <div class="username">
