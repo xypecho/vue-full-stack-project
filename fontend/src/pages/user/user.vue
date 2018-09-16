@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 16:08:47
+ * @Last Modified time: 2018-09-16 16:55:15
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -13,7 +13,11 @@
       </el-table-column>
       <el-table-column prop="utype" label="角色" :formatter="formatterUtype">
       </el-table-column>
-      <el-table-column prop="status" label="是否启用" :formatter="formatterStatus">
+      <el-table-column label="是否启用">
+        <template slot-scope="scope">
+          <el-switch v-model="scope.row.status" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' :disabled='scope.row.uid==1' @change="accountBan(scope.row)">
+          </el-switch>
+        </template>
       </el-table-column>
       <el-table-column prop="is_deleted" label="帐号状态" :formatter="formatterIs_deleted">
       </el-table-column>
@@ -26,7 +30,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="text" size="small">
-            移除
+            删除
           </el-button>
         </template>
       </el-table-column>
@@ -78,9 +82,6 @@ export default {
     formatterUtype(row) {
       return row.utype === 0 ? '管理员' : '普通会员';
     },
-    formatterStatus(row) {
-      return row.status === 0 ? '禁用' : '启用';
-    },
     formatterIs_deleted(row) {
       return row.is_deleted === 0 ? '已注销' : '正常';
     },
@@ -97,6 +98,26 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val;
       this.getUserList();
+    },
+    accountBan(data) {
+      this.$axios.post('/api/user/edit', { userInfo: data }).then(res => {
+        console.log(res);
+        if (res.data.status === 200) {
+          this.$tips({
+            type: 'success',
+            message: `${
+              data.status === 1
+                ? `成功启用${data.username}帐号`
+                : `已禁用${data.username}帐号`
+            }`
+          });
+        } else {
+          this.$tips({
+            type: 'error',
+            message: '操作失败请重试'
+          });
+        }
+      });
     }
   }
 };

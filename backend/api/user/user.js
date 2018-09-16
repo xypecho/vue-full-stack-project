@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 15:53:48
+ * @Last Modified time: 2018-09-16 16:56:36
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -121,9 +121,8 @@ class user {
         let uid = user.uid;
         let is_admin = user.uid != '1';
         let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}' OR username = '${username}'`);
-        console.log(is_exist)
         if (is_admin && is_exist && is_exist.length == 1) {
-            await mysqlJs.queryFromMysql(`UPDATE users SET email = '${user.email}',username = '${user.username}',is_deleted = '${user.is_deleted}',avatar = '${user.avatar}',password = '${tool.md5(user.password)}' WHERE uid = '${uid}'`);
+            await mysqlJs.queryFromMysql(`UPDATE users SET email = '${user.email}',username = '${user.username}',status = '${user.status}',is_deleted = '${user.is_deleted}',avatar = '${user.avatar}',password = '${tool.md5(user.password)}' WHERE uid = '${uid}'`);
             let userInfo = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
             userInfo = JSON.parse(JSON.stringify(userInfo));
             res = {
