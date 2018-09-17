@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 21:28:22
+ * @Last Modified time: 2018-09-17 22:00:37
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -130,7 +130,7 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex';
-import { formatterTime } from '@/tools/index';
+import { formatterTime, setLocalStorage } from '@/tools/index';
 
 export default {
   created() {
@@ -157,7 +157,6 @@ export default {
       this.$axios.get('/api/user/userInfo', { params: { uid } }).then(res => {
         if (res.status === 200) {
           this.userInfo = res.data.data;
-          console.log(this.userInfo);
         } else {
           this.$tips({
             type: 'error',
@@ -176,10 +175,17 @@ export default {
       }
     },
     handleAvatarSuccess(res, file) {
-      console.log(file.url);
-      this.userInfo.avatar = file.url;
-      this.setUserInfo(this.userInfo);
-      // URL.createObjectURL(file.raw);
+      console.log(file);
+      if (res.status === 200) {
+        this.userInfo.avatar = `${document.location.protocol}//${res.data}`;
+        this.setUserInfo(this.userInfo);
+        setLocalStorage(this.userInfo);
+      } else {
+        this.$tips({
+          type: 'error',
+          message: '头像上传失败，请稍候重试'
+        });
+      }
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
@@ -189,12 +195,10 @@ export default {
       this.dialogVisible = true;
     },
     beforeAvatarUpload(file) {
-      console.log(file);
       const extension = file.name.substring(file.name.lastIndexOf('.') + 1);
       const allowImage = ['GIF', 'PNG', 'JPEG', 'JPG'];
       const isImage = allowImage.indexOf(extension.toUpperCase()) === -1;
       const isLt2M = file.size / 1024 / 1024 < 1;
-      console.log(extension);
       if (isImage) {
         this.$tips({
           type: 'error',
