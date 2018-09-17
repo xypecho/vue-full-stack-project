@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-17 22:00:37
+ * @Last Modified time: 2018-09-17 22:32:56
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -141,7 +141,8 @@ export default {
       loading: false,
       userInfo: {},
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      imgPath: ''
     };
   },
   computed: {
@@ -174,10 +175,10 @@ export default {
         });
       }
     },
-    handleAvatarSuccess(res, file) {
-      console.log(file);
+    handleAvatarSuccess(res) {
       if (res.status === 200) {
-        this.userInfo.avatar = `${document.location.protocol}//${res.data}`;
+        this.userInfo.avatar = `${document.location.protocol}//${res.data.res}`;
+        this.imgPath = res.data.path;
         this.setUserInfo(this.userInfo);
         setLocalStorage(this.userInfo);
       } else {
@@ -188,7 +189,11 @@ export default {
       }
     },
     handleRemove(file, fileList) {
-      console.log(file, fileList);
+      this.$axios
+        .post('/api/upload/deleteImage', { path: this.imgPath })
+        .then(res => {
+          console.log(res);
+        });
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;

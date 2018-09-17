@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 20:48:45
+ * @Last Modified time: 2018-09-17 22:33:22
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -70,6 +70,7 @@ router
     .post('/api/user/delete', user.delete)
     .get('/api/user/userInfo', user.userInfo)
     .post('/api/upload/image', uploadMiddleware.single('file'), upload.image)
+    .post('/api/upload/deleteImage', upload.deleteImage)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {

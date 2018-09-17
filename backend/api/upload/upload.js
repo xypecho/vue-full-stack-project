@@ -2,10 +2,11 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-17 22:04:52
+ * @Last Modified time: 2018-09-17 22:35:04
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
+const fs = require('fs');
 
 class upload {
     async image(ctx) {
@@ -17,7 +18,7 @@ class upload {
         if (userInfo.affectedRows == 1) {
             res = {
                 status: 200,
-                data: res
+                data: { res, path: file.path }
             }
         } else {
             res = {
@@ -26,6 +27,12 @@ class upload {
             }
         }
         return ctx.body = res;
+    }
+    async deleteImage(ctx) {
+        let res;
+        const path = ctx.request.body.path;
+        console.log(path);
+        return ctx.body = path;
     }
 }
 module.exports = new upload();
