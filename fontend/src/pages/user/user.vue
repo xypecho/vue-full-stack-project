@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 21:07:46
+ * @Last Modified time: 2018-09-18 21:31:37
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -125,12 +125,19 @@ export default {
     },
     deleteUser(data) {
       const uid = data.uid;
-      this.$axios.post('/api/user/delete', { uid }).then(res => {
+      if (uid === 1) {
         this.$tips({
-          type: `${res.data.status === 200 ? 'success' : 'error'}`,
-          message: res.data.message
+          type: 'error',
+          message: '管理员不可以删除'
         });
-      });
+      } else {
+        this.$axios.post('/api/user/delete', { uid }).then(res => {
+          this.$tips({
+            type: `${res.data.status === 200 ? 'success' : 'error'}`,
+            message: res.data.message
+          });
+        });
+      }
     }
   }
 };
