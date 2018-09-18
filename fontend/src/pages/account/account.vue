@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-17 22:32:56
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-18 12:50:12
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -188,11 +188,20 @@ export default {
         });
       }
     },
-    handleRemove(file, fileList) {
+    handleRemove() {
       this.$axios
         .post('/api/upload/deleteImage', { path: this.imgPath })
         .then(res => {
-          console.log(res);
+          if (res.data && res.data.status === 201) {
+            this.$tips({
+              type: 'error',
+              message: res.data.message
+            });
+          } else {
+            this.userInfo.avatar = '';
+            this.setUserInfo(this.userInfo);
+            setLocalStorage(this.userInfo);
+          }
         });
     },
     handlePictureCardPreview(file) {

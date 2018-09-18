@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-16 21:05:51
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-17 09:08:36
  */
 const mysql = require('mysql')
 const url = require('url');
@@ -159,7 +159,7 @@ class user {
         } else {
             res = {
                 status: 201,
-                message: '删除用户信息，请稍候重试'
+                message: '删除用户信息失败，请稍候重试'
             }
         }
         return ctx.body = res;

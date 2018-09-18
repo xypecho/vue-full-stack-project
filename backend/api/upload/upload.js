@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-17 22:35:04
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-18 12:47:51
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -31,8 +31,15 @@ class upload {
     async deleteImage(ctx) {
         let res;
         const path = ctx.request.body.path;
-        console.log(path);
-        return ctx.body = path;
+        try {
+            fs.unlinkSync(path);
+        } catch (error) {
+            res = {
+                status: 201,
+                message: '删除文件失败，请稍候重试'
+            }
+        }
+        return ctx.body = res;
     }
 }
 module.exports = new upload();
