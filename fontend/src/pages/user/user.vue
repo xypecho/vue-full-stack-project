@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-18 21:31:37
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-19 16:12:51
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -10,6 +10,12 @@
       <el-table-column fixed prop="username" label="用户名" width="150">
       </el-table-column>
       <el-table-column prop="uid" label="id">
+      </el-table-column>
+      <el-table-column label="头像">
+        <template slot-scope="scope">
+          <img v-if="scope.row.avatar && scope.row.avatar !== 'null'" :src="scope.row.avatar" alt="" width="50" height="50">
+          <img v-else src="~@/assets/images/avatar.gif" alt="" width="50" height="50">
+        </template>
       </el-table-column>
       <el-table-column prop="utype" label="角色" :formatter="formatterUtype">
       </el-table-column>
@@ -145,6 +151,10 @@ export default {
 <style lang='stylus' scoped>
 .user {
   padding: 20px;
+
+  & img {
+    border-radius: 50%;
+  }
 }
 
 .block {
