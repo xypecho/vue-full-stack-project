@@ -1,19 +1,19 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-19 16:12:51
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-19 22:49:09
  */
 <template>
   <div class="user" v-loading='loading'>
     <el-table :data="userList" style="width: 100%;height:100%">
-      <el-table-column fixed prop="username" label="用户名" width="150">
+      <el-table-column fixed prop="username" label="用户名" width="130">
       </el-table-column>
-      <el-table-column prop="uid" label="id">
+      <el-table-column prop="uid" label="id" width='50'>
       </el-table-column>
       <el-table-column label="头像">
         <template slot-scope="scope">
-          <img v-if="scope.row.avatar && scope.row.avatar !== 'null'" :src="scope.row.avatar" alt="" width="50" height="50">
+          <img v-if="scope.row.avatar && scope.row.avatar !== 'null' && scope.row.avatar !== ''" :src="scope.row.avatar" alt="" width="50" height="50">
           <img v-else src="~@/assets/images/avatar.gif" alt="" width="50" height="50">
         </template>
       </el-table-column>
@@ -131,10 +131,16 @@ export default {
     },
     deleteUser(data) {
       const uid = data.uid;
+      const userUid = this.user.uid;
       if (uid === 1) {
         this.$tips({
           type: 'error',
           message: '管理员不可以删除'
+        });
+      } else if (userUid !== 2) {
+        this.$tips({
+          type: 'error',
+          message: '当前登录帐号无操作权限'
         });
       } else {
         this.$axios.post('/api/user/delete', { uid }).then(res => {
