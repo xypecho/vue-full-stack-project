@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-11 21:46:50
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-09-20 16:50:13
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -48,6 +48,12 @@ export const normalRouter = [
         ]
       },
       {
+        path: '/testAdmin',
+        name: '权限测试页',
+        icon: 'el-icon-menu',
+        redirect: '/admin'
+      },
+      {
         path: '/404',
         component: resolve => require(['@/components/404/404'], resolve),
         name: '404',
@@ -65,3 +71,12 @@ export const normalRouter = [
 export default new Router({
   routes: normalRouter
 });
+
+export const authRouter = [
+  {
+    path: '/admin',
+    name: 'admin',
+    component: resolve => require(['@/pages/admin/admin'], resolve),
+    meta: { role: 'admin' }
+  }
+];

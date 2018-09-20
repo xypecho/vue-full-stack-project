@@ -8,7 +8,7 @@ import Vuex from 'vuex';
 import ElementUI from 'element-ui';
 import axios from 'axios';
 import App from './App';
-import router from './router';
+import router, { authRouter } from './router';
 import store from './store';
 import { timeDifference } from './tools/index';
 
@@ -35,6 +35,20 @@ router.beforeEach((to, from, next) => {
   const pastTime = JSON.parse(JSON.stringify(localStorage.getItem('currentTime')));
   const currentTime = new Date().getTime();
   const diffMinute = timeDifference(pastTime, currentTime).minute;
+  /* 动态路由相关js */
+  if (+store.getters.user.uid === 1) {
+    if (store.getters.newrouter.length !== 0) {
+      next();
+    } else {
+      router.addRoutes(authRouter);
+      store.commit('setNewRouter', {
+        newrouter: authRouter
+      });
+    }
+  } else {
+    console.log(to);
+  }
+  /* 动态路由相关js */
   if (uid === null && to.path !== '/') {
     Vue.prototype.$tips({
       message: '登录过期，请重新登录',

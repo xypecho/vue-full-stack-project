@@ -19,6 +19,7 @@ export default {};
 }
 .home-header
     height 150px
+    width 100%
     border-bottom: 1px solid #e8e8e8;
 </style>
 
