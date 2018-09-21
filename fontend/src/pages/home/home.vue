@@ -5,6 +5,7 @@
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark">
                         <p>『 生命中曾经有过的所有灿烂，终究都需要用寂寞来偿还。』 —— 《百年孤独》 </p>
+                        <i class="el-icon-refresh" @click='getHitokoto'></i>
                     </div>
                 </el-col>
             </el-row>
@@ -53,6 +54,18 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  methods: {
+    getHitokoto() {
+      this.$axios
+        .post('/api/spider/hitokoto')
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  },
   computed: {
     greetings() {
       const currentHours = new Date().getHours();
@@ -162,6 +175,18 @@ export default {
             line-height: 22px;
             margin-bottom: 4px;
         }
+    }
+}
+
+.grid-content {
+    padding-bottom: 10px;
+
+    p {
+        display: inline-block;
+    }
+
+    i {
+        cursor: pointer;
     }
 }
 </style>

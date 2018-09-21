@@ -1,12 +1,12 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-17 09:08:36
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-21 22:27:14
  */
-const mysql = require('mysql')
+const mysql = require('mysql');
 const url = require('url');
-const mysqlJs = require('../../common/mysql.js')
+const mysqlJs = require('../../common/mysql.js');
 const tool = require('../../common/tool.js');
 class user {
     // 用户注册
