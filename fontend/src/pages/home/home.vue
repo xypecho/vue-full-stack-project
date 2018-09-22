@@ -68,7 +68,6 @@ export default {
       this.$axios
         .post('/api/spider/hitokoto')
         .then(res => {
-          console.log(res);
           this.hitokoto = res.data.hitokoto;
           this.from = res.data.from;
         })
