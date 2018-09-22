@@ -4,7 +4,7 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark">
-                        <p>『 生命中曾经有过的所有灿烂，终究都需要用寂寞来偿还。』 —— 《百年孤独》 </p>
+                        <p>『 {{ hitokoto }} 』 —— 《{{ from }}》 </p>
                         <i class="el-icon-refresh" @click='getHitokoto'></i>
                     </div>
                 </el-col>
@@ -54,12 +54,23 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  created() {
+    this.getHitokoto();
+  },
+  data() {
+    return {
+      hitokoto: '',
+      from: ''
+    };
+  },
   methods: {
     getHitokoto() {
       this.$axios
         .post('/api/spider/hitokoto')
         .then(res => {
           console.log(res);
+          this.hitokoto = res.data.hitokoto;
+          this.from = res.data.from;
         })
         .catch(err => {
           console.log(err);
