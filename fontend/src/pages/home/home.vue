@@ -1,57 +1,69 @@
+/*
+ * @Author: xypecho
+ * @Date: 2018-09-23 23:15:45
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-23 23:23:56
+ */
 <template>
-    <div class="home">
-        <div class="home-header">
-            <el-row>
-                <el-col :span="24">
-                    <div class="grid-content bg-purple-dark">
-                        <p>『 {{ hitokoto }} 』 —— 《{{ from }}》 </p>
-                        <i class="el-icon-refresh" @click='getHitokoto'></i>
-                    </div>
-                </el-col>
-            </el-row>
-            <el-row :gutter="20">
-                <el-col :span="16">
-                    <div class="home-header-left">
-                        <div class="home-header-left-child">
-                            <span class="avatar-wrapper">
-                                <img v-if="!user.avatar || user.avatar == 'null' || user.avatar == ''" src="~@/assets/images/avatar.gif" alt="">
-                                <img v-else :src="user.avatar" alt="">
-                            </span>
+    <div class="home-wrapper">
+        <div class="home">
+            <div class="home-header">
+                <el-row>
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark">
+                            <p>『 {{ hitokoto }} 』 —— 《{{ from }}》 </p>
+                            <i class="el-icon-refresh" @click='getHitokoto'></i>
                         </div>
-                        <div class="home-header-left-secondChild">
-                            <div class="home-header-left-secondChild-top">
-                                {{ greetings }}{{ user.username }}，祝你开心每一天！
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="16">
+                        <div class="home-header-left">
+                            <div class="home-header-left-child">
+                                <span class="avatar-wrapper">
+                                    <img v-if="!user.avatar || user.avatar == 'null' || user.avatar == ''" src="~@/assets/images/avatar.gif" alt="">
+                                    <img v-else :src="user.avatar" alt="">
+                                </span>
                             </div>
-                            <div class="home-header-left-secondChild-bottom">
-                                技术部 | 只会切图的切图仔
+                            <div class="home-header-left-secondChild">
+                                <div class="home-header-left-secondChild-top">
+                                    {{ greetings }}{{ user.username }}，祝你开心每一天！
+                                </div>
+                                <div class="home-header-left-secondChild-bottom">
+                                    技术部 | 只会切图的切图仔
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </el-col>
-                <el-col :span="8">
-                    <div class="home-header-right">
-                        <div class="home-header-right-child">
-                            <p>任务数</p>
-                            <p>8</p>
+                    </el-col>
+                    <el-col :span="8">
+                        <div class="home-header-right">
+                            <div class="home-header-right-child">
+                                <p>任务数</p>
+                                <p>8</p>
+                            </div>
+                            <div class="home-header-right-child">
+                                <p>团队内排名</p>
+                                <p>3
+                                    <span> / 8</span>
+                                </p>
+                            </div>
+                            <div class="home-header-right-child">
+                                <p>项目总数</p>
+                                <p>2</p>
+                            </div>
                         </div>
-                        <div class="home-header-right-child">
-                            <p>团队内排名</p>
-                            <p>3
-                                <span> / 8</span>
-                            </p>
-                        </div>
-                        <div class="home-header-right-child">
-                            <p>项目总数</p>
-                            <p>2</p>
-                        </div>
-                    </div>
-                </el-col>
-            </el-row>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <div class="home-echarts">
+            <baseAreaCharts></baseAreaCharts>
         </div>
     </div>
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import baseAreaCharts from '@/components/echarts/basicAreaChart';
 
 export default {
   created() {
@@ -98,6 +110,9 @@ export default {
       return res;
     },
     ...mapGetters(['user'])
+  },
+  components: {
+    baseAreaCharts
   }
 };
 </script>
@@ -106,8 +121,8 @@ export default {
     padding: 20px;
     font-size: 14px;
     display: flex;
-    padding-bottom: 70px;
     margin: 20px;
+    padding-bottom: 0;
     background-color: #fff;
     font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
@@ -116,6 +131,7 @@ export default {
     height: 150px;
     width: 100%;
     border-bottom: 1px solid #e8e8e8;
+    display: block;
 }
 
 .home-header-left, .home-header-right {
@@ -198,6 +214,11 @@ export default {
     i {
         cursor: pointer;
     }
+}
+
+.home-echarts {
+    width: 100%;
+    display: block;
 }
 </style>
 
