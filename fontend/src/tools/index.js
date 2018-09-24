@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-11 16:53:34
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-09-24 20:09:57
  */
 
 // 设置localStorage
@@ -15,7 +15,7 @@ export const setLocalStorage = (obj) => {
 };
 
 // 将时间戳格式化为 yy-mm-dd hh:mm:ss
-export const formatterTime = (timestamp) => {
+export const formatterTime = (timestamp, type) => {
   if (!timestamp || typeof timestamp !== 'number') {
     return '暂无数据';
   }
@@ -26,7 +26,13 @@ export const formatterTime = (timestamp) => {
   const h = date.getHours() >= 10 ? date.getHours() : `0${date.getHours()}`;
   const minute = date.getMinutes() >= 10 ? date.getMinutes() : `0${date.getMinutes()}`;
   const seconds = date.getSeconds() >= 10 ? date.getSeconds() : `0${date.getSeconds()}`;
-  return `${y}年${m}月${d}日 ${h}:${minute}:${seconds}`;
+  let res;
+  if (type === 'yy-mm-dd') {
+    res = `${y}年${m}月${d}日`;
+  } else {
+    res = `${y}年${m}月${d}日 ${h}:${minute}:${seconds}`;
+  }
+  return res;
 };
 
 // 计算两个时间戳之间间隔的时间

@@ -2,53 +2,62 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-24 00:17:47
+ * @Last Modified time: 2018-09-24 20:41:56
  */
 <template>
-    <div class="baseAreaCharts">
-        <h1>baseAreaCharts</h1>
-        <div id="main" style="width:400px;height:400px"></div>
-    </div>
+  <div class="baseAreaCharts" v-loading='loading'>
+    <ve-line :data="chartData"></ve-line>
+  </div>
 </template>
 
 <script>
-import echarts from 'echarts';
-
 export default {
-  mounted() {
-    this.initEcharts();
+  data() {
+    return {
+      loading: false,
+      chartData: {}
+    };
+  },
+  created() {
+    this.getChartsData();
   },
   methods: {
-    initEcharts() {
-      const myChart = echarts.init(document.getElementById('main'));
-      // 绘制图表
-      myChart.setOption({
-        title: {
-          text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        xAxis: {
-          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-        },
-        yAxis: {},
-        series: [
-          {
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-          }
-        ]
-      });
+    getChartsData() {
+      this.loading = true;
+      this.$axios
+        .post('/api/user/userLoginCount')
+        .then(res => {
+          console.log(res.data);
+          res.data.map(
+            data =>
+              data.isToday = new Date(data.last_login_time).toDateString()
+          );
+          console.log(res.data);
+          // this.chartData = {
+          //   columns: ['日期', '访问用户'],
+          //   rows: [
+          //     { 日期: '2018-05-22', 访问用户: 32371 },
+          //     { 日期: '2018-05-23', 访问用户: 12328 },
+          //     { 日期: '2018-05-24', 访问用户: 92381 }
+          //   ]
+          // };
+          this.loading = false;
+        })
+        .catch(err => {
+          console.log(err);
+          this.loading = false;
+        });
     }
   }
 };
 </script>
 <style lang='stylus' scoped>
 .baseAreaCharts {
-    padding: 20px;
-    margin: 20px;
-    font-size: 14px;
-    padding-bottom: 70px;
-    background-color: #fff;
+  padding: 20px;
+  padding-bottom: 0;
+  margin: 20px;
+  margin-bottom: 0;
+  font-size: 14px;
+  background-color: #fff;
 }
 </style>

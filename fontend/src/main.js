@@ -3,7 +3,9 @@
 import 'normalize.css';
 import 'babel-polyfill';
 import 'element-ui/lib/theme-chalk/index.css';
+import 'v-charts/lib/style.css';
 import Vue from 'vue';
+import VCharts from 'v-charts';
 import Vuex from 'vuex';
 import ElementUI from 'element-ui';
 import axios from 'axios';
@@ -14,6 +16,7 @@ import { timeDifference } from './tools/index';
 
 Vue.use(Vuex);
 Vue.use(ElementUI);
+Vue.use(VCharts);
 Vue.config.productionTip = false;
 axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$axios = axios;
