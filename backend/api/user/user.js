@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-24 20:31:34
+ * @Last Modified time: 2018-09-25 22:10:07
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -168,8 +168,8 @@ class user {
     async userLoginCount(ctx) {
         let res;
         const now = new Date().getTime();
-        const sevenDayAgo = now - (7 * 24 * 60 * 60 * 1000);
-        const userData = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE last_login_time > ${sevenDayAgo} AND last_login_time < ${now}`);
+        const sevenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
+        const userData = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE register_time > ${sevenDayAgo} AND last_login_time < ${now}`);
         return ctx.body = userData;
     }
 }

@@ -2,15 +2,20 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-24 20:41:56
+ * @Last Modified time: 2018-09-25 22:21:12
  */
 <template>
   <div class="baseAreaCharts" v-loading='loading'>
+    <div class="charts-header">
+      <span>15天内新增注册用户</span>
+    </div>
     <ve-line :data="chartData"></ve-line>
   </div>
 </template>
 
 <script>
+import { formatterUserLoginData } from '@/tools/index';
+
 export default {
   data() {
     return {
@@ -27,20 +32,10 @@ export default {
       this.$axios
         .post('/api/user/userLoginCount')
         .then(res => {
-          console.log(res.data);
-          res.data.map(
-            data =>
-              data.isToday = new Date(data.last_login_time).toDateString()
-          );
-          console.log(res.data);
-          // this.chartData = {
-          //   columns: ['日期', '访问用户'],
-          //   rows: [
-          //     { 日期: '2018-05-22', 访问用户: 32371 },
-          //     { 日期: '2018-05-23', 访问用户: 12328 },
-          //     { 日期: '2018-05-24', 访问用户: 92381 }
-          //   ]
-          // };
+          this.chartData = {
+            columns: ['data', 'count'],
+            rows: formatterUserLoginData(res.data)
+          };
           this.loading = false;
         })
         .catch(err => {
@@ -60,4 +55,12 @@ export default {
   font-size: 14px;
   background-color: #fff;
 }
+.charts-header
+  border-radius: 2px 2px 0 0;
+  zoom: 1;
+  margin-bottom: -1px;
+  min-height: 24px;
+  font-size: 16px;
+  color: rgba(0,0,0,.85);
+  font-weight: 500;
 </style>

@@ -70,6 +70,7 @@ module.exports = {
     "global-require": "off",
     "import/no-dynamic-require": 0,
     "import/prefer-default-export": 0,
-    "no-restricted-syntax": 0
+    "no-restricted-syntax": 0,
+    "no-param-reassign": 0 // 允许更改数组中的某个值
   }
 }
