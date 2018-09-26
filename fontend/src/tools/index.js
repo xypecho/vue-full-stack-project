@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-25 22:10:36
+ * @Last Modified time: 2018-09-26 22:29:12
  */
 
 // 设置localStorage
@@ -46,7 +46,7 @@ export const timeDifference = (pastTime, currentTime) => {
 
 // 统计七日内用户登录数据,预期的数据格式为  [{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
 export const formatterUserLoginData = (data) => {
-  const obj = [];
+  let obj = [];
   // 按时间戳先后进行排序
   const compare = (obj1, obj2) => {
     if (obj1.register_time > obj2.register_time) {
@@ -74,5 +74,7 @@ export const formatterUserLoginData = (data) => {
     key.count = count(obj, key.data);
   });
   console.log(obj);
+  obj = obj.reduce((accumulator, currentValue) => { return accumulator + currentValue; }, 10);
+
   return obj;
 };

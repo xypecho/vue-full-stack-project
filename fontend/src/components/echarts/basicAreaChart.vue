@@ -2,14 +2,14 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-25 22:21:12
+ * @Last Modified time: 2018-09-26 22:04:37
  */
 <template>
   <div class="baseAreaCharts" v-loading='loading'>
     <div class="charts-header">
       <span>15天内新增注册用户</span>
     </div>
-    <ve-line :data="chartData"></ve-line>
+    <ve-line :data="chartData" height='330px'></ve-line>
   </div>
 </template>
 
@@ -32,6 +32,8 @@ export default {
       this.$axios
         .post('/api/user/userLoginCount')
         .then(res => {
+          console.log((res.data));
+          console.log(formatterUserLoginData(res.data));
           this.chartData = {
             columns: ['data', 'count'],
             rows: formatterUserLoginData(res.data)
@@ -55,12 +57,14 @@ export default {
   font-size: 14px;
   background-color: #fff;
 }
-.charts-header
+
+.charts-header {
   border-radius: 2px 2px 0 0;
   zoom: 1;
   margin-bottom: -1px;
   min-height: 24px;
   font-size: 16px;
-  color: rgba(0,0,0,.85);
+  color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
+}
 </style>
