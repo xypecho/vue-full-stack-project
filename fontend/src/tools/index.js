@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-27 23:17:22
+ * @Last Modified time: 2018-09-28 22:54:38
  */
 
 // 设置localStorage
@@ -29,6 +29,8 @@ export const formatterTime = (timestamp, type) => {
   let res;
   if (type === 'yy-mm-dd') {
     res = `${y}年${m}月${d}日`;
+  } else if (type === 'y-m-d') {
+    res = `${y}-${m}-${d}`;
   } else {
     res = `${y}年${m}月${d}日 ${h}:${minute}:${seconds}`;
   }
@@ -42,6 +44,12 @@ export const timeDifference = (pastTime, currentTime) => {
   const hours = Math.floor(diff / 3600);
   const day = Math.floor(diff / 86400);
   return { day, hours, minute };
+};
+
+// 格式化日期，将2018年9月28格式化为2018-9-28
+export const transformToTimestamp = (data) => {
+  const time = data.match(/\d+/g);
+  return time.join('-');
 };
 
 // 统计七日内用户登录数据,预期的数据格式为  [{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
@@ -86,5 +94,20 @@ export const formatterUserLoginData = (data) => {
       newArr.push(obj[i]);
     }
   }
-  return newArr;
+  // 填补空缺的日期，格式为{data: '2018年05年23', count: 0 }
+  const hasTime = [];// 已经存在的时间
+  const timestamp = newArr.map(item => {
+    hasTime.push(item.data);
+    item.data = Date.parse(transformToTimestamp(item.data));
+    return item;
+  });
+  const totalDays = (timestamp[timestamp.length - 1].data - timestamp[0].data) / (1000 * 60 * 60 * 24);
+  const resultArr = [];// 最终返回的格式
+  for (let i = 0; i < totalDays; i++) {
+    resultArr.push({
+      data: formatterTime(timestamp[0].data + (i * (1000 * 60 * 60 * 24)), 'yy-mm-dd'),
+      count: hasTime.indexOf(formatterTime(timestamp[0].data + (i * (1000 * 60 * 60 * 24)), 'yy-mm-dd')) === -1 ? 0 : newArr[hasTime.indexOf(formatterTime(timestamp[0].data + (i * (1000 * 60 * 60 * 24)), 'yy-mm-dd'))].count
+    });
+  }
+  return resultArr;
 };
