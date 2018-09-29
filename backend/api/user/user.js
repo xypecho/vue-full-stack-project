@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-26 22:03:20
+ * @Last Modified time: 2018-09-29 22:27:26
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -164,12 +164,12 @@ class user {
         }
         return ctx.body = res;
     }
-    // 统计七日内用户登录数据
+    // 统计15天内新增注册用户数据
     async userLoginCount(ctx) {
         let res;
         const now = new Date().getTime();
         const sevenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
-        const userData = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE register_time > ${sevenDayAgo} AND last_login_time < ${now}`);
+        const userData = await mysqlJs.queryFromMysql(`SELECT register_time FROM users WHERE register_time > ${sevenDayAgo} AND last_login_time < ${now}`);
         return ctx.body = userData;
     }
 }
