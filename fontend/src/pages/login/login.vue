@@ -2,16 +2,23 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-17 22:00:38
+ * @Last Modified time: 2018-10-08 22:34:22
  */
 
 <template>
-  <div class="login">
-    <div class="textBox">
-      <h2>切图仔宣言</h2>
-      <p>成功将至，我从今开始发奋，至死方休。我将不毁约、不放弃、不后退。我将不耻下问，不持材自傲。我将不畏困难，不惧诱惑。我是荆棘中的利剑，战场上的勇士。</p>
-      <p>我是抵御寒冷的烈焰，破晓时分的光线，唤醒沉睡者的号角，守护梦想的坚盾。我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
-    </div>
+  <div class="login" v-loading='domLoading'>
+    <transition enter-active-class='animated fadeInLeft'>
+      <div class="textBox">
+        <h2>切图仔宣言</h2>
+        <p>成功将至，我从今开始发奋，至死方休。</p>
+        <p>我将不毁约、不放弃、不后退。</p>
+        <p>我将不耻下问，不持材自傲。</p>
+        <p>我将不畏困难，不惧诱惑。</p>
+        <p>我是荆棘中的利剑，战场上的勇士。</p>
+        <p>我是抵御寒冷的烈焰，破晓时分的光线，唤醒沉睡者的号角，守护梦想的坚盾。</p>
+        <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
+      </div>
+    </transition>
     <div class="loginBox" v-loading='loading'>
       <el-tabs v-model="activeName">
         <el-tab-pane label="注册" name="signUp">
@@ -64,6 +71,7 @@ export default {
       }
     };
     return {
+      domLoading: false,
       loading: false,
       activeName: 'signIn',
       signUpForm: {
@@ -105,6 +113,14 @@ export default {
         ]
       }
     };
+  },
+  created() {
+    this.domLoading = true;
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.domLoading = false;
+    });
   },
   methods: {
     resetForm(formName) {
