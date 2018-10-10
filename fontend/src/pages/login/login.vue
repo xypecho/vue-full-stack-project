@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-09 22:58:03
+ * @Last Modified time: 2018-10-10 22:19:45
  */
 
 <template>
@@ -119,9 +119,9 @@ export default {
     this.domLoading = true;
   },
   mounted() {
+    this.lazyLoadBackImage();
     this.$nextTick(() => {
       this.domLoading = false;
-      this.lazyLoadBackImage();
     });
   },
   methods: {
@@ -194,6 +194,7 @@ export default {
       imgObject.onload = () => {
         console.log('图片加载完成');
         this.changeLoadStatus();
+        setLocalStorage({ isLoadComplete: true });
       };
     },
     ...mapMutations({

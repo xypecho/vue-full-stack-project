@@ -9,11 +9,14 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'App',
-  mounted() {
-    console.log(this.isLoadComplete);
-    console.log(document.getElementById('Loading-wrapper') && this.isLoadComplete);
-    if (document.getElementById('Loading-wrapper') && this.isLoadComplete) {
-      document.body.removeChild(document.getElementById('Loading-wrapper'));
+  watch: {
+    isLoadComplete() {
+      if (
+        document.getElementById('Loading-wrapper') &&
+        (this.isLoadComplete === 'true' || this.isLoadComplete === true)
+      ) {
+        document.body.removeChild(document.getElementById('Loading-wrapper'));
+      }
     }
   },
   computed: {

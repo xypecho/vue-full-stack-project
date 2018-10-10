@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 11:17:46
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-09 22:52:18
+ * @Last Modified time: 2018-10-10 22:17:39
  */
 export default {
   isCollapse: state => state.isCollapse,
@@ -14,5 +14,10 @@ export default {
   },
   routerMatched: state => state.routerMatched,
   newrouter: state => state.newrouter, // 动态路由
-  isLoadComplete: state => state.isLoadComplete
+  isLoadComplete: (state) => {
+    if (!state.isLoadComplete) {
+      state.isLoadComplete = JSON.parse(JSON.stringify(localStorage.getItem('isLoadComplete')));
+    }
+    return state.isLoadComplete;
+  }
 };
