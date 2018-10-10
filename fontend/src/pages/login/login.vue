@@ -2,11 +2,12 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-08 22:34:22
+ * @Last Modified time: 2018-10-09 22:58:03
  */
 
 <template>
   <div class="login" v-loading='domLoading'>
+    <img src="~@/assets/images/code.jpeg" alt="" style="display:none" id="lazy_load_img">
     <transition enter-active-class='animated fadeInLeft'>
       <div class="textBox">
         <h2>切图仔宣言</h2>
@@ -120,6 +121,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.domLoading = false;
+      this.lazyLoadBackImage();
     });
   },
   methods: {
@@ -185,8 +187,18 @@ export default {
         }
       });
     },
+    lazyLoadBackImage() {
+      const imgUrl = document.getElementById('lazy_load_img').src;
+      const imgObject = new Image();
+      imgObject.src = imgUrl;
+      imgObject.onload = () => {
+        console.log('图片加载完成');
+        this.changeLoadStatus();
+      };
+    },
     ...mapMutations({
-      setUserInfo: 'setUserInfo'
+      setUserInfo: 'setUserInfo',
+      changeLoadStatus: 'changeLoadStatus'
     })
   }
 };

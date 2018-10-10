@@ -1,12 +1,24 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+    console.log(this.isLoadComplete);
+    console.log(document.getElementById('Loading-wrapper') && this.isLoadComplete);
+    if (document.getElementById('Loading-wrapper') && this.isLoadComplete) {
+      document.body.removeChild(document.getElementById('Loading-wrapper'));
+    }
+  },
+  computed: {
+    ...mapGetters(['isLoadComplete'])
+  }
 };
 </script>
 <style lang="stylus">
