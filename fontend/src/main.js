@@ -52,12 +52,12 @@ router.beforeEach((to, from, next) => {
     console.log(to);
   }
   /* 动态路由相关js */
-  /* 判断是否加载完，取消加载动画 */
+  /* 判断是否在内页刷新，取消加载动画 */
   if (store.getters.isLoadComplete === 'true') {
     document.body.removeChild(document.getElementById('Loading-wrapper'));
     next();
   }
-  /* 判断是否加载完，取消加载动画 */
+  /* 判断是否在内页刷新，取消加载动画 */
   if (uid === null && to.path !== '/') {
     Vue.prototype.$tips({
       message: '登录过期，请重新登录',
