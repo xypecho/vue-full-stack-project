@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-10 22:19:45
+ * @Last Modified time: 2018-10-11 20:42:29
  */
 
 <template>
@@ -10,7 +10,7 @@
     <img src="~@/assets/images/code.jpeg" alt="" style="display:none" id="lazy_load_img">
     <transition enter-active-class='animated fadeInLeft'>
       <div class="textBox">
-        <h2>切图仔宣言</h2>
+        <h2>切图仔誓言</h2>
         <p>成功将至，我从今开始发奋，至死方休。</p>
         <p>我将不毁约、不放弃、不后退。</p>
         <p>我将不耻下问，不持材自傲。</p>

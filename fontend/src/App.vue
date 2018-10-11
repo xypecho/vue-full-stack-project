@@ -1,3 +1,9 @@
+/*
+ * @Author: xypecho
+ * @Date: 2018-10-11 21:16:05
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-11 21:33:57
+ */
 <template>
   <div id="app">
     <router-view />

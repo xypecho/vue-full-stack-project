@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-29 22:32:19
+ * @Last Modified time: 2018-10-11 22:22:54
  */
 <template>
   <div class="baseAreaCharts" v-loading='loading'>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { formatterUserLoginData, formatterTime } from '@/tools/index';
+import { formatterUserLoginData } from '@/tools/index';
 
 export default {
   data() {
@@ -33,10 +33,6 @@ export default {
         .post('/api/user/userLoginCount')
         .then(res => {
           console.log(res.data);
-          for (let i = 0; i < res.data.length; i++) {
-            console.log(formatterTime(res.data[i].register_time));
-          }
-          console.log(formatterUserLoginData(res.data));
           this.chartData = {
             columns: ['data', 'count'],
             rows: formatterUserLoginData(res.data)

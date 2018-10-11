@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
   <title>后台管理系统</title>
   <style type="text/css">
     #Loading-wrapper {
@@ -23,26 +24,24 @@
     @keyframes ball-beat {
       50% {
         opacity: 0.2;
-        -webkit-transform: scale(0.75);
         transform: scale(0.75);
       }
 
       100% {
         opacity: 1;
-        -webkit-transform: scale(1);
         transform: scale(1);
       }
     }
 
     .ball-beat>div {
-      background-color: #279fcf;
+      background-color: #409EFF;
       width: 15px;
       height: 15px;
       border-radius: 100% !important;
       margin: 2px;
       animation-fill-mode: both;
       display: inline-block;
-      animation: ball-beat 0.7s 0s infinite linear;
+      animation: ball-beat 1s 0s infinite linear;
     }
 
     .ball-beat>div:nth-child(2n-1) {

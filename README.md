@@ -5,4 +5,4 @@
 前端：vue2 、 vuex 、 vue-router 、 axios 、 webpack 、 ES6 、 stylus 、 element-ui
 
 
-后端：node 、express 、 mysql
+后端：node 、koa2 、 mysql

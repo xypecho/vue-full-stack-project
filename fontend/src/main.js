@@ -53,7 +53,7 @@ router.beforeEach((to, from, next) => {
   }
   /* 动态路由相关js */
   /* 判断是否在内页刷新，取消加载动画 */
-  if (store.getters.isLoadComplete === 'true') {
+  if (document.getElementById('Loading-wrapper') && (store.getters.isLoadComplete === 'true' || store.getters.isLoadComplete === true)) {
     document.body.removeChild(document.getElementById('Loading-wrapper'));
     next();
   }
