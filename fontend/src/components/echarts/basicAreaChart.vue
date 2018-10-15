@@ -1,34 +1,43 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-15 12:39:03
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-15 22:51:31
  */
 <template>
   <div class="baseAreaCharts" v-loading='loading'>
     <div class="charts-header">
       <span>15天内新增注册用户</span>
     </div>
-    <ve-line :data="chartData" height='330px'></ve-line>
+    <ve-line :data="chartData" :toolbox='toolbox' height='330px' ref='charts'></ve-line>
   </div>
 </template>
 
 <script>
 import { formatterUserLoginData } from '@/tools/index';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
+    this.toolbox = {
+      feature: {
+        magicType: { type: ['line', 'bar'] },
+        saveAsImage: {}
+      }
+    };
     return {
       loading: false,
       chartData: {}
     };
   },
   created() {
+    this.loading = true;
+  },
+  mounted() {
     this.getChartsData();
   },
   methods: {
     getChartsData() {
-      this.loading = true;
       this.$axios
         .post('/api/user/userLoginCount')
         .then(res => {
@@ -43,6 +52,17 @@ export default {
           this.loading = false;
         });
     }
+  },
+  watch: {
+    isCollapse(v) {
+      this.$nextTick(() => {
+        console.log(v);
+        // this.$refs['charts'].echarts.resize();
+      });
+    }
+  },
+  computed: {
+    ...mapGetters(['isCollapse'])
   }
 };
 </script>
