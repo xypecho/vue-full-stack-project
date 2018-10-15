@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-15 13:00:00
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-15 22:08:17
  */
 
 // 设置localStorage
@@ -53,12 +53,31 @@ export const transformToTimestamp = (data) => {
 };
 
 // 15天内新增注册用户数据,预期的数据格式为  [{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
-// 1.统计该时间戳所属的当天，注册的人数
-// 2.将数据格式转成[{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
-// 3.二维数组去重
-// 4.缺失的时间段，count补0
 export const formatterUserLoginData = (data) => {
-  console.log(data);
-  // const now = new Date().getTime();
-  // const fifteenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
+  const countArr = [];
+  const tempArr = [];
+  const result = [];
+  // 把数据格式转为[{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]这种格式
+  for (let i = 0; i < data.length; i++) {
+    countArr.push(transformToTimestamp(formatterTime(data[i].register_time, 'yy-mm-dd')));
+  }
+  // 获取15天内所有的时间
+  const now = new Date().getTime();
+  const fifteenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
+  const oneDay = 1000 * 60 * 60 * 24;
+  for (let i = fifteenDayAgo; i <= now; i += oneDay) {
+    tempArr.push(transformToTimestamp(formatterTime(i, 'yy-mm-dd')));
+  }
+  // 两个数组进行比对，重复的数值达到count+1
+  for (let i = 0; i < tempArr.length; i++) {
+    result.push({ data: tempArr[i], count: 0 });
+  }
+  for (let i = 0; i < countArr.length; i++) {
+    for (let j = 0; j < result.length; j++) {
+      if (countArr[i] === result[j].data) {
+        result[j].count++;
+      }
+    }
+  }
+  return result;
 };

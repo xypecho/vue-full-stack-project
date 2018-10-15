@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-11 20:42:29
+ * @Last Modified time: 2018-10-15 20:38:35
  */
 
 <template>
@@ -192,7 +192,6 @@ export default {
       const imgObject = new Image();
       imgObject.src = imgUrl;
       imgObject.onload = () => {
-        console.log('图片加载完成');
         this.changeLoadStatus();
         setLocalStorage({ isLoadComplete: true });
       };

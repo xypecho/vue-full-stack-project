@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-23 23:15:45
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-12 22:41:02
+ * @Last Modified time: 2018-10-15 21:01:46
  */
 <template>
     <div class="home-wrapper">
@@ -130,6 +130,10 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          this.$tips({
+            type: 'error',
+            message: '网络异常，获取github动态失败'
+          });
         });
     }
   },
