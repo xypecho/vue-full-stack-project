@@ -48,8 +48,6 @@ router.beforeEach((to, from, next) => {
         newrouter: authRouter
       });
     }
-  } else {
-    console.log(to);
   }
   /* 动态路由相关js */
   /* 判断是否在内页刷新，取消加载动画 */

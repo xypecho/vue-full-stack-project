@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-11 22:22:54
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-15 12:39:03
  */
 <template>
   <div class="baseAreaCharts" v-loading='loading'>
@@ -32,7 +32,6 @@ export default {
       this.$axios
         .post('/api/user/userLoginCount')
         .then(res => {
-          console.log(res.data);
           this.chartData = {
             columns: ['data', 'count'],
             rows: formatterUserLoginData(res.data)
