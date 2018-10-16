@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-23 23:15:45
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-15 22:36:04
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-16 16:41:34
  */
 <template>
     <div class="home-wrapper">
@@ -63,7 +63,7 @@
                 </el-row>
             </div>
         </div>
-        <!-- <div class="dynamic">
+        <div class="dynamic">
             <div class="github-time-line" v-loading='githubLoading'>
                 <div class="charts-header">
                     <span>github动态</span>
@@ -83,7 +83,7 @@
                     <span>Todo List</span>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="home-echarts">
             <baseAreaCharts></baseAreaCharts>
         </div>
