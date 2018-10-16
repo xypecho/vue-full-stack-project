@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-10-16 12:58:23
+Date: 2018-10-16 16:40:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -129,6 +129,7 @@ INSERT INTO `hitokoto` VALUES ('283', '我的一生，无怨无悔！', '北斗�
 INSERT INTO `hitokoto` VALUES ('284', '越是困难，越要抬起头，地上可找不到任何希望！', 'Zetman', '1537788575835');
 INSERT INTO `hitokoto` VALUES ('288', '承君此诺，必守一生。', '仙剑奇侠传四', '1537631655148');
 INSERT INTO `hitokoto` VALUES ('293', '如果我会变成恶魔，那就随他吧。我会接受放逐，一切只为了保护她。', '鬼泣', '1538146394900');
+INSERT INTO `hitokoto` VALUES ('295', '生尽欢，死无憾。', '仙剑4', '1539677707786');
 INSERT INTO `hitokoto` VALUES ('302', '刁蛮少女贵千金，比武招亲动芳心。盼能与君长相依，结伴江湖侠侣行。', '仙剑奇侠传', '1539261520371');
 INSERT INTO `hitokoto` VALUES ('306', '魔非魔，道非道，善恶在人心。欲非欲，情非情，姻缘由天定。', '仙剑奇侠传', '1539182238107');
 INSERT INTO `hitokoto` VALUES ('307', '人与人在偶然之中创造相遇与别离。', '银河和声', '1539608508595');
@@ -260,6 +261,8 @@ INSERT INTO `hitokoto` VALUES ('738', '我们都很擅长口是心非，但又�
 INSERT INTO `hitokoto` VALUES ('742', '人类总是将世界缩小在自己浅薄的知识范围之内，总是把超越自己理解能力的事物当成威胁自己立场的敌人来对待，非得排斥、驱除、抹杀不可……可是对于同种族的生物，又以肤色、出身来划分阶级贵贱，相互憎恨，相互残杀。', '恐怖宠物店', '1539266395702');
 INSERT INTO `hitokoto` VALUES ('749', '男人的爱情是另存为，女人的爱情是覆盖。', '红', '1539612005192');
 INSERT INTO `hitokoto` VALUES ('750', '不逆 不耻 不憾', '舰队Collection', '1537791437486');
+INSERT INTO `hitokoto` VALUES ('753', '叹飘渺，莫过春樱转瞬逝；怜世间,万千繁华始归尘。', '绯弹的亚里亚', '1539679219211');
+INSERT INTO `hitokoto` VALUES ('754', '有话直说就是我的忍道！', '火影忍者', '1539678096976');
 INSERT INTO `hitokoto` VALUES ('755', '如果政府不能解决问题, 那它本身就成为问题!', '里根', '1537884126492');
 INSERT INTO `hitokoto` VALUES ('757', '就连一直都无容身之地的我…也不是可以任意舍弃的生命。', '夏目友人帐', '1538145160593');
 INSERT INTO `hitokoto` VALUES ('759', '那双紧握不放的手…抓住的是希望…亦或是绝望…', '原创', '1538145800779');
@@ -317,10 +320,12 @@ INSERT INTO `hitokoto` VALUES ('889', '休息对于生存而言，也是紧要�
 INSERT INTO `hitokoto` VALUES ('890', '这世界是个好地方，值得为它奋斗。后半句我同意。', '海明威', '1537792611239');
 INSERT INTO `hitokoto` VALUES ('891', '成熟不是心变老,是泪在打转还能微笑', '天边', '1538061083888');
 INSERT INTO `hitokoto` VALUES ('894', '比自己,比梦想更重要的东西永远都存在着...', '钢之炼金术师', '1538145849637');
+INSERT INTO `hitokoto` VALUES ('898', '没有脚踏实地建立起来的东西，就无法形成精神和物质上的支撑。', '时生', '1539679198452');
 INSERT INTO `hitokoto` VALUES ('901', '观察的实质是：“不赞美，不责难，甚至也不惋惜，但求了解认识而已。”', '柴静', '1538144052272');
 INSERT INTO `hitokoto` VALUES ('911', '难过从来就不能解决任何问题', '网络', '1537965942562');
 INSERT INTO `hitokoto` VALUES ('914', '若挥袖作别，流云万千，可有人千万流连。 若今昔一别，一别永年，苍山负雪，浮生尽歇。', '浮生未歇', '1538144927731');
 INSERT INTO `hitokoto` VALUES ('916', '照我思索，可理解我，照我思索，可以得人。', '沈从文墓志铭', '1538140398010');
+INSERT INTO `hitokoto` VALUES ('917', '少年少女 向前走吧。', '阳炎PROJECT', '1539677386488');
 INSERT INTO `hitokoto` VALUES ('921', '人都有两面，一面天使，一面恶魔。', '网络', '1539614344208');
 INSERT INTO `hitokoto` VALUES ('923', '我从远方赶来，恰巧你们也在。', '生如夏花', '1537715812702');
 INSERT INTO `hitokoto` VALUES ('925', '我从来都不是什么天才，只是一个普通人，是一个连一个小女孩都保护不了的普通的、渺小的人类啊。', '钢之炼金术师', '1538146119025');
@@ -390,6 +395,7 @@ INSERT INTO `hitokoto` VALUES ('1105', '即使匍匐在地，也要持续前进�
 INSERT INTO `hitokoto` VALUES ('1109', '我们都是好朋友吧，所以你的东西就是我的东西，我的东西还是我的东西。', '网络', '1538142232315');
 INSERT INTO `hitokoto` VALUES ('1110', '失望了吗？没错，世上或许有些东西别打开比较好，真正把心打开的人多么麻烦啊！', '绝望先生', '1537878645109');
 INSERT INTO `hitokoto` VALUES ('1111', '哭也不会改变什么，这个世界从来不会对任何人温柔。', '黑执事', '1538146393677');
+INSERT INTO `hitokoto` VALUES ('1112', '不论是过去还是未来，我都会保护你！', '旋风管家', '1539679048610');
 INSERT INTO `hitokoto` VALUES ('1113', '自己的过去会被当做笑话或者捏他的形式，被他人随随便便的共有化。', '我的青春恋爱物语果然有问题', '1539615070101');
 INSERT INTO `hitokoto` VALUES ('1114', '因为等待的越久，重逢时就越幸福啊。', '名侦探柯南', '1537884234967');
 INSERT INTO `hitokoto` VALUES ('1117', '天予不取，必遭天谴。', '易经', '1537884508612');
@@ -626,7 +632,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539663840435');
+INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539675814931');
 INSERT INTO `users` VALUES ('13', '1', '呆呆', 'f4cc399f0effd13c888e310ea2cf5399', 'daiddo@163.com', '1536418778877', '1', 'null', '1', '1537429356650');
 INSERT INTO `users` VALUES ('14', '1', '王呆呆', '7cc916b6486768fc306e1c7202bf13ed', '760403480@qq.com', '1536582140983', '1', 'null', '0', '1536582192622');
 INSERT INTO `users` VALUES ('15', '1', 'zhttty', '5a21993b46b8ca56d3d5995cfcd5ed6a', 'null', '1536675769839', '1', 'http://localhost:8081/1537432558650.jpg', '1', '1537446909806');

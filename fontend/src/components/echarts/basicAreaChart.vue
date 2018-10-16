@@ -2,14 +2,16 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-16 12:56:41
+ * @Last Modified time: 2018-10-16 16:39:51
  */
 <template>
-  <div class="baseAreaCharts" ref='baseAreaCharts'>
+  <div class="baseAreaCharts">
     <div class="charts-header">
       <span>15天内新增注册用户</span>
     </div>
-    <ve-line :data="chartData" :toolbox='toolbox' height='330px' ref='charts' :loading='loading'></ve-line>
+    <div ref='baseAreaCharts'>
+      <ve-line :data="chartData" :toolbox='toolbox' height='330px' ref='charts' :loading='loading'></ve-line>
+    </div>
   </div>
 </template>
 
@@ -56,12 +58,12 @@ export default {
   watch: {
     isCollapse(newQuestion, oldQuestion) {
       console.log(newQuestion, oldQuestion);
-      this.$nextTick(() => {
-        this.$refs.baseAreaCharts.style.width = document.getElementsByClassName(
-          'charts-header'
-        )[0].offsetWidth;
+      this.$refs.baseAreaCharts.style.width = document.getElementsByClassName(
+        'charts-header'
+      )[0].offsetWidth;
+      setTimeout(() => {
         this.$refs.charts.echarts.resize();
-      });
+      }, 500);
     }
   },
   computed: {
