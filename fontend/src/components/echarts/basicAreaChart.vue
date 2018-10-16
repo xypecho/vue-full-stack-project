@@ -1,15 +1,15 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-15 22:51:31
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-16 12:56:41
  */
 <template>
-  <div class="baseAreaCharts" v-loading='loading'>
+  <div class="baseAreaCharts" ref='baseAreaCharts'>
     <div class="charts-header">
       <span>15天内新增注册用户</span>
     </div>
-    <ve-line :data="chartData" :toolbox='toolbox' height='330px' ref='charts'></ve-line>
+    <ve-line :data="chartData" :toolbox='toolbox' height='330px' ref='charts' :loading='loading'></ve-line>
   </div>
 </template>
 
@@ -54,10 +54,13 @@ export default {
     }
   },
   watch: {
-    isCollapse(v) {
+    isCollapse(newQuestion, oldQuestion) {
+      console.log(newQuestion, oldQuestion);
       this.$nextTick(() => {
-        console.log(v);
-        // this.$refs['charts'].echarts.resize();
+        this.$refs.baseAreaCharts.style.width = document.getElementsByClassName(
+          'charts-header'
+        )[0].offsetWidth;
+        this.$refs.charts.echarts.resize();
       });
     }
   },
