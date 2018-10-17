@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-23 23:15:45
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-16 16:41:34
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-17 21:38:16
  */
 <template>
     <div class="home-wrapper">
@@ -63,6 +63,9 @@
                 </el-row>
             </div>
         </div>
+        <div class="home-echarts">
+            <baseAreaCharts></baseAreaCharts>
+        </div>
         <div class="dynamic">
             <div class="github-time-line" v-loading='githubLoading'>
                 <div class="charts-header">
@@ -80,12 +83,9 @@
             </div>
             <div class="features-to-developed">
                 <div class="charts-header">
-                    <span>Todo List</span>
+                    <toDoList></toDoList>
                 </div>
             </div>
-        </div>
-        <div class="home-echarts">
-            <baseAreaCharts></baseAreaCharts>
         </div>
     </div>
 </template>
@@ -93,6 +93,7 @@
 import { mapGetters } from 'vuex';
 import { formatterTime } from '@/tools/index';
 import baseAreaCharts from '@/components/echarts/basicAreaChart';
+import toDoList from '@/components/toDoList/toDoList';
 
 export default {
   created() {
@@ -167,7 +168,8 @@ export default {
     ...mapGetters(['user'])
   },
   components: {
-    baseAreaCharts
+    baseAreaCharts,
+    toDoList
   }
 };
 </script>
@@ -275,6 +277,7 @@ export default {
 .dynamic {
     display: flex;
     width: 100%;
+    margin-top: 20px;
 
     .github-time-line {
         flex: 1;
@@ -334,7 +337,7 @@ export default {
         flex: 1;
         margin-right: 20px;
         background: #fff;
-        padding: 20px;
+        height: 100%;
 
         .charts-header {
             border-radius: 2px 2px 0 0;
