@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-10-17 21:20:30
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-18 16:24:17
+ * @Last Modified time: 2018-10-18 17:04:56
  */
 <template>
     <div class="toDoList">
@@ -12,7 +12,7 @@
                 <el-button style="float: right; padding: 3px 0" type="text" @click="test1">新增</el-button>
             </div>
             <div v-for="o in test" :key="o" class="text item">
-                <!-- <el-checkbox v-model="radio"></el-checkbox> -->
+                <input type="checkbox" name="" id="" v-model="radio">
                 <label>{{ o }}</label>
                 <span class="icon-__"></span>
             </div>
@@ -68,16 +68,23 @@ export default {
         margin: 0 auto;
         z-index: 1;
         border-bottom: 1px solid #ededed;
+        position: relative;
 
         input {
+            position: absolute;
             border: none;
             bottom: 0;
             height: auto;
             margin: auto 0;
-            opacity: 1;
+            opacity: 0;
             text-align: center;
             top: 0;
             width: 40px;
+        }
+
+        label {
+            background-image: url('~@/assets/images/选择_勾选状态_商品详情.svg');
+            background-size: 40px 40px;
         }
     }
 }
