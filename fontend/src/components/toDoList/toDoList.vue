@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-10-17 21:20:30
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-17 22:29:23
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-18 15:25:57
  */
 <template>
     <div class="toDoList">
@@ -14,6 +14,7 @@
             <div v-for="o in test" :key="o" class="text item">
                 <el-checkbox v-model="radio"></el-checkbox>
                 <label>{{ o }}</label>
+                <i>&times;</i>
             </div>
         </el-card>
     </div>
