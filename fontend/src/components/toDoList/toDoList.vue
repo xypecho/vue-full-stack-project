@@ -8,13 +8,15 @@
     <div class="toDoList">
         <el-card class="box-card">
             <div slot="header" class="clearfix">
-                <input type="text" placeholder="please enter your todo list here" v-model="num">
-                <el-button style="float: right; padding: 3px 0" type="text" @click="test1">新增</el-button>
+                <input type="text" placeholder="please enter your todo list here" v-model="newToDoList" @keyup.enter="addTodoList">
+                <el-button style="float: right; padding: 3px 0" type="text" @click='addTodoList'>新增</el-button>
             </div>
-            <div v-for="o in test" :key="o" class="text item">
-                <input type="checkbox" name="" id="" v-model="radio">
-                <label>{{ o }}</label>
-                <span class="icon-__"></span>
+            <div v-for="(val,key) in todoList" :key="key" class="text item">
+                <input type="checkbox" name="" id="" v-model="val.checked">
+                <img v-if="val.checked" src="~@/assets/images/checked.svg" alt="" height="40">
+                <img v-else src="~@/assets/images/unchecked.svg" alt="" height="40">
+                <label :class="{ isComplete:val.checked }">{{ val.name }}</label>
+                <span class="el-icon-close delete-icon" @click='deleteThisTodoList(key)'></span>
             </div>
         </el-card>
     </div>
@@ -24,14 +26,28 @@
 export default {
   data() {
     return {
-      test: [1, 2, 3, 4, 5, 6],
-      radio: '1',
-      num: ''
+      todoList: [
+        { name: '学会react和angular', checked: false },
+        { name: '完成目前在写的这个项目', checked: false },
+        { name: '学linux', checked: false }
+      ],
+      newToDoList: ''
     };
   },
   methods: {
-    test1() {
-      this.test.push(this.num);
+    addTodoList() {
+      if (!this.newToDoList) {
+        this.$tips({
+          type: 'error',
+          message: '不能为空哦!'
+        });
+        return;
+      }
+      this.todoList.push({ name: this.newToDoList, checked: false });
+      this.newToDoList = '';
+    },
+    deleteThisTodoList(key) {
+      this.todoList.splice(key, 1);
     }
   }
 };
@@ -53,22 +69,29 @@ export default {
         input {
             border: none;
             outline: none;
-            width: 80%;
+            width: 50%;
         }
     }
 
     .item {
-        margin-bottom: 18px;
-        font-size: 14px;
         background: #fff;
         color: #4d4d4d;
         font: 14px Helvetica Neue, Helvetica, Arial, sans-serif;
         font-weight: 300;
-        line-height: 44px;
         margin: 0 auto;
-        z-index: 1;
+        line-height: 50px;
         border-bottom: 1px solid #ededed;
         position: relative;
+        display: flex;
+        align-items: center;
+
+        &:hover .delete-icon {
+            display: block;
+        }
+
+        img {
+            flex: 0 0 40px;
+        }
 
         input {
             position: absolute;
@@ -80,11 +103,27 @@ export default {
             text-align: center;
             top: 0;
             width: 40px;
+            height: 50px;
         }
 
         label {
-            background-image: url('~@/assets/images/选择_勾选状态_商品详情.svg');
-            background-size: 40px 40px;
+            font-size: 14px;
+            flex: 1;
+            padding-left: 10px;
+        }
+
+        .isComplete {
+            text-decoration: line-through;
+            color: #d9d9d9;
+        }
+
+        .delete-icon {
+            float: right;
+            font-size: 20px;
+            color: #F56C6C;
+            cursor: pointer;
+            display: none;
+            flex: 0 0 20px;
         }
     }
 }

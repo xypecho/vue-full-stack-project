@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-10-18 17:11:25
+Date: 2018-10-18 23:02:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -145,6 +145,7 @@ INSERT INTO `hitokoto` VALUES ('316', '情深不寿，强极则辱，谦谦君�
 INSERT INTO `hitokoto` VALUES ('320', '树大必有枯枝，人多必有白痴。', '谢谢你！坏运', '1539610176337');
 INSERT INTO `hitokoto` VALUES ('321', '用我一生，换你十年天真无邪。', '盗墓笔记', '1538144218697');
 INSERT INTO `hitokoto` VALUES ('326', '生我何用？不能欢笑。灭我何用？不减狂骄。', '悟空传', '1537881192537');
+INSERT INTO `hitokoto` VALUES ('331', '就算是沉落地面的太阳，只要夜晚过了一定会再度升起，不管有什么痛苦或难过的事，跟今天截然不同的明天也一定会到来。', '文学少女', '1539865427278');
 INSERT INTO `hitokoto` VALUES ('334', '我如朝露降人间，和风樱花随春谢。四十九年一朝梦，一期荣华一杯酒。', '上杉谦信', '1539182671876');
 INSERT INTO `hitokoto` VALUES ('336', '愿我等之誓言，超越姓名与身份而永存。', '风姿物语', '1539261107366');
 INSERT INTO `hitokoto` VALUES ('339', '日子过的象流水一般。它静静的从我们身边缓缓流过，不带半分声响。那些我们当年执着的人，执着的事，执着之后，却变成一种负担。', '凑合活着', '1537714878135');
@@ -169,6 +170,7 @@ INSERT INTO `hitokoto` VALUES ('390', '君子可寓意于物，但不可留意�
 INSERT INTO `hitokoto` VALUES ('394', '天空本是一种风景，可是遇见你之后，它变成了一种心情。', '九ちのセカィ', '1537719381191');
 INSERT INTO `hitokoto` VALUES ('408', '不忘初心，方得始终。', '网络', '1537971998231');
 INSERT INTO `hitokoto` VALUES ('412', '不约，不约，叔叔我们不约~', '网络', '1539784962886');
+INSERT INTO `hitokoto` VALUES ('416', '不敢正视你的眼睛，是怕我每一个眼神都在告白。', '九ちのセカィ', '1539868197619');
 INSERT INTO `hitokoto` VALUES ('421', '记性太好，有时候是一种负担。容易忘记往事的人，是幸福的。', '九ちのセカィ', '1539783350985');
 INSERT INTO `hitokoto` VALUES ('422', '低头不是认输，是要看清自己的路；昂头不是骄傲，是要看清自己的天空。', '科比·布莱恩特', '1538143626502');
 INSERT INTO `hitokoto` VALUES ('425', '与你的生命等价的东西，这个世界上根本没有。', '网络', '1539782905818');
@@ -178,6 +180,7 @@ INSERT INTO `hitokoto` VALUES ('437', '不要祈求生活公平，只需要适�
 INSERT INTO `hitokoto` VALUES ('438', '空山新雨后，兵长一米六。', '百度贴吧', '1537715033432');
 INSERT INTO `hitokoto` VALUES ('445', '（根据相关法律法规，相关内容已被屏蔽。）', '（根据相关法律法规，相关内容已被屏蔽。）', '1539850535495');
 INSERT INTO `hitokoto` VALUES ('446', '你还欠我一句对不起，可我不会再说没关系了。', '网络', '1539264857639');
+INSERT INTO `hitokoto` VALUES ('450', '我年轻，我傲娇。', '网络', '1539872118601');
 INSERT INTO `hitokoto` VALUES ('453', '找不到路，就自己走一条出来。', '网络', '1537971953302');
 INSERT INTO `hitokoto` VALUES ('455', '当世界背叛你的那天到来时，我会为你背叛全世界。', '网络', '1539612059721');
 INSERT INTO `hitokoto` VALUES ('465', '要么忙着生存要么赶着去死，人总要做点什么。', '肖申克的救赎', '1537715550226');
@@ -188,6 +191,7 @@ INSERT INTO `hitokoto` VALUES ('476', '君生我未生，我生君已老。 君�
 INSERT INTO `hitokoto` VALUES ('477', '我从小就害怕虫子', '小小闲', '1537715943107');
 INSERT INTO `hitokoto` VALUES ('478', '缘起，在人群中，我看见你。缘灭，我看见你，在人群中。', '其他', '1537792892633');
 INSERT INTO `hitokoto` VALUES ('488', '淅淅沥沥的雨，即便能填满路上的水坑，也填不满心中的空洞。', '神圣之门', '1538053570276');
+INSERT INTO `hitokoto` VALUES ('490', '我们总是在注意错过太多，却不注意自己拥有多少。', '我们仍未知道那天所看见的花的名字', '1539868151869');
 INSERT INTO `hitokoto` VALUES ('492', '学而不思则罔，思而不学则殆。', '论语', '1538145382259');
 INSERT INTO `hitokoto` VALUES ('494', '君子坦荡荡，小人长戚戚。', '论语', '1537631597666');
 INSERT INTO `hitokoto` VALUES ('508', '言者无罪，闻者足戒。', '诗经·周南·关雎·序', '1539349252336');
@@ -221,22 +225,27 @@ INSERT INTO `hitokoto` VALUES ('579', '女人应该像水一样的，什么样�
 INSERT INTO `hitokoto` VALUES ('580', '人只有在害怕的时候才会变勇敢。', '冰与火之歌', '1537883209120');
 INSERT INTO `hitokoto` VALUES ('582', '吾念所归，无惧无退！', '冰与火之歌', '1537972160704');
 INSERT INTO `hitokoto` VALUES ('585', '凡人皆有一死，凡人皆需供奉。', '冰与火之歌', '1539349839028');
+INSERT INTO `hitokoto` VALUES ('591', '“妈妈，我将变成萤火虫。”', '三体', '1539865429332');
 INSERT INTO `hitokoto` VALUES ('595', '只有用心才能看到本质，最重要的东西眼睛是无法看到的。', 'LE', '1538060814272');
 INSERT INTO `hitokoto` VALUES ('598', '男人只要去行动就好，做得到或做不到，女孩子会来告诉你的。', '四月是你的谎言', '1539351985618');
 INSERT INTO `hitokoto` VALUES ('599', '生命的本质就是在关系中寻找自己，并成为真正的自己;在关系中寻找爱，并成为爱。', 'le petit prince', '1539182790455');
 INSERT INTO `hitokoto` VALUES ('600', '或许前路永夜，即便如此我也要前进，因为星光即使微弱也会为我照亮前路。', '四月是你的谎言', '1539577554803');
 INSERT INTO `hitokoto` VALUES ('602', '迎接我们的也许是漆黑一片的夜路，即便如此，也要相信自己，勇往直前。 星空会为我们在这条道路上点缀出淡淡星光。', '四月是你的谎言', '1539182798190');
+INSERT INTO `hitokoto` VALUES ('607', '那东西既然被你知道了，我就没脸活下去了，只有一死了之了！可是我还不想死，所以只好把你杀了啊！', '逢坂大河', '1539865432954');
 INSERT INTO `hitokoto` VALUES ('608', '笨蛋吉娃娃（バカチワワ）', '逢坂大河', '1539781700544');
 INSERT INTO `hitokoto` VALUES ('614', '“我要诅咒！诅咒所有相爱的情侣！诅咒神圣的夜晚！诅咒这整个世界（世界：怪我咯？）！对所有的现充挥下破坏的铁锤！我会让你尝尝……我生涯最大的诅咒！”', '千叶の堕天圣黑猫', '1539181004045');
 INSERT INTO `hitokoto` VALUES ('617', '哥哥也可以喜欢上我之外的女孩子，但只有音梦是不可以的！', '芳乃樱对朝仓纯', '1538060790287');
 INSERT INTO `hitokoto` VALUES ('618', '「あたいってば最強ね！」（本小姐最強）', '琪露诺', '1539609569172');
 INSERT INTO `hitokoto` VALUES ('620', '龙儿是我的！谁都不准碰！', '逢坂大河', '1537881046542');
+INSERT INTO `hitokoto` VALUES ('621', '以后继续来一起练习打篮球', '湊智花', '1539868190482');
 INSERT INTO `hitokoto` VALUES ('622', '请不要跟我搭话。我讨厌你！', '八九寺真宵', '1538231499842');
 INSERT INTO `hitokoto` VALUES ('624', '男生送的礼物要方便拿来换钱才好吧！', '来栖加奈子', '1539261889175');
 INSERT INTO `hitokoto` VALUES ('625', '你是笨蛋吗？', '小桐桐（きりりん）', '1537631671387');
 INSERT INTO `hitokoto` VALUES ('627', '最喜欢你了唷！！ 开玩笑的！！啊--！好害羞 有机会的话会再写信给你。 希望那时，能变得更加坦率捏~', '久保由利香致小泉花阳', '1539851036939');
+INSERT INTO `hitokoto` VALUES ('630', '我不承认需要有人牺牲的魔法，而且人与人的思念，可以超越魔法。', '芳乃樱', '1539874892129');
 INSERT INTO `hitokoto` VALUES ('631', '能够实现愿望的樱花树啊，为什么不能满足这些孩子们如此真诚的要求呢？', '芳乃樱', '1537971954410');
 INSERT INTO `hitokoto` VALUES ('632', '我就是小偷，专门来偷走哥哥的心', '芳乃樱', '1538141698433');
+INSERT INTO `hitokoto` VALUES ('635', '在排练的休息时间里要好好补充水分和盐分哦！', '三森铃子致海未', '1539865828884');
 INSERT INTO `hitokoto` VALUES ('637', '重新再说一次，至今为止，真的谢谢你。 然后，今后也请多指教了。', '楠田亞衣奈致东条希', '1538145692576');
 INSERT INTO `hitokoto` VALUES ('640', '凡人、笨蛋！', '维多利加·德·布洛瓦', '1538144926715');
 INSERT INTO `hitokoto` VALUES ('641', '笨蛋,蠢货', '南千秋', '1539841701931');
@@ -260,6 +269,7 @@ INSERT INTO `hitokoto` VALUES ('688', '尘归尘，土归土！', '管理者埃�
 INSERT INTO `hitokoto` VALUES ('692', '我们是圣骑士，不能让复仇的情绪占据我们的意识。', '光明使者乌瑟尔', '1537791430415');
 INSERT INTO `hitokoto` VALUES ('694', '颤抖吧,凡人！', '阿克蒙德', '1537970864191');
 INSERT INTO `hitokoto` VALUES ('698', '种族不代表荣耀，我见过最高尚的兽人，也见过最卑劣的人类。', '提里奥.弗丁', '1539782226774');
+INSERT INTO `hitokoto` VALUES ('701', '前天是小兔子,昨天是小鹿,今天是你', 'CLANNAD', '1539865440746');
 INSERT INTO `hitokoto` VALUES ('704', '浅情终似，行云无定，犹到梦魂中。', '少年游·离多最是', '1539577984741');
 INSERT INTO `hitokoto` VALUES ('705', '可怜人意，薄于云水，佳会更难重。', '少年游·离多最是', '1537970634299');
 INSERT INTO `hitokoto` VALUES ('706', '有些事情我不看透，不是我太笨，只是我太善良。', '樱桃小丸子', '1537970644628');
@@ -274,6 +284,7 @@ INSERT INTO `hitokoto` VALUES ('719', '以前高中时，羡慕大学考试只�
 INSERT INTO `hitokoto` VALUES ('720', '我不要你忘记他 , 我只要你记得我', '网络', '1537631668716');
 INSERT INTO `hitokoto` VALUES ('722', '生生生生暗生始，死死死死冥死终。', '东方永夜抄', '1538232858383');
 INSERT INTO `hitokoto` VALUES ('723', '你的胆小，就让它，见鬼去吧。', 'アシタハアタシノカゼガフク', '1538231811067');
+INSERT INTO `hitokoto` VALUES ('725', '谢谢你喜欢我，对不起爱，我伤不起了', '原创', '1539867856601');
 INSERT INTO `hitokoto` VALUES ('726', '男人至死都是少年', '银魂', '1539610917723');
 INSERT INTO `hitokoto` VALUES ('730', '万法缘生，皆系缘分！', '佛教禅语', '1538146485519');
 INSERT INTO `hitokoto` VALUES ('732', '我除了投三分，就什么都没有了…', '灌篮高手', '1539700229337');
@@ -499,13 +510,16 @@ INSERT INTO `hitokoto` VALUES ('1310', '如果到了一个遥远陌生的国度�
 INSERT INTO `hitokoto` VALUES ('1311', '流浪汉最受不了的或许不是吃不饱喝不足，而是他们终日终年的沉默。人们会赏他们一两个角子，但从来不赏个面子站下脚，听他们说句话', '无出路咖啡馆', '1538061447906');
 INSERT INTO `hitokoto` VALUES ('1313', '人总是健忘的，所以在行走一段人生旅途后，总要不自觉地停下来，整理一下前段时间的得与失，得大于失证明这段时间没有浪费，欣喜若狂的准备下一段旅途。', '唐砖', '1538144132002');
 INSERT INTO `hitokoto` VALUES ('1316', '力所能及的帮助他人是我们做人的本分，刻意的那么做就超出了我们的能力范畴，说不定还会引来恶意的猜想。', '胡说八道', '1537716102084');
+INSERT INTO `hitokoto` VALUES ('1323', '最简单的，有的人认为人活着就是为了吃饭，有的人是为了吃饭而活着。', 'Bruce Jc', '1539867954043');
 INSERT INTO `hitokoto` VALUES ('1326', '为什么要称赞他人？那是为了把对方捧到更高的地方更容易绊他的脚，为了把他从高处摔下来。这就叫做称赞杀人法。', '我的青春恋爱物语果然有问题', '1537883901030');
+INSERT INTO `hitokoto` VALUES ('1327', '温柔正确的人总是难以生存，因为这世界既不温柔，也不正确', '我的青春恋爱物语果然有问题', '1539867408045');
 INSERT INTO `hitokoto` VALUES ('1328', '女生口中的「好人」首先百分之百是「怎样都好的人」的意思，再好也不过止于「方便好使的人」。也就是说，不管怎样都是没戏了', '我的青春恋爱物语果然有问题', '1538230994986');
 INSERT INTO `hitokoto` VALUES ('1331', '这个世界没有公平也从来没有公平过，我们，我们的血，并非是我们选择了命运，而是命运选择了我们。', '凤凰', '1539663975972');
 INSERT INTO `hitokoto` VALUES ('1332', '贫贱难可居，脱误有功，富贵可致，不探虎穴，安得虎子？', '三国志', '1539608766309');
 INSERT INTO `hitokoto` VALUES ('1335', '如果我们能活着出去，千山万水，你愿意陪我一起看吗？', '狐妖小红娘', '1539265297962');
 INSERT INTO `hitokoto` VALUES ('1336', '世界上最令人激动的一件事就是：你原本以为没有机会靠近的人，竟然爱上了你...', 'Bruce Jc', '1538231208309');
 INSERT INTO `hitokoto` VALUES ('1342', '故人啊 已做了他人嫁', '一醉南柯', '1537881346590');
+INSERT INTO `hitokoto` VALUES ('1344', '看春花开又落,秋风吹着那夏月走,冬雪纷纷又是一年', '如花', '1539865431279');
 INSERT INTO `hitokoto` VALUES ('1348', '此心光明，亦复何言', '王阳明', '1539348183401');
 INSERT INTO `hitokoto` VALUES ('1349', '末将于禁，愿为曹家世代赴汤蹈火。', '镇魂街', '1537715447350');
 INSERT INTO `hitokoto` VALUES ('1353', '遇到事情不能坐以待毙！', '捷德奥特曼', '1537882750710');
@@ -514,10 +528,12 @@ INSERT INTO `hitokoto` VALUES ('1360', '我纯净的笑容，我想一生珍藏'
 INSERT INTO `hitokoto` VALUES ('1362', '不管是哪种结果，我都坦然接受。因为无论是哪种结果，这都是一次非凡的旅行。', '地心引力', '1539264643636');
 INSERT INTO `hitokoto` VALUES ('1363', '不需要逃避，也不必看轻自己，接受自己的不完美，更加努力，凡是打不倒你的都会让你变得更加坚强。', 'Bruce Jc', '1537884011037');
 INSERT INTO `hitokoto` VALUES ('1365', '想和你重新认识一次 从你叫什么名字说起。', '你的名字', '1537631603763');
+INSERT INTO `hitokoto` VALUES ('1366', '不管你在世界的哪个地方，我一定会，再次去见你的。', '你的名字', '1539874910132');
 INSERT INTO `hitokoto` VALUES ('1370', '为自己当初的誓言而努力！', '疯人', '1539609979871');
 INSERT INTO `hitokoto` VALUES ('1372', '和你们这些少爷不同，我们光是活着就竭尽全力了。', '银魂', '1538144358546');
 INSERT INTO `hitokoto` VALUES ('1373', '不怕万人阻挡，就怕自己投降，将来的你一定会感激现在拼命的自己，自己选择的路，再艰难，跪着也要走完。', 'Bruce Jc', '1537715467476');
 INSERT INTO `hitokoto` VALUES ('1374', '和绝望，和睦相处', '少女终末旅行', '1539611308473');
+INSERT INTO `hitokoto` VALUES ('1375', '人终其一生都是自我改善的过程。', 'Bruce Jc', '1539871858335');
 INSERT INTO `hitokoto` VALUES ('1378', '其实本来就没有什么大彻大悟，不过是找到一个够麻痹自己一生的理由。', '原创', '1538061047019');
 INSERT INTO `hitokoto` VALUES ('1379', '万有引力可无法对坠入爱河的人负责。', '爱因斯坦', '1537714870381');
 INSERT INTO `hitokoto` VALUES ('1381', '人这辈子没法做太多事情，所以每一件都要做到精彩绝伦。', '乔布斯', '1539607890208');
@@ -565,8 +581,10 @@ INSERT INTO `hitokoto` VALUES ('3660', '以智者之名，为愚者代辩。', '
 INSERT INTO `hitokoto` VALUES ('3661', '清算，终将到来。', 'Stellaris', '1537880582239');
 INSERT INTO `hitokoto` VALUES ('3663', '据说啊 叹气会让幸福溜走的', '再见了 我们的幼儿园', '1539850420803');
 INSERT INTO `hitokoto` VALUES ('3674', '我打架很厉害的，身体疼没什么了不起，心里疼才会哭', '答案', '1539264787225');
+INSERT INTO `hitokoto` VALUES ('3675', '加油，努力，当然，这只是对你而言，如果是我的话，还是算了吧。请别对我抱有任何期望，失望的感觉真的很难受呢', '原创', '1539866681044');
 INSERT INTO `hitokoto` VALUES ('3677', '只要万事俱备，就能一直保持冷静，无论发生什么事，都不会害怕。', '银魂', '1539853079965');
 INSERT INTO `hitokoto` VALUES ('3683', '你要知道我所做出的决定都没改变过 无论如何也会达成', '原创', '1539180589558');
+INSERT INTO `hitokoto` VALUES ('3685', '忘记本身就是一件不可能的事情，别妄想了。', '来自网络', '1539865972517');
 INSERT INTO `hitokoto` VALUES ('3686', '倘若是为了爱而放弃一切，最终连同这份爱意都会丧失掉。', '原创', '1539349839046');
 INSERT INTO `hitokoto` VALUES ('3690', '生命的长度我是拓展不了了，但是我可以试着把它拉宽一点，这样子就能印出彩虹了。', '原创', '1537971216669');
 INSERT INTO `hitokoto` VALUES ('3697', '我喜欢的人…也能喜欢上自己，我认为这就是奇迹。', '月色真美', '1539785449694');
@@ -609,6 +627,7 @@ INSERT INTO `hitokoto` VALUES ('3777', '我李某相貌堂堂，妻子花容月�
 INSERT INTO `hitokoto` VALUES ('3778', '我的每一个动作都有你的印记', '十万个冷笑话', '1539609569945');
 INSERT INTO `hitokoto` VALUES ('3780', '人生在世不称意，不如自挂东南枝', '十万个冷笑话', '1538144105446');
 INSERT INTO `hitokoto` VALUES ('3786', '只有用心灵才能看得清事物本质，真正重要的东西是肉眼无法看见的', '小王子', '1537878769043');
+INSERT INTO `hitokoto` VALUES ('3788', '如果你爱上了某个星球的一朵花。那么，只要在夜晚仰望星空，就会觉得漫天的繁星就像一朵朵盛开的花。', '小王子', '1539871358085');
 INSERT INTO `hitokoto` VALUES ('3789', '为什么要难过,一直微笑就好啦', 'Doraemon!', '1539781782910');
 INSERT INTO `hitokoto` VALUES ('3790', '时间背着我悄悄捏碎从前', '消失', '1538145239289');
 INSERT INTO `hitokoto` VALUES ('3798', '得到了再失去，总是比从来就没有得到更伤人。', '追风筝的人', '1539266350769');
@@ -678,7 +697,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539851036094');
+INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539871357600');
 INSERT INTO `users` VALUES ('13', '1', '呆呆', 'f4cc399f0effd13c888e310ea2cf5399', 'daiddo@163.com', '1536418778877', '1', 'null', '1', '1537429356650');
 INSERT INTO `users` VALUES ('14', '1', '王呆呆', '7cc916b6486768fc306e1c7202bf13ed', '760403480@qq.com', '1536582140983', '1', 'null', '0', '1536582192622');
 INSERT INTO `users` VALUES ('15', '1', 'zhttty', '5a21993b46b8ca56d3d5995cfcd5ed6a', 'null', '1536675769839', '1', 'http://localhost:8081/1537432558650.jpg', '1', '1537446909806');
@@ -691,4 +710,4 @@ INSERT INTO `users` VALUES ('21', '1', '蕾姆', '9cbf8a4dcb8e30682b927f352d6559
 INSERT INTO `users` VALUES ('22', '1', '切图仔宣言', 'e807f1fcf82d132f9bb018ca6738a19f', null, '1539006058354', '1', null, '1', '1539006081162');
 INSERT INTO `users` VALUES ('23', '1', '雪诺', '14e1b600b1fd579f47433b88e8d85291', 'null', '1539265807809', '1', 'null', '1', '1539265837687');
 INSERT INTO `users` VALUES ('24', '1', '✎﹏ℳ๓₯㎕♚童', 'e10adc3949ba59abbe56e057f20f883e', null, '1539577945610', '1', null, '1', '1539842755590');
-INSERT INTO `users` VALUES ('25', '1', '你们都是艾斯比', 'e10adc3949ba59abbe56e057f20f883e', null, '1539607462090', '1', null, '1', '1539607475962');
+INSERT INTO `users` VALUES ('25', '1', '你们都是艾斯比', 'e10adc3949ba59abbe56e057f20f883e', null, '1539607462090', '1', null, '1', '1539865362847');
