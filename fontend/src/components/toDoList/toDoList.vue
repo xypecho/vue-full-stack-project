@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-10-17 21:20:30
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-18 15:25:57
+ * @Last Modified time: 2018-10-18 16:24:17
  */
 <template>
     <div class="toDoList">
@@ -12,9 +12,9 @@
                 <el-button style="float: right; padding: 3px 0" type="text" @click="test1">新增</el-button>
             </div>
             <div v-for="o in test" :key="o" class="text item">
-                <el-checkbox v-model="radio"></el-checkbox>
+                <!-- <el-checkbox v-model="radio"></el-checkbox> -->
                 <label>{{ o }}</label>
-                <i>&times;</i>
+                <span class="icon-__"></span>
             </div>
         </el-card>
     </div>

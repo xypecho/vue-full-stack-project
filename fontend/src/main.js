@@ -9,6 +9,7 @@ import VCharts from 'v-charts';
 import Vuex from 'vuex';
 import ElementUI from 'element-ui';
 import axios from 'axios';
+import './common/stylus/style.styl';
 import App from './App';
 import router, { authRouter } from './router';
 import store from './store';
