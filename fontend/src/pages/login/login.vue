@@ -1,25 +1,23 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-15 20:38:35
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-19 09:49:26
  */
 
 <template>
   <div class="login" v-loading='domLoading'>
     <img src="~@/assets/images/code.jpeg" alt="" style="display:none" id="lazy_load_img">
-    <transition enter-active-class='animated fadeInLeft'>
-      <div class="textBox">
-        <h2>切图仔誓言</h2>
-        <p>成功将至，我从今开始发奋，至死方休。</p>
-        <p>我将不毁约、不放弃、不后退。</p>
-        <p>我将不耻下问，不持材自傲。</p>
-        <p>我将不畏困难，不惧诱惑。</p>
-        <p>我是荆棘中的利剑，战场上的勇士。</p>
-        <p>我是抵御寒冷的烈焰，破晓时分的光线，唤醒沉睡者的号角，守护梦想的坚盾。</p>
-        <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
-      </div>
-    </transition>
+    <div class="textBox">
+      <h2>切图仔誓言</h2>
+      <p>成功将至，我从今开始发奋，至死方休。</p>
+      <p>我将不毁约、不放弃、不后退。</p>
+      <p>我将不耻下问，不持材自傲。</p>
+      <p>我将不畏困难，不惧诱惑。</p>
+      <p>我是荆棘中的利剑，战场上的勇士。</p>
+      <p>我是抵御寒冷的烈焰，破晓时分的光线，唤醒沉睡者的号角，守护梦想的坚盾。</p>
+      <p>我将生命与荣耀献给优秀，今日如此，日日皆然。</p>
+    </div>
     <div class="loginBox" v-loading='loading'>
       <el-tabs v-model="activeName">
         <el-tab-pane label="注册" name="signUp">
@@ -212,6 +210,7 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 
   &:before {
     background-image: url('~@/assets/images/code.jpeg');
@@ -234,6 +233,7 @@ export default {
   left: 20%;
   transform: translate(-20%, -46%);
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, '\5FAE\8F6F\96C5\9ED1', Arial, sans-serif;
+  animation: fadeLeft 1s;
 
   & h2 {
     line-height: 30px;
@@ -253,5 +253,30 @@ export default {
   padding: 43px 43px 15px 43px;
   font-size: 17px;
   border-radius: 14px;
+  animation: fadeRight 1s;
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, -46%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-20%, -46%);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>

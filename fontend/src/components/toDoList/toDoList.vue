@@ -27,8 +27,10 @@ export default {
   data() {
     return {
       todoList: [
-        { name: '学会react和angular', checked: false },
         { name: '完成目前在写的这个项目', checked: false },
+        { name: '将该项目成功部署到服务器', checked: false },
+        { name: '学会react和angular', checked: false },
+        { name: '看完<Javascript权威指南>，话说已经很久没看了。。。', checked: false },
         { name: '学linux', checked: false }
       ],
       newToDoList: ''
