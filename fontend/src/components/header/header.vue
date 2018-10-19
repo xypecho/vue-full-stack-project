@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-20 16:35:36
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-19 21:26:54
  */
 <template>
   <div class="vHeader">
@@ -10,11 +10,15 @@
       <span class="el-icon-menu" @click='changeCollapseStatus'></span>
     </div>
     <div class="vHeader-right">
+      <div class="fullScreen">
+        <span @click='toggleFullScreen' class="el-icon-zoom-in">
+        </span>
+      </div>
+      <div class="avatar">
+        <img v-if="!user.avatar || user.avatar == 'null' || user.avatar == ''" src="~@/assets/images/avatar.gif" alt="" height="40" width="40">
+        <img v-else :src="user.avatar" alt="" height="40" width="40">
+      </div>
       <el-dropdown @command="handleCommand">
-        <div class="avatar">
-          <img v-if="!user.avatar || user.avatar == 'null' || user.avatar == ''" src="~@/assets/images/avatar.gif" alt="" height="40" width="40">
-          <img v-else :src="user.avatar" alt="" height="40" width="40">
-        </div>
         <div class="username">
           {{user.username}}
         </div>
@@ -23,10 +27,6 @@
           <el-dropdown-item command="signOut">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <div class="fullScreen">
-        <span @click='toggleFullScreen' class="el-icon-zoom-in">
-        </span>
-      </div>
     </div>
   </div>
 </template>
@@ -148,7 +148,6 @@ export default {
   & img {
     border-radius: 50%;
     vertical-align: middle;
-    cursor: pointer;
   }
 }
 
@@ -156,5 +155,6 @@ export default {
   height: 50px;
   line-height: 50px;
   margin-right: 20px;
+  cursor: pointer;
 }
 </style>

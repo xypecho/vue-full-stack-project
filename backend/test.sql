@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-10-19 17:13:39
+Date: 2018-10-19 22:33:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,6 +30,7 @@ CREATE TABLE `hitokoto` (
 -- ----------------------------
 -- Records of hitokoto
 -- ----------------------------
+INSERT INTO `hitokoto` VALUES ('2', '面对就好，去经历就好。', '花伞菌', '1539956237684');
 INSERT INTO `hitokoto` VALUES ('5', '看似美好的东西，往往藏着陷阱。', '只有神知道的世界', '1538145004013');
 INSERT INTO `hitokoto` VALUES ('6', '天空是连着的，如果我们也能各自发光的话，无论距离有多远，都能看到彼此努力的身影。', '龙虎斗', '1539610789049');
 INSERT INTO `hitokoto` VALUES ('7', '恋ではなく、爱でもなく、もっとずっと 深く重い。', 'sweet   pool', '1539607896744');
@@ -52,6 +53,7 @@ INSERT INTO `hitokoto` VALUES ('67', '不要哀求，学会争取；若是如此
 INSERT INTO `hitokoto` VALUES ('68', 'リア充死ね！', '我的朋友很少', '1539607476310');
 INSERT INTO `hitokoto` VALUES ('70', '我会跟她结婚，并不是因为她是计算机，而是因为她就是她。同样的，我会喜欢你，也是因为你就是你。', '人型电脑天使心', '1537715738152');
 INSERT INTO `hitokoto` VALUES ('73', '我对普通的人类没有兴趣，你们只要是有外星人、未来人、异世界人、超能力者， 就尽管来找我吧！以上！', '凉宫春日的忧郁', '1537883728503');
+INSERT INTO `hitokoto` VALUES ('76', '我想要握紧的并不是匕首或是什么，只不过是他的掌心而已。', '空之境界', '1539954976923');
 INSERT INTO `hitokoto` VALUES ('77', '下一次重逢，将是何年何月？天空必将见证。', 'SOLA', '1539610010907');
 INSERT INTO `hitokoto` VALUES ('81', '选择道路的时候怎么犹豫都没有关系，但决定之后就一定要坚持到底！', '青之驱魔师', '1539261580499');
 INSERT INTO `hitokoto` VALUES ('82', '煩い！煩い！煩い！', '灼眼的夏娜', '1539577101675');
@@ -349,6 +351,7 @@ INSERT INTO `hitokoto` VALUES ('865', '无可替代的存在什么的不是很�
 INSERT INTO `hitokoto` VALUES ('867', '真正重要的东西，永远都是非常简单的。', 'Clannad', '1539665763961');
 INSERT INTO `hitokoto` VALUES ('870', '我已经准备好了足够挡雨的伞，可是却迟迟没有等到雨的到来，这样的尴尬只是我漫长人生中的小插曲罢了。', '千与千寻', '1539353138028');
 INSERT INTO `hitokoto` VALUES ('871', '我觉得在这里干尽坏事的玩家，都是些在现实世界中也烂到骨子里的家伙。', '刀剑神域', '1537884447927');
+INSERT INTO `hitokoto` VALUES ('875', 'Sunny day Wow! Song power!', 'SUNNY DAY SONG', '1539955450386');
 INSERT INTO `hitokoto` VALUES ('879', '人们只是用好人来称呼对自己有用的人而以，不存在对所有人都有用的人', '进击的巨人', '1539615040410');
 INSERT INTO `hitokoto` VALUES ('880', '要是太勉强自己的话，总有一天会受伤的', '吸血鬼骑士', '1537712686562');
 INSERT INTO `hitokoto` VALUES ('882', '我本身得不到答案。所以，我希望有能够答出来之物的诞生。', 'Fate/Stay Night', '1539609103660');
@@ -530,6 +533,7 @@ INSERT INTO `hitokoto` VALUES ('1358', '所有的漩涡与波浪都痛苦而急�
 INSERT INTO `hitokoto` VALUES ('1360', '我纯净的笑容，我想一生珍藏', 'Bruce Jc', '1537883219629');
 INSERT INTO `hitokoto` VALUES ('1362', '不管是哪种结果，我都坦然接受。因为无论是哪种结果，这都是一次非凡的旅行。', '地心引力', '1539264643636');
 INSERT INTO `hitokoto` VALUES ('1363', '不需要逃避，也不必看轻自己，接受自己的不完美，更加努力，凡是打不倒你的都会让你变得更加坚强。', 'Bruce Jc', '1537884011037');
+INSERT INTO `hitokoto` VALUES ('1364', '今日的余晖和你最后那天给我的拥抱，同一个温度', 'Myself', '1539955044846');
 INSERT INTO `hitokoto` VALUES ('1365', '想和你重新认识一次 从你叫什么名字说起。', '你的名字', '1537631603763');
 INSERT INTO `hitokoto` VALUES ('1366', '不管你在世界的哪个地方，我一定会，再次去见你的。', '你的名字', '1539874910132');
 INSERT INTO `hitokoto` VALUES ('1370', '为自己当初的誓言而努力！', '疯人', '1539609979871');
@@ -583,6 +587,8 @@ INSERT INTO `hitokoto` VALUES ('3659', '人难免伤害别人,也难免受伤,�
 INSERT INTO `hitokoto` VALUES ('3660', '以智者之名，为愚者代辩。', 'Gosick', '1537883016824');
 INSERT INTO `hitokoto` VALUES ('3661', '清算，终将到来。', 'Stellaris', '1537880582239');
 INSERT INTO `hitokoto` VALUES ('3663', '据说啊 叹气会让幸福溜走的', '再见了 我们的幼儿园', '1539850420803');
+INSERT INTO `hitokoto` VALUES ('3667', '固执守旧说的就是我了吧', '原创', '1539956276306');
+INSERT INTO `hitokoto` VALUES ('3673', '现在得到的将来定将十倍失去', '言午', '1539956188014');
 INSERT INTO `hitokoto` VALUES ('3674', '我打架很厉害的，身体疼没什么了不起，心里疼才会哭', '答案', '1539264787225');
 INSERT INTO `hitokoto` VALUES ('3675', '加油，努力，当然，这只是对你而言，如果是我的话，还是算了吧。请别对我抱有任何期望，失望的感觉真的很难受呢', '原创', '1539866681044');
 INSERT INTO `hitokoto` VALUES ('3677', '只要万事俱备，就能一直保持冷静，无论发生什么事，都不会害怕。', '银魂', '1539853079965');
@@ -715,4 +721,4 @@ INSERT INTO `users` VALUES ('21', '1', '蕾姆', '9cbf8a4dcb8e30682b927f352d6559
 INSERT INTO `users` VALUES ('22', '1', '切图仔宣言', 'e807f1fcf82d132f9bb018ca6738a19f', null, '1539006058354', '1', null, '1', '1539006081162');
 INSERT INTO `users` VALUES ('23', '1', '雪诺', '14e1b600b1fd579f47433b88e8d85291', 'null', '1539265807809', '1', 'null', '1', '1539265837687');
 INSERT INTO `users` VALUES ('24', '1', '✎﹏ℳ๓₯㎕♚童', 'e10adc3949ba59abbe56e057f20f883e', null, '1539577945610', '1', null, '1', '1539842755590');
-INSERT INTO `users` VALUES ('25', '1', '你们都是艾斯比', 'e10adc3949ba59abbe56e057f20f883e', null, '1539607462090', '1', null, '1', '1539865362847');
+INSERT INTO `users` VALUES ('25', '1', '你们都是艾斯比', 'e10adc3949ba59abbe56e057f20f883e', null, '1539607462090', '1', 'http://localhost:8081/1539956264867.jpg', '1', '1539954889924');
