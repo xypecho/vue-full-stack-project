@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2018-10-18 23:02:28
+Date: 2018-10-19 17:13:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,6 +37,7 @@ INSERT INTO `hitokoto` VALUES ('10', '我是一个经常笑的人，可我不是
 INSERT INTO `hitokoto` VALUES ('18', '我不会让任何人看到我软弱的一面。', '桔梗', '1539578034499');
 INSERT INTO `hitokoto` VALUES ('21', '我手中的魔法，是守护挚爱的力量，是坚定这个信念所必须的力量，我一定会拯救你的，无论在何时、何地。', '魔法少女奈叶', '1539614994214');
 INSERT INTO `hitokoto` VALUES ('22', '比任何人都要了解自己，比任何人都要关爱自己。喜欢上这样的人，并没有什么奇怪的呢。', '初音岛', '1537883954880');
+INSERT INTO `hitokoto` VALUES ('30', '隐约雷鸣，阴霾天空，即使天无雨，我亦留此地。', '言叶之庭', '1539940255705');
 INSERT INTO `hitokoto` VALUES ('31', '就是因为你不好，才要留在你身边，给你幸福。', '哈尔的移动城堡', '1538061109463');
 INSERT INTO `hitokoto` VALUES ('32', '微风摇曳着窗帘，夕阳斜射入教室，在那里鼓起勇气告白的少年。即使现在也能清晰地回想起她的声音「当朋友，不行吗？」', '果然我的青春恋爱喜剧搞错了', '1539614615810');
 INSERT INTO `hitokoto` VALUES ('34', '别人恋爱不成功，你连暗恋都不成功！', '灌篮高手', '1539350494470');
@@ -83,6 +84,7 @@ INSERT INTO `hitokoto` VALUES ('144', '正因为听不见和看不到，所以�
 INSERT INTO `hitokoto` VALUES ('145', '什么都无所谓只想在你身边，什么都无所谓只想和你说话，什么都无所谓所以请你不要逃避。', '好想告诉你', '1538232702832');
 INSERT INTO `hitokoto` VALUES ('147', '人能够在心里郁积那么多的事情，而他们又会忘记那么多的事情，真是不可思议……', '最终幻想', '1539266555632');
 INSERT INTO `hitokoto` VALUES ('148', '我要拼，装上假牙也要拼！', '灌篮高手', '1539608484520');
+INSERT INTO `hitokoto` VALUES ('149', '人一生会遇到约2920万人，两个人相爱的概率是0.000049。所以你不爱我，我不怪你。', '秒速五厘米', '1539910359720');
 INSERT INTO `hitokoto` VALUES ('151', '我的眼睛，就是为了寻找你而存在的。', 'H2O', '1539612059893');
 INSERT INTO `hitokoto` VALUES ('153', 'All for one，one for all.', '海贼王', '1539265375578');
 INSERT INTO `hitokoto` VALUES ('165', '十步做一死，千里不留行，事了拂衣去，深藏功与名~', '侠客行', '1539261939548');
@@ -125,6 +127,7 @@ INSERT INTO `hitokoto` VALUES ('266', '一个人走在路上，形单影只。�
 INSERT INTO `hitokoto` VALUES ('267', '无知而又纯洁的岁月是任何人都曾拥有的，世界上没有一成不变的事物，所以只要以其他方式找到自己的快乐就行了。', 'CLANNAD', '1539614697576');
 INSERT INTO `hitokoto` VALUES ('269', '不习惯的事越来越多，但我仍在前进……就算步伐很小，我也在一步一步的前进。', '夏目友人帐', '1537883981141');
 INSERT INTO `hitokoto` VALUES ('272', '梦想是什么，梦想是现实的延续；现实是什么，现实是梦想的终结。', 'EVA', '1539783007697');
+INSERT INTO `hitokoto` VALUES ('273', 'Time waits for no one.', '穿越时空的少女', '1539910177348');
 INSERT INTO `hitokoto` VALUES ('274', '时间是伟大的作家，总会写下完美的结局。', '秋之回忆', '1538143153185');
 INSERT INTO `hitokoto` VALUES ('276', '在茫茫人海中，同样是高中生，同乘7点50分的电车，看着同一片海……那个瞬间不就是如奇迹般的邂逅吗。', '单恋电车', '1539615096625');
 INSERT INTO `hitokoto` VALUES ('278', '真正让我难受的，大概是因为让你看到如此狼狈的自己。', '元气少女缘结神', '1538053936127');
@@ -656,7 +659,9 @@ INSERT INTO `hitokoto` VALUES ('3853', '愿来世，你晓天，晓地，晓星�
 INSERT INTO `hitokoto` VALUES ('3858', '明月清风晓星尘，傲雪凌霜宋子琛', '魔道祖师', '1537719409686');
 INSERT INTO `hitokoto` VALUES ('3863', '地上的光催我妒意，吹拂的风催我妒意。', '东方地灵殿', '1539609979835');
 INSERT INTO `hitokoto` VALUES ('3875', '心系一处，守口如瓶', '莫言', '1539267215257');
+INSERT INTO `hitokoto` VALUES ('3880', '如果你是一匹千里马，那么请做自己的伯乐', 'Qihoo360', '1539910171092');
 INSERT INTO `hitokoto` VALUES ('3883', '我们不能成为贵族的后代，但我们可以变成贵族的祖先', 'Qihoo360', '1539699312877');
+INSERT INTO `hitokoto` VALUES ('3890', '刺激！', 'mozei', '1539910146108');
 INSERT INTO `hitokoto` VALUES ('3895', '傲骨几锉尽 惟立仇心 十方雷霆乍起 振紫衣', '魔道祖师', '1539354404173');
 INSERT INTO `hitokoto` VALUES ('3896', '清风策萍影 远夜如移 纵入冥泥 明镜仍为寄', '魔道祖师', '1539613254460');
 INSERT INTO `hitokoto` VALUES ('3897', '掌覆道左阴翳 妄握天格命理', '魔道祖师', '1539609292840');
@@ -697,7 +702,7 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539871357600');
+INSERT INTO `users` VALUES ('1', '0', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'xypecho@163.com', '1536236518370', '1', 'http://localhost:8081/1537277573806.jpg', '1', '1539934051707');
 INSERT INTO `users` VALUES ('13', '1', '呆呆', 'f4cc399f0effd13c888e310ea2cf5399', 'daiddo@163.com', '1536418778877', '1', 'null', '1', '1537429356650');
 INSERT INTO `users` VALUES ('14', '1', '王呆呆', '7cc916b6486768fc306e1c7202bf13ed', '760403480@qq.com', '1536582140983', '1', 'null', '0', '1536582192622');
 INSERT INTO `users` VALUES ('15', '1', 'zhttty', '5a21993b46b8ca56d3d5995cfcd5ed6a', 'null', '1536675769839', '1', 'http://localhost:8081/1537432558650.jpg', '1', '1537446909806');
