@@ -1,11 +1,12 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-19 22:49:09
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-22 15:14:23
  */
 <template>
   <div class="user" v-loading='loading'>
+    <v-search :searchCondition='searchCondition' @search='search'></v-search>
     <el-table :data="userList" style="width: 100%;height:100%">
       <el-table-column fixed prop="username" label="用户名" width="130">
       </el-table-column>
@@ -50,10 +51,14 @@
 <script>
 import { formatterTime } from '@/tools/index';
 import { mapGetters } from 'vuex';
+import vSearch from '@/components/search/search';
 
 export default {
   created() {
     this.getUserList();
+  },
+  components: {
+    vSearch
   },
   computed: {
     ...mapGetters(['user'])
@@ -64,10 +69,26 @@ export default {
       loading: false,
       currentPage: 1,
       pageSize: 5,
-      total: 0
+      total: 0,
+      searchCondition: [
+        {
+          value: '是否激活',
+          label: 1
+        },
+        {
+          value: '111是否激活',
+          label: 2
+        }
+      ]
     };
   },
   methods: {
+    search(value) {
+      this.$tips({
+        type: 'warning',
+        message: value
+      });
+    },
     getUserList() {
       this.loading = true;
       this.$axios
