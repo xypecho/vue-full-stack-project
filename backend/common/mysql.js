@@ -4,7 +4,7 @@ db = mysql.createPool({
     host: 'localhost',
     post: '3306',
     user: 'root',
-    password: '123456',
+    password: 'xyp681210',
     database: 'test'
 });
 
