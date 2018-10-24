@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-15 22:08:17
+ * @Last Modified time: 2018-10-24 22:39:37
  */
 
 // 设置localStorage
@@ -54,6 +54,7 @@ export const transformToTimestamp = (data) => {
 
 // 15天内新增注册用户数据,预期的数据格式为  [{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
 export const formatterUserLoginData = (data) => {
+  console.log(data);
   const countArr = [];
   const tempArr = [];
   const result = [];
