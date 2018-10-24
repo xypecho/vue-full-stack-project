@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     actionUrl() {
-      return `http://localhost:8081/api/upload/image?uid=${this.user.uid}`;
+      return `http://94.191.2.25:8081/api/upload/image?uid=${this.user.uid}`;
     },
     getUserInfo() {
       this.loading = true;
