@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-23 10:25:45
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-25 19:56:18
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -49,7 +49,8 @@ app.use(cors({
         if (ctx.url === '/test') {
             return "*"; // 允许来自所有域名请求
         } else {
-            return 'http://94.191.2.25'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了
+            // return 'http://94.191.2.25'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了
+            return 'http://localhost:8080'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了
         }
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
