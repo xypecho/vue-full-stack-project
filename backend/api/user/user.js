@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-23 21:25:28
+ * @Last Modified time: 2018-10-25 20:06:59
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -169,7 +169,7 @@ class user {
         let res;
         const now = new Date().getTime();
         const fifteenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
-        const userData = await mysqlJs.queryFromMysql(`SELECT register_time FROM users WHERE register_time > ${fifteenDayAgo} AND last_login_time < ${now} ORDER BY register_time ASC`);
+        const userData = await mysqlJs.queryFromMysql(`SELECT register_time FROM users WHERE register_time > ${fifteenDayAgo} AND register_time < ${now} ORDER BY register_time ASC`);
         return ctx.body = userData;
     }
 }
