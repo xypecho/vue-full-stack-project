@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-11 15:36:02 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-09-22 23:39:59
+ * @Last Modified time: 2018-10-26 21:22:22
  */
 const crypto = require('crypto');
 const request = require('request');
@@ -23,5 +23,9 @@ module.exports = {
                 }
             })
         })
+    },
+    // 判断是生产环境还是开发环境
+    env: () => {
+        return process.env.NODE_ENV || 'production'; 
     }
 }

@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-25 20:06:51
+ * @Last Modified time: 2018-10-26 21:31:39
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -14,6 +14,7 @@ const router = new Router();
 const user = require('./api/user/user');// 用户信息的接口
 const upload = require('./api/upload/upload');// 上传相关的接口
 const spider = require('./api/spider/spider');// 爬虫以及一言相关的接口
+const tool = require('./common/tool.js');
 
 /* 文件上传相关 */
 const fs = require('fs');
@@ -49,8 +50,11 @@ app.use(cors({
         if (ctx.url === '/test') {
             return "*"; // 允许来自所有域名请求
         } else {
-            return 'http://94.191.2.25'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了
-            // return 'http://localhost:8080'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了
+            if (tool.env() == 'production') {
+                return 'http://94.191.2.25';
+            } else {
+                return 'http://localhost:8080'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了   
+            }
         }
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
@@ -78,5 +82,6 @@ router
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {
+    console.log(tool.env())
     console.log('koa starts at port 8081!');
 })
