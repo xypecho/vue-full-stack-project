@@ -23,12 +23,13 @@
 |   ├──  common                             ---字体图标存放目录
 |   ├──  components                         ---组件存放目录
 |   ├──  pages                              ---页面存放目录(可复用的则封装为组件，不可以的写为页面)
-|   ├──  style                              ---项目的样式存放目录，主要采用less编写
-|   ├──  utils                              ---工具文件存放目录
-|   --- App.js                              ---组件入口文件
-|   --- index.js                            ---项目的整体js入口文件，包括路由配置等
---- .env                                    ---启动项目自定义端口配置文件
---- .eslintrc                               ---自定义eslint配置文件，包括增加的react jsx语法限制
+|   ├──  router                             ---路由
+|   ├──  store                              ---vuex相关的文件
+|   ├──  tools                              
+|   |    --- index.js                       ---封装了一些常用的函数
+|   --- App.vue                           
+|   --- main.js                          
+--- .eslintrc                               ---自定义eslint配置文件
 --- package.json                                    
 ```
 
