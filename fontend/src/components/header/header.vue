@@ -149,6 +149,12 @@ export default {
     border-radius: 50%;
     vertical-align: middle;
   }
+
+  & img:hover {
+    transform: rotate(666turn);
+    transition-duration: 59s;
+    transition-timing-function: cubic-bezier(0.34, 0, 0.84, 1);
+  }
 }
 
 .username {
