@@ -13,7 +13,7 @@
 ### 2.1前端项目结构
 
 
-```js
+```shell
 ├──  build                               
 ├──  config                              
 ├──  node_modules                          
