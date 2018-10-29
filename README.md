@@ -9,17 +9,16 @@
 后端：node 、koa2 、 mysql
 
 ## 2、项目结构
+
+### 2.1前面项目结构
+
 ```js
-+-- build/                                  ---打包的文件目录
-+-- config/                                 ---npm run eject 后的配置文件目录
-+-- node_modules/                           ---npm下载文件目录
-+-- public/                                 
-|   --- index.html							---首页入口html文件
-|   --- npm.json							---echarts测试数据
-|   --- weibo.json							---echarts测试数据
++-- build/                                  
++-- config/                                 
++-- node_modules/                           
 +-- src/                                    ---核心代码目录
-|   +-- axios                               ---http请求存放目录
-|   |    --- index.js
+|   +-- assets                              
+|   |    --- images                         ---静态资源路径
 |   +-- components                          ---各式各样的组件存放目录
 |   |    +-- animation                      ---动画组件
 |   |    |    --- ...   
