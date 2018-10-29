@@ -17,7 +17,7 @@
 +-- config/                                 
 +-- node_modules/                           
 +-- src/                                    ---核心代码目录
-|   +-- assets                              
+|   +-- assets/                              
 |   |    --- images                         ---静态资源存放目录
 |   +-- common                              ---字体图标存放目录
 |   +-- components                          ---组件存放目录
