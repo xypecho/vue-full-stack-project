@@ -47,6 +47,7 @@
 |   ├──  mysqlDemo.js                       ---这就是连接数据库示例了
 ├── upload                                  ---文件上传的路径
 ├── app.js                                  ---入口文件
+├── test.sql                                ---数据库表的设计结构(里面数据全被截断了)
 ├── package.json                                
 ```
 
