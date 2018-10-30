@@ -63,7 +63,7 @@ git clone https://github.com/xypecho/vue-full-stack-project.git
 ### 3.2 配置mysql环境
 首先在cmd里面执行一下`mysql`命令看看,
 ![mysql](./screenShort/TIM截图20181030155127.png)  
-如果出现了以上的输出则跳过该步骤，直接进入**3.3**,如果输出了其他内容则意味着你正在使用的这台电脑并没有安装mysql，要先安装mysql。
+如果出现了以上的输出则跳过该步骤，直接进入**3.2.2**,如果输出了其他内容则意味着你正在使用的这台电脑并没有安装mysql，要先安装mysql。
 
 #### 3.2.1 下载配置mysql
 首先去google或者百度下载`mysql 5.7`最好是下载5.7版本的，因为之前我下载的最新版，各种连接不上...,一顿操作成功安装之后再去cmd执行下`mysql`，不出意外输出的肯定是  
@@ -75,7 +75,8 @@ git clone https://github.com/xypecho/vue-full-stack-project.git
 去google或者百度下载`Navicat`，然后点击连接数据库，输入图片内内容(如果你的mysql密码是123456的话)  
 ![navicat](./screenShort/TIM截图20181030162503.png)  
 连接成功后，右击`新建数据库`，按照下图中填写  
-![databases](./screenShort/TIM截图20181030162715.png)
+![databases](./screenShort/TIM截图20181030162715.png)  
+在新建的`test`数据库上右击选中`运行SQL文件`，选择`vue-full-stack-project\backend`下的`test.sql`,至此完成了数据库的连接
 
 
 ### 3.3安装npm包
