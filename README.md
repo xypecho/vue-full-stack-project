@@ -79,7 +79,7 @@ git clone https://github.com/xypecho/vue-full-stack-project.git
 在新建的`test`数据库上右击选中`运行SQL文件`，选择`vue-full-stack-project\backend`下的`test.sql`,至此完成了数据库的连接
 
 
-### 3.3安装npm包
+### 3.3安装npm包 & 运行项目
 ```
 cd vue-full-stack-project
 cd fontend
