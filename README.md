@@ -34,6 +34,19 @@
 ......                               
 ```
 
+### 2.2后端项目结构
+
+```                       
+├──  api                                    ---接口目录
+|   ├──  spider                             ---爬虫相关的接口(开发中...)
+|   ├──  upload                             ---上传文件相关的接口
+|   ├──  user                               ---用户相关的接口                 
+├── common                                  ---封装了一些常用的函数
+├── upload                                  ---文件上传的路径
+├── app.js                                  ---入口文件
+├── package.json                                
+```
+
 ## 3、部署
 ```
 git clone https://github.com/xypecho/vue-full-stack-project.git
