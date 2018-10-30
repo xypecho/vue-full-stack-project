@@ -92,3 +92,5 @@ npm install     // 安装后端的依赖包
 export NODE_ENV=development;           // 这个命令是为了区分不同的环境来读取不同的配置
 node app.js     // 运行后端项目
 ```
+
+以上就是快速部署的全过程了，此项目适合node & vue新人学习，如果此项目对你产生帮助，请点个star哦:blush:
