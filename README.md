@@ -51,7 +51,7 @@
 ├── package.json                                
 ```
 
-## 3、项目部署
+## 3、快速部署
 ```
 git clone https://github.com/xypecho/vue-full-stack-project.git
 cd fontend
