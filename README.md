@@ -26,11 +26,12 @@
 |   ├──  router                             ---路由
 |   ├──  store                              ---vuex相关的文件
 |   ├──  tools                              
-|   |    --- index.js                       ---封装了一些常用的函数
+|   |    ├── index.js                       ---封装了一些常用的函数
 |   ├── App.vue                           
 |   ├── main.js                          
 ├── .eslintrc                               ---自定义eslint配置文件
-├── package.json                                    
+├── package.json     
+......                               
 ```
 
 ## 3、部署
