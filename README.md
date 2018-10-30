@@ -73,7 +73,9 @@ git clone https://github.com/xypecho/vue-full-stack-project.git
 
 #### 3.2.2 连接数据库
 去google或者百度下载`Navicat`，然后点击连接数据库，输入图片内内容(如果你的mysql密码是123456的话)  
-![navicat](./screenShort/TIM截图20181030162503.png)
+![navicat](./screenShort/TIM截图20181030162503.png)  
+连接成功后，右击`新建数据库`，按照下图中填写  
+![databases](./screenShort/TIM截图20181030162715.png)
 
 
 ### 3.3安装npm包
