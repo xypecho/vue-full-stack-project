@@ -62,7 +62,8 @@ git clone https://github.com/xypecho/vue-full-stack-project.git
 
 ### 3.2 配置mysql环境
 首先在cmd里面执行一下`mysql`命令看看,
-![mysql](./screenShort/TIM截图20181030155127.png)
+![mysql](./screenShort/TIM截图20181030155127.png),如果出现了以上的输出则跳过该步骤，直接进入3.3  
+
 
 
 
