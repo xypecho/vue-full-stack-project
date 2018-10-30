@@ -31,7 +31,7 @@
 |   ├── main.js                          
 ├── .eslintrc                               ---自定义eslint配置文件
 ├── package.json     
-......                                      ---其他一些vue脚手架生成的文件就不一样表述了
+......                                      ---其他一些vue脚手架生成的文件就不一一表述了
 ```
 
 ### 2.2后端项目结构
@@ -52,19 +52,28 @@
 ```
 
 ## 3、快速部署
+
+
 ### 3.1首先把项目代码clone下来
 ```
 git clone https://github.com/xypecho/vue-full-stack-project.git
 ```
-### 3.2安装npm包
+
+
+### 3.2 配置mysql环境
+
+
+
+
+### 3.3安装npm包
 ```
 cd vue-full-stack-project
 cd fontend
-npm install  // 首先安装前端的依赖包
-npm run dev  // 运行前端项目
+npm install     // 首先安装前端的依赖包
+npm run dev     // 运行前端项目
 
-cd ../  //回到根目录即vue-full-stack-project
+cd ../          //回到根目录即vue-full-stack-project
 cd backend
-npm install // 安装后端的依赖包
-node app.js
+npm install     // 安装后端的依赖包
+node app.js     // 运行后端项目
 ```
