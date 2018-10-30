@@ -41,13 +41,15 @@
 |   ├──  spider                             ---爬虫相关的接口(开发中...)
 |   ├──  upload                             ---上传文件相关的接口
 |   ├──  user                               ---用户相关的接口                 
-├── common                                  ---封装了一些常用的函数
+├── common                                  
+|   ├──  tool.js                            ---封装了一些常用的函数
+|   ├──  mysql.js                           ---连接数据库的js(文件你们是看不到的，因为里面有线上数据库的账户密码，不过我给你们留了一个连接数据库示例哦，这么贴心还不快点个star)
 ├── upload                                  ---文件上传的路径
 ├── app.js                                  ---入口文件
 ├── package.json                                
 ```
 
-## 3、部署
+## 3、项目部署
 ```
 git clone https://github.com/xypecho/vue-full-stack-project.git
 cd fontend
