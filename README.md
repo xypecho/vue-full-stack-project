@@ -89,5 +89,6 @@ npm run dev     // 运行前端项目
 cd ../          //回到根目录即vue-full-stack-project
 cd backend
 npm install     // 安装后端的依赖包
+export NODE_ENV=development;           // 这个命令是为了区分不同的环境来读取不同的配置
 node app.js     // 运行后端项目
 ```
