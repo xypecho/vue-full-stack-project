@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-31 10:59:00
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-31 21:56:25
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -163,7 +163,7 @@ class user {
         //     }
         // }
         res = {
-            status: 200,
+            status: 201,
             message: '删除用户的接口被我注释了哦'
         }
         return ctx.body = res;

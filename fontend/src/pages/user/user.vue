@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-31 11:07:40
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-10-31 22:07:02
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -72,11 +72,11 @@ export default {
       total: 0,
       searchCondition: [
         {
-          value: '是否激活',
+          value: '点击的1',
           label: 1
         },
         {
-          value: '111是否激活',
+          value: '点击的2',
           label: 2
         }
       ]
@@ -152,31 +152,25 @@ export default {
     },
     deleteUser(data) {
       const uid = data.uid;
-      // const userUid = this.user.uid;
-      this.$axios.post('/api/user/delete', { uid }).then(res => {
+      const userUid = this.user.uid;
+      if (uid === 1) {
         this.$tips({
-          type: `${res.data.status === 200 ? 'success' : 'error'}`,
-          message: res.data.message
+          type: 'error',
+          message: '管理员不可以删除'
         });
-      });
-      // if (uid === 1) {
-      //   this.$tips({
-      //     type: 'error',
-      //     message: '管理员不可以删除'
-      //   });
-      // } else if (userUid !== 2) {
-      //   this.$tips({
-      //     type: 'error',
-      //     message: '当前登录帐号无操作权限'
-      //   });
-      // } else {
-      //   this.$axios.post('/api/user/delete', { uid }).then(res => {
-      //     this.$tips({
-      //       type: `${res.data.status === 200 ? 'success' : 'error'}`,
-      //       message: res.data.message
-      //     });
-      //   });
-      // }
+      } else if (userUid !== '1') {
+        this.$tips({
+          type: 'error',
+          message: '当前登录帐号无操作权限'
+        });
+      } else {
+        this.$axios.post('/api/user/delete', { uid }).then(res => {
+          this.$tips({
+            type: `${res.data.status === 200 ? 'success' : 'error'}`,
+            message: res.data.message
+          });
+        });
+      }
     }
   }
 };
