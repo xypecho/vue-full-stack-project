@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-25 20:06:59
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-31 10:59:00
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -149,18 +149,22 @@ class user {
     // 删除用户
     async delete(ctx) {
         let res;
-        let uid = ctx.request.body.uid;
-        let result = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`DELETE FROM users WHERE uid = '${uid}'`)));
-        if (result.affectedRows == 1) {
-            res = {
-                status: 200,
-                message: '删除成功'
-            }
-        } else {
-            res = {
-                status: 201,
-                message: '删除用户信息失败，请稍候重试'
-            }
+        // let uid = ctx.request.body.uid;
+        // let result = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`DELETE FROM users WHERE uid = '${uid}'`)));
+        // if (result.affectedRows == 1) {
+        //     res = {
+        //         status: 200,
+        //         message: '删除成功'
+        //     }
+        // } else {
+        //     res = {
+        //         status: 201,
+        //         message: '删除用户信息失败，请稍候重试'
+        //     }
+        // }
+        res = {
+            status: 200,
+            message: '删除用户的接口被我注释了哦'
         }
         return ctx.body = res;
     }

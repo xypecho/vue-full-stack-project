@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-22 15:14:23
+ * @Last Modified time: 2018-10-31 11:07:40
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -152,25 +152,31 @@ export default {
     },
     deleteUser(data) {
       const uid = data.uid;
-      const userUid = this.user.uid;
-      if (uid === 1) {
+      // const userUid = this.user.uid;
+      this.$axios.post('/api/user/delete', { uid }).then(res => {
         this.$tips({
-          type: 'error',
-          message: '管理员不可以删除'
+          type: `${res.data.status === 200 ? 'success' : 'error'}`,
+          message: res.data.message
         });
-      } else if (userUid !== 2) {
-        this.$tips({
-          type: 'error',
-          message: '当前登录帐号无操作权限'
-        });
-      } else {
-        this.$axios.post('/api/user/delete', { uid }).then(res => {
-          this.$tips({
-            type: `${res.data.status === 200 ? 'success' : 'error'}`,
-            message: res.data.message
-          });
-        });
-      }
+      });
+      // if (uid === 1) {
+      //   this.$tips({
+      //     type: 'error',
+      //     message: '管理员不可以删除'
+      //   });
+      // } else if (userUid !== 2) {
+      //   this.$tips({
+      //     type: 'error',
+      //     message: '当前登录帐号无操作权限'
+      //   });
+      // } else {
+      //   this.$axios.post('/api/user/delete', { uid }).then(res => {
+      //     this.$tips({
+      //       type: `${res.data.status === 200 ? 'success' : 'error'}`,
+      //       message: res.data.message
+      //     });
+      //   });
+      // }
     }
   }
 };

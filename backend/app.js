@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-26 21:31:39
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-10-31 11:17:09
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -82,6 +82,5 @@ router
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {
-    console.log(tool.env())
-    console.log('koa starts at port 8081!');
+    console.log(`You are running project in ${tool.env()} mode & koa starts at port 8081!`);
 })
