@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-07 21:22:42
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-19 09:49:26
+ * @Last Modified time: 2018-11-03 14:40:47
  */
 
 <template>
@@ -179,6 +179,12 @@ export default {
                   message: res.data.message,
                   type: 'error'
                 });
+                if (this.signInForm.username === 'admin') {
+                  this.$notify({
+                    title: '温馨提示',
+                    message: '管理员的账户密码为:123456'
+                  });
+                }
               }
               this.loading = false;
             });

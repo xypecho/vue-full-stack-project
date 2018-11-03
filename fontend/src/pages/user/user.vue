@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-31 22:07:02
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-03 13:45:42
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -100,14 +100,13 @@ export default {
           if (res.data.status === 200) {
             this.userList = res.data.data;
             this.total = res.data.total;
-            this.loading = false;
           } else {
             this.$tips({
               type: 'error',
               message: res.data.message
             });
-            this.loading = false;
           }
+          this.loading = false;
         });
     },
     formatterUtype(row) {
