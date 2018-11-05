@@ -1,12 +1,12 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-03 13:45:42
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-05 22:45:49
  */
 <template>
   <div class="user" v-loading='loading'>
-    <v-search :searchCondition='searchCondition' @search='search'></v-search>
+    <v-search @search='search' @reset="getUserList"></v-search>
     <el-table :data="userList" style="width: 100%;height:100%">
       <el-table-column fixed prop="username" label="用户名" width="130">
       </el-table-column>
@@ -69,32 +69,21 @@ export default {
       loading: false,
       currentPage: 1,
       pageSize: 5,
-      total: 0,
-      searchCondition: [
-        {
-          value: '点击的1',
-          label: 1
-        },
-        {
-          value: '点击的2',
-          label: 2
-        }
-      ]
+      total: 0
     };
   },
   methods: {
     search(value) {
-      this.$tips({
-        type: 'warning',
-        message: value
-      });
+      this.getUserList(value);
     },
-    getUserList() {
+    getUserList(data) {
+      console.log(data);
       this.loading = true;
       this.$axios
         .post('/api/user/list', {
           currentPage: this.currentPage,
-          pageSize: this.pageSize
+          pageSize: this.pageSize,
+          data: data || ''
         })
         .then(res => {
           if (res.data.status === 200) {

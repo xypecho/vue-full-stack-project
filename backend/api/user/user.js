@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-31 21:56:25
+ * @Last Modified time: 2018-11-05 22:47:22
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -77,9 +77,12 @@ class user {
     async list(ctx) {
         let currentPage = ctx.request.body.currentPage;//当前是第几页
         let pageSize = ctx.request.body.pageSize;//每页显示多少条
+        let like = ctx.request.body.data.like || ''; // 模糊搜索的用户名
+        let status = ctx.request.body.data.status || ''; // 状态
+        let timeRange = ctx.request.body.data.like || ''; // 注册的时间戳
         let res;
-        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
-        let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users`)));
+        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users  WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""} LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
+        let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""}`)));
         if (userList && userList.length > 0) {
             res = {
                 status: 200,
