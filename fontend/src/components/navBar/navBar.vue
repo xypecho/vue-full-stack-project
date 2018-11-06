@@ -1,6 +1,6 @@
 <template>
     <div class="navBar">
-        <el-menu class="el-menu-vertical-demo" :default-active="$route.path" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
+        <el-menu class="el-menu-vertical-demo" :default-active="defaultActive" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#409EFF" router unique-opened>
             <template v-for="(item,index) in $router.options.routes[1].children">
                 <el-submenu :index="item.path" v-if="item.children&&item.children.length>0" :key="index">
                     <template slot="title">
@@ -22,6 +22,15 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
+    defaultActive() {
+      let path;
+      if (this.$route.path.lastIndexOf('/') !== 0) {
+        path = this.$route.path.substring(0, this.$route.path.lastIndexOf('/'));
+      } else {
+        path = this.$route.path;
+      }
+      return path;
+    },
     ...mapGetters(['isCollapse'])
   },
   data() {
@@ -30,6 +39,7 @@ export default {
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
+      console.log(this.$route.path);
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);

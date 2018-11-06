@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-20 16:50:13
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-06 21:23:52
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -26,6 +26,43 @@ export const normalRouter = [
         component: resolve => require(['@/pages/home/home'], resolve),
         name: '工作台',
         icon: 'el-icon-menu'
+      },
+      {
+        path: '/form',
+        component: resolve => require(['@/pages/system/system'], resolve),
+        name: '表单页',
+        icon: 'el-icon-menu',
+        children: [
+          {
+            path: '/stepForm',
+            component: resolve => require(['@/pages/form/stepForm'], resolve),
+            name: '分布表单',
+            icon: 'el-icon-menu',
+            children: [
+              {
+                path: '/', redirect: '/stepForm/step1'
+              },
+              {
+                path: '/stepForm/step1',
+                component: resolve => require(['@/pages/stepFormSteps/step1'], resolve),
+                name: '开单',
+                icon: 'el-icon-menu'
+              },
+              {
+                path: '/stepForm/step2',
+                component: resolve => require(['@/pages/stepFormSteps/step2'], resolve),
+                name: '代付款',
+                icon: 'el-icon-menu'
+              },
+              {
+                path: '/stepForm/step3',
+                component: resolve => require(['@/pages/stepFormSteps/step3'], resolve),
+                name: '完成',
+                icon: 'el-icon-menu'
+              }
+            ]
+          }
+        ]
       },
       {
         path: '/system',
