@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-05 22:47:22
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-06 14:09:05
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -79,10 +79,10 @@ class user {
         let pageSize = ctx.request.body.pageSize;//每页显示多少条
         let like = ctx.request.body.data.like || ''; // 模糊搜索的用户名
         let status = ctx.request.body.data.status || ''; // 状态
-        let timeRange = ctx.request.body.data.like || ''; // 注册的时间戳
+        let timeRange = ctx.request.body.data.timeRange || ''; // 注册的时间戳
         let res;
-        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users  WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""} LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
-        let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""}`)));
+        let userList = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT * FROM users  WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""}  ${timeRange.length > 0 ? `AND register_time > ${timeRange[0]} AND register_time < ${timeRange[1]}` : ''} LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`)));
+        let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM users WHERE username LIKE '%${like}%' ${status ? `AND status = ${status}` : ""} ${timeRange.length > 0 ? `AND register_time > ${timeRange[0]} AND register_time < ${timeRange[1]}` : ''}`)));
         if (userList && userList.length > 0) {
             res = {
                 status: 200,
