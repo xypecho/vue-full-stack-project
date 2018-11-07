@@ -78,15 +78,16 @@ router.beforeEach((to, from, next) => {
 });
 
 /* 添加请求拦截器 */
-// axios.interceptors.request.use(
-//   config => {
-//     console.log(config);
-//     store.commit('changeLoading');
-//     return config;
-//   },
-//   error =>
-//     Promise.reject(error)
-// );
+axios.interceptors.request.use(
+  config => {
+    console.log('发起请求');
+    // console.log(config);
+    // store.commit('changeLoading');
+    return config;
+  },
+  error =>
+    Promise.reject(error)
+);
 
 /* 添加响应拦截器,先注释，响应太快，基本看不到loading效果... */
 // axios.interceptors.response.use(
