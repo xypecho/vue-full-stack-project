@@ -1,42 +1,32 @@
 <template>
     <div class="admin">
-        <nav-bar></nav-bar>
-        <vHeader></vHeader>
-        <div class='admin-content'>
-            <p>这是只有admin才能看到的页面</p>
+        <div class="admin-left">
+            <img src="~@/assets/images/xuexiaoban.png" alt="">
+        </div>
+        <div class="admin-right">
+            <p>这是只有admin才能看到的页面哦</p>
         </div>
     </div>
 </template>
 <script>
-import navBar from '@/components/navBar/navBar';
-import vHeader from '@/components/header/header';
-
-export default {
-  components: {
-    navBar,
-    vHeader
-  }
-};
+export default {};
 </script>
 <style lang="stylus" scoped>
 .admin {
     display: flex;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    align-items: center;
 
-    nav-bar {
-        flex: 0 0 200px;
-    }
-
-    content {
+    .admin-left, .admin-right {
         flex: 1;
     }
-}
 
-.admin-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    .admin-right {
+        p {
+            font-size: 17px;
+            color: #409EFF;
+        }
+    }
 }
 </style>
