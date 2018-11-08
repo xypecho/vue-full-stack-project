@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-11-03 14:00:05
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-07 22:34:35
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-08 14:01:56
  */
 <template>
     <div class="notFound">
@@ -29,7 +29,8 @@ export default {
       ) {
         this.$tips({
           type: 'error',
-          message: '只有管理员可以进入权限测试页哦'
+          message: '只有管理员才有权限测试页的路由哦',
+          duration: 5000
         });
       }
     }
