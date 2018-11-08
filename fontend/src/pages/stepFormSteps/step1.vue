@@ -1,14 +1,14 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-06 22:13:56
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-08 16:29:55
  */
 <template>
-    <div class="step1">
-        <h1>step1</h1>
-        <input type="text" name="" id="" v-model="value">
-    </div>
+  <div class="step1">
+    <h1>step1</h1>
+    <input type="text" name="" id="" v-model="value">
+  </div>
 </template>
 
 <script>
