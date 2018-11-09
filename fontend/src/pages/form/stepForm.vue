@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-06 20:17:56
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-09 09:15:06
+ * @Last Modified time: 2018-11-09 16:16:59
  */
 <template>
   <div class="stepForm">
@@ -10,8 +10,8 @@
     </el-switch>
     <div class="stepForm-content">
       <el-steps :active="step" :align-center='!type' :simple='type'>
-        <el-step title="填写转账信息"></el-step>
-        <el-step title="确认转账信息"></el-step>
+        <el-step title="验证身份"></el-step>
+        <el-step title="重设登录密码"></el-step>
         <el-step title="完成"></el-step>
       </el-steps>
       <router-view></router-view>
