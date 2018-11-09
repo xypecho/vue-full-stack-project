@@ -1,19 +1,19 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-09 09:21:00
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-09 21:34:49
  */
 <template>
   <div class="step1">
     <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" size='mini'>
-      <el-form-item label="密码" prop="pass">
+      <el-form-item label="用户名" prop="pass">
         <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
+      <el-form-item label="旧密码" prop="checkPass">
         <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="年龄" prop="age">
+      <el-form-item label="确认旧密码" prop="age">
         <el-input v-model.number="ruleForm2.age"></el-input>
       </el-form-item>
       <el-form-item>
@@ -93,4 +93,7 @@ export default {
 };
 </script>
 <style lang='stylus' scoped>
+.step1
+  text-align center
+  margin 0 auto
 </style>

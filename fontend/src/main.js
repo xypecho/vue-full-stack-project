@@ -64,7 +64,9 @@ router.beforeEach((to, from, next) => {
     });
     next('/');
   } else if (uid !== null && diffMinute > 59 && to.path !== '/') {
+    console.log(localStorage);
     localStorage.clear();
+    console.log(localStorage);
     Vue.prototype.$tips({
       message: '登录过期，请重新登录2',
       type: 'error'
