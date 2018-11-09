@@ -1,15 +1,15 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 20:17:56
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-08 22:50:42
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-09 09:15:06
  */
 <template>
   <div class="stepForm">
     <el-switch v-model="type" active-text="simple" inactive-text="normal" style="padding:20px">
     </el-switch>
     <div class="stepForm-content">
-      <el-steps :active="step" align-center :simple='type'>
+      <el-steps :active="step" :align-center='!type' :simple='type'>
         <el-step title="填写转账信息"></el-step>
         <el-step title="确认转账信息"></el-step>
         <el-step title="完成"></el-step>
@@ -55,9 +55,13 @@ export default {
 };
 </script>
 <style lang='stylus' scoped>
-.stepForm
-  .stepForm-content
-    padding: 40px 60px 60px 60px
-    .stepForm-btn
-      text-align: center
+.stepForm {
+  .stepForm-content {
+    padding: 40px 60px 60px 60px;
+
+    .stepForm-btn {
+      text-align: center;
+    }
+  }
+}
 </style>

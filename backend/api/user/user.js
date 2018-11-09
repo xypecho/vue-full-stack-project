@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-06 14:09:05
+ * @Last Modified time: 2018-11-09 09:37:17
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -15,7 +15,7 @@ class user {
         let register_time = new Date().getTime();
         let username = ctx.request.body.username;
         let password = tool.md5(ctx.request.body.password);
-        let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`);
+        let is_exist = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE username = '${username}'`);
         if (is_exist && is_exist.length > 0) {
             res = {
                 status: 201,

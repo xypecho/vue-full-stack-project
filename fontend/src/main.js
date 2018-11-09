@@ -59,14 +59,14 @@ router.beforeEach((to, from, next) => {
   /* 判断是否在内页刷新，取消加载动画 */
   if (uid === null && to.path !== '/') {
     Vue.prototype.$tips({
-      message: '登录过期，请重新登录',
+      message: '登录过期，请重新登录1',
       type: 'error'
     });
     next('/');
   } else if (uid !== null && diffMinute > 59 && to.path !== '/') {
     localStorage.clear();
     Vue.prototype.$tips({
-      message: '登录过期，请重新登录',
+      message: '登录过期，请重新登录2',
       type: 'error'
     });
     next('/');
@@ -80,8 +80,9 @@ router.beforeEach((to, from, next) => {
 /* 添加请求拦截器 */
 axios.interceptors.request.use(
   config => {
-    console.log('发起请求');
-    // console.log(config);
+    console.log('发起请求-----------------------------');
+    console.log(config);
+    console.log('发起请求=============================');
     // store.commit('changeLoading');
     return config;
   },
