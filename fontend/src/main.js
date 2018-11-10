@@ -64,9 +64,7 @@ router.beforeEach((to, from, next) => {
     });
     next('/');
   } else if (uid !== null && diffMinute > 59 && to.path !== '/') {
-    console.log(localStorage);
     localStorage.clear();
-    console.log(localStorage);
     Vue.prototype.$tips({
       message: '登录过期，请重新登录2',
       type: 'error'
@@ -80,17 +78,17 @@ router.beforeEach((to, from, next) => {
 });
 
 /* 添加请求拦截器 */
-axios.interceptors.request.use(
-  config => {
-    console.log('发起请求-----------------------------');
-    console.log(config);
-    console.log('发起请求=============================');
-    // store.commit('changeLoading');
-    return config;
-  },
-  error =>
-    Promise.reject(error)
-);
+// axios.interceptors.request.use(
+//   config => {
+//     console.log('发起请求-----------------------------');
+//     console.log(config);
+//     console.log('发起请求=============================');
+//     // store.commit('changeLoading');
+//     return config;
+//   },
+//   error =>
+//     Promise.reject(error)
+// );
 
 /* 添加响应拦截器,先注释，响应太快，基本看不到loading效果... */
 // axios.interceptors.response.use(

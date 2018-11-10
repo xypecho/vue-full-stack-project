@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 20:17:56
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-09 21:33:23
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-10 14:39:01
  */
 <template>
   <div class="stepForm">
@@ -36,6 +36,7 @@ export default {
     next() {
       this.step++;
       this.$router.push(`/stepForm/step${this.step}`);
+      console.log(this.$refs.ruleForm2);
     },
     prev() {
       this.step--;
@@ -57,12 +58,18 @@ export default {
 };
 </script>
 <style lang='stylus' scoped>
-.stepForm
-  .stepForm-content
-    padding: 40px 60px 60px 60px;
-    .stepForm-btn
+.stepForm {
+  .stepForm-content {
+    padding: 40px 160px 60px 160px;
+
+    .stepForm-btn {
       text-align: center;
-  .stepForm-view
-    width 55%
-    margin 30px auto
+    }
+  }
+
+  .stepForm-view {
+    max-width: 560px;
+    margin: 30px auto;
+  }
+}
 </style>

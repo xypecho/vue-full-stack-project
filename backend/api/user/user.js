@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-09 09:37:17
+ * @Last Modified time: 2018-11-10 15:36:59
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -178,6 +178,18 @@ class user {
         const fifteenDayAgo = now - (15 * 24 * 60 * 60 * 1000);
         const userData = await mysqlJs.queryFromMysql(`SELECT register_time FROM users WHERE register_time > ${fifteenDayAgo} AND register_time < ${now} ORDER BY register_time ASC`);
         return ctx.body = userData;
+    }
+    // md5加密密码
+    async md5Password(ctx) {
+        let res;
+        const password = tool.md5(ctx.request.body.password);
+        res = {
+            status: 200,
+            data: {
+                password
+            }
+        }
+        return ctx.body = res;
     }
 }
 module.exports = new user();

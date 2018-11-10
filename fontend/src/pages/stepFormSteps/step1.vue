@@ -1,99 +1,100 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-09 21:34:49
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-10 16:17:21
  */
 <template>
   <div class="step1">
-    <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" size='mini'>
-      <el-form-item label="用户名" prop="pass">
-        <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
+    <el-form :model="stepForm1" status-icon :rules="rules" ref="stepForm1" label-width="100px" size='mini'>
+      <el-form-item label="用户名" prop="username">
+        <el-input v-model="stepForm1.username"></el-input>
       </el-form-item>
-      <el-form-item label="旧密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
+      <el-form-item label="旧密码" prop="password">
+        <el-input type="password" v-model="stepForm1.password"></el-input>
       </el-form-item>
-      <el-form-item label="确认旧密码" prop="age">
-        <el-input v-model.number="ruleForm2.age"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+      <el-form-item label="确认旧密码" prop="confirmPassword">
+        <el-input type="password" v-model="stepForm1.confirmPassword" @blur="md5Password"></el-input>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
-    var checkAge = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('年龄不能为空'));
+    const validateUsername = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入用户名'));
       }
       setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('请输入数字值'));
+        if (value !== this.user.username) {
+          callback(new Error('用户名不正确，请重新输入'));
         } else {
-          if (value < 18) {
-            callback(new Error('必须年满18岁'));
-          } else {
-            callback();
-          }
+          callback();
         }
       }, 1000);
     };
-    var validatePass = (rule, value, callback) => {
+    const validatePassword = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请输入密码'));
+        callback(new Error('请输入旧密码'));
+      } else if (value.length < 6) {
+        callback(new Error('密码最少不得少于6位数'));
       } else {
-        if (this.ruleForm2.checkPass !== '') {
-          this.$refs.ruleForm2.validateField('checkPass');
-        }
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    const validateConfirmPassword = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('请再次输入密码'));
-      } else if (value !== this.ruleForm2.pass) {
+        callback(new Error('请再次输入旧密码'));
+      } else if (value !== this.stepForm1.password) {
         callback(new Error('两次输入密码不一致!'));
+      } else if (this.passwordMd5 !== this.user.password) {
+        setTimeout(() => {
+          callback(new Error('密码不正确!'));
+        }, 1000);
       } else {
         callback();
       }
     };
     return {
-      ruleForm2: {
-        pass: '',
-        checkPass: '',
-        age: ''
+      passwordMd5: '',
+      stepForm1: {
+        username: '',
+        password: '',
+        confirmPassword: ''
       },
-      rules2: {
-        pass: [{ validator: validatePass, trigger: 'blur' }],
-        checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-        age: [{ validator: checkAge, trigger: 'blur' }]
+      rules: {
+        username: [{ validator: validateUsername, trigger: 'blur' }],
+        password: [{ validator: validatePassword, trigger: 'blur' }],
+        confirmPassword: [
+          { validator: validateConfirmPassword, trigger: 'blur' }
+        ]
       }
     };
   },
   methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    md5Password() {
+      this.$axios
+        .post('/api/user/md5Password', {
+          password: this.stepForm1.confirmPassword
+        })
+        .then(res => {
+          this.passwordMd5 = res.data.data.password;
+          console.log(this.passwordMd5, this.stepForm1.confirmPassword);
+        });
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 };
 </script>
 <style lang='stylus' scoped>
-.step1
-  text-align center
-  margin 0 auto
+.step1 {
+  text-align: center;
+  margin: 0 auto;
+}
 </style>
