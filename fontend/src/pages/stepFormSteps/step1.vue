@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-10 16:17:21
+ * @Last Modified time: 2018-11-11 15:06:59
  */
 <template>
   <div class="step1">
@@ -14,14 +14,15 @@
         <el-input type="password" v-model="stepForm1.password"></el-input>
       </el-form-item>
       <el-form-item label="确认旧密码" prop="confirmPassword">
-        <el-input type="password" v-model="stepForm1.confirmPassword" @blur="md5Password"></el-input>
+        <el-input type="password" v-model="stepForm1.confirmPassword"></el-input>
       </el-form-item>
     </el-form>
+    <el-button class="step1-btn" type="primary" size='mini' @click="submitForm('stepForm1')">下一步</el-button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -35,7 +36,7 @@ export default {
         } else {
           callback();
         }
-      }, 1000);
+      }, 500);
     };
     const validatePassword = (rule, value, callback) => {
       if (value === '') {
@@ -51,12 +52,18 @@ export default {
         callback(new Error('请再次输入旧密码'));
       } else if (value !== this.stepForm1.password) {
         callback(new Error('两次输入密码不一致!'));
-      } else if (this.passwordMd5 !== this.user.password) {
-        setTimeout(() => {
-          callback(new Error('密码不正确!'));
-        }, 1000);
       } else {
-        callback();
+        this.$axios
+          .post('/api/user/md5Password', {
+            password: value
+          })
+          .then(res => {
+            if (res.data.data.password !== this.user.password) {
+              callback(new Error('密码不正确!'));
+            } else {
+              callback();
+            }
+          });
       }
     };
     return {
@@ -76,7 +83,16 @@ export default {
     };
   },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.CHANGEPAGENUMBER(2);
+          this.$router.push('/stepForm/step2');
+        }
+      });
+    },
     md5Password() {
+      console.log(11123);
       this.$axios
         .post('/api/user/md5Password', {
           password: this.stepForm1.confirmPassword
@@ -85,7 +101,10 @@ export default {
           this.passwordMd5 = res.data.data.password;
           console.log(this.passwordMd5, this.stepForm1.confirmPassword);
         });
-    }
+    },
+    ...mapMutations({
+      CHANGEPAGENUMBER: 'changePageNumber'
+    })
   },
   computed: {
     ...mapGetters(['user'])
@@ -96,5 +115,9 @@ export default {
 .step1 {
   text-align: center;
   margin: 0 auto;
+
+  .step1-btn {
+    margin-top: 50px;
+  }
 }
 </style>

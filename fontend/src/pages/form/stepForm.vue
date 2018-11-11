@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-06 20:17:56
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-10 14:39:01
+ * @Last Modified time: 2018-11-11 15:09:52
  */
 <template>
   <div class="stepForm">
@@ -17,33 +17,20 @@
       <div class="stepForm-view">
         <router-view></router-view>
       </div>
-      <div class="stepForm-btn">
-        <el-button @click="next" size='mini' type="primary">{{ stepName }}</el-button>
-        <el-button @click="prev" size='mini' v-show='step===2'>上一步</el-button>
-      </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
-      step: 1,
       type: false
     };
   },
-  methods: {
-    next() {
-      this.step++;
-      this.$router.push(`/stepForm/step${this.step}`);
-      console.log(this.$refs.ruleForm2);
-    },
-    prev() {
-      this.step--;
-      this.$router.push(`/stepForm/step${this.step}`);
-    }
-  },
   computed: {
+    ...mapGetters(['step']),
     stepName() {
       switch (this.step) {
         case 2:
@@ -61,10 +48,6 @@ export default {
 .stepForm {
   .stepForm-content {
     padding: 40px 160px 60px 160px;
-
-    .stepForm-btn {
-      text-align: center;
-    }
   }
 
   .stepForm-view {

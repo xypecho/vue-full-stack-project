@@ -73,6 +73,11 @@ router.beforeEach((to, from, next) => {
   } else if (uid !== null && to.path === '/') {
     next('/index');
   } else {
+    /* 用于分步表格判断路由是否点击的是下一步，如果不是则把step重置为1 */
+    console.log(to.path);
+    if (to.path !== '/stepForm/step2' && to.path !== '/stepForm/step3') {
+      store.commit('changePageNumber', 1);
+    }
     next();
   }
 });
