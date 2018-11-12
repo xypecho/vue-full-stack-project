@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-12 14:28:44
+ * @Last Modified time: 2018-11-12 15:37:31
  */
 <template>
   <div class="step1">
@@ -68,11 +68,6 @@ export default {
     };
     return {
       passwordMd5: '',
-      stepForm1: {
-        username: '',
-        password: '',
-        confirmPassword: ''
-      },
       rules: {
         username: [{ validator: validateUsername, trigger: 'blur' }],
         password: [{ validator: validatePassword, trigger: 'blur' }],
@@ -107,7 +102,12 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(['user'])
+    stepForm1: {
+      get() {
+        return this.stepForm;
+      }
+    },
+    ...mapGetters(['user', 'stepForm'])
   }
 };
 </script>
@@ -117,7 +117,7 @@ export default {
   margin: 0 auto;
 
   .step1-btn {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 }
 </style>

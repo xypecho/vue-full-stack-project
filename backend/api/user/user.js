@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-10 15:36:59
+ * @Last Modified time: 2018-11-12 16:20:31
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -187,6 +187,26 @@ class user {
             status: 200,
             data: {
                 password
+            }
+        }
+        return ctx.body = res;
+    }
+    // 修改密码
+    async changePassword(ctx) {
+        let res;
+        let uid = ctx.request.body.uid;
+        let password = ctx.request.body.password;
+        let is_admin = uid != '1';
+        if (is_admin) {
+            await mysqlJs.queryFromMysql(`UPDATE users SET password = '${tool.md5(user.password)}' WHERE uid = ${uid}`);
+            res = {
+                status: 200,
+                message: '密码修改成功'
+            }
+        } else {
+            res = {
+                status: 201,
+                message: '管理员的密码不允许修改'
             }
         }
         return ctx.body = res;
