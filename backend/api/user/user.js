@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-12 16:20:31
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-12 21:22:28
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -198,7 +198,7 @@ class user {
         let password = ctx.request.body.password;
         let is_admin = uid != '1';
         if (is_admin) {
-            await mysqlJs.queryFromMysql(`UPDATE users SET password = '${tool.md5(user.password)}' WHERE uid = ${uid}`);
+            await mysqlJs.queryFromMysql(`UPDATE users SET password = '${tool.md5(password)}' WHERE uid = ${uid}`);
             res = {
                 status: 200,
                 message: '密码修改成功'

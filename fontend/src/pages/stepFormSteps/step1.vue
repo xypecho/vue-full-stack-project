@@ -1,20 +1,20 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-12 15:37:31
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-12 21:33:18
  */
 <template>
   <div class="step1">
     <el-form :model="stepForm1" status-icon :rules="rules" ref="stepForm1" label-width="100px" size='mini'>
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="stepForm1.username"></el-input>
+        <el-input v-model="stepForm1.username" auto-complete='off'></el-input>
       </el-form-item>
       <el-form-item label="旧密码" prop="password">
-        <el-input type="password" v-model="stepForm1.password"></el-input>
+        <el-input type="password" v-model="stepForm1.password" auto-complete='off'></el-input>
       </el-form-item>
       <el-form-item label="确认旧密码" prop="confirmPassword">
-        <el-input type="password" v-model="stepForm1.confirmPassword"></el-input>
+        <el-input type="password" v-model="stepForm1.confirmPassword" auto-complete='off'></el-input>
       </el-form-item>
     </el-form>
     <el-button class="step1-btn" type="primary" size='mini' @click="submitForm('stepForm1')">下一步</el-button>

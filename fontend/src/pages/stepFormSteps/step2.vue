@@ -1,17 +1,17 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-12 16:42:35
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-12 21:24:55
  */
 <template>
   <div class="step2">
     <el-form :model="stepForm2" status-icon :rules="rules" ref="stepForm2" label-width="100px" size='mini'>
       <el-form-item label="新密码" prop="pass">
-        <el-input type="password" v-model="stepForm2.pass"></el-input>
+        <el-input type="password" v-model="stepForm2.pass" auto-complete='off'></el-input>
       </el-form-item>
       <el-form-item label="确认新密码" prop="checkPass">
-        <el-input type="password" v-model="stepForm2.checkPass"></el-input>
+        <el-input type="password" v-model="stepForm2.checkPass" auto-complete='off'></el-input>
       </el-form-item>
     </el-form>
     <div class="step2-btn">
@@ -66,20 +66,30 @@ export default {
       this.$refs.stepForm2.validate(valid => {
         this.loading = true;
         if (valid) {
-          this.$axios
-            .post('/api/user/changePassword', {
-              uid: this.user.uid,
-              password: this.stepForm2.checkPass
-            })
-            .then(res => {
-              console.log(res);
-            })
-            .catch(err => {
-              console.log(err);
-            })
-            .then(() => {
-              this.loading = false;
-            });
+          setTimeout(() => {
+            this.$axios
+              .post('/api/user/changePassword', {
+                uid: this.user.uid,
+                password: this.stepForm2.checkPass
+              })
+              .then(res => {
+                if (res.data.status === 201) {
+                  this.$tips({
+                    type: 'error',
+                    message: res.data.message
+                  });
+                } else {
+                  this.CHANGEPAGENUMBER(3);
+                  this.$router.push('/stepForm/step3');
+                }
+              })
+              .catch(err => {
+                console.log(err);
+              })
+              .then(() => {
+                this.loading = false;
+              });
+          }, 1000);
         } else {
           this.loading = false;
         }
