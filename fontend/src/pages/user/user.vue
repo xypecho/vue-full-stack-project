@@ -129,7 +129,6 @@ export default {
     },
     accountBan(data) {
       this.$axios.post('/api/user/edit', { userInfo: data }).then(res => {
-        console.log(res);
         if (res.data.status === 200) {
           this.$tips({
             type: 'success',

@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 11:17:08
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-11 14:34:43
+ * @Last Modified time: 2018-11-12 14:22:52
  */
 export default {
   changeCollapseStatus(state) {
@@ -22,5 +22,8 @@ export default {
   },
   changePageNumber(state, page) {
     state.step = page;
+  },
+  setStepForm(state, data) {
+    state.stepForm = data;
   }
 };

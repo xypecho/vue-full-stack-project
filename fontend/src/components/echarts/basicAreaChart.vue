@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-23 22:59:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-10-16 16:44:59
+ * @Last Modified time: 2018-11-12 13:44:59
  */
 <template>
   <div class="baseAreaCharts">
@@ -56,8 +56,7 @@ export default {
     }
   },
   watch: {
-    isCollapse(newValue, oldValue) {
-      console.log(newValue, oldValue);
+    isCollapse() {
       this.$refs.baseAreaCharts.style.width = document.getElementsByClassName(
         'charts-header'
       )[0].offsetWidth;

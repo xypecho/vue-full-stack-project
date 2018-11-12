@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-11 15:06:59
+ * @Last Modified time: 2018-11-12 14:28:44
  */
 <template>
   <div class="step1">
@@ -87,23 +87,23 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.CHANGEPAGENUMBER(2);
+          this.SETSTEPFORM(this.stepForm1);
           this.$router.push('/stepForm/step2');
         }
       });
     },
     md5Password() {
-      console.log(11123);
       this.$axios
         .post('/api/user/md5Password', {
           password: this.stepForm1.confirmPassword
         })
         .then(res => {
           this.passwordMd5 = res.data.data.password;
-          console.log(this.passwordMd5, this.stepForm1.confirmPassword);
         });
     },
     ...mapMutations({
-      CHANGEPAGENUMBER: 'changePageNumber'
+      CHANGEPAGENUMBER: 'changePageNumber',
+      SETSTEPFORM: 'setStepForm'
     })
   },
   computed: {

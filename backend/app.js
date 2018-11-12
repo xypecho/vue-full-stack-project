@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-10 15:47:19
+ * @Last Modified time: 2018-11-12 13:41:53
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -66,7 +66,6 @@ app.use(cors({
 
 router
     .get('/', async (ctx) => {
-        console.log(ctx)
         ctx.body = 'hello world';
     })
     .post('/api/user/login', user.login)
