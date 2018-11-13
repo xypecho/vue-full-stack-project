@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-13 10:12:18
+ * @Last Modified time: 2018-11-13 15:59:01
  */
 <template>
   <div class="vHeader">
@@ -96,9 +96,7 @@ export default {
               type: 'success',
               message: '退出成功!'
             });
-            setTimeout(() => {
-              location.reload();
-            }, 500);
+            this.$router.push('/');
           });
           break;
         default:
