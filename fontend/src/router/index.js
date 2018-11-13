@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-06 21:23:52
+ * @Last Modified time: 2018-11-13 22:32:37
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -45,13 +45,13 @@ export const normalRouter = [
               {
                 path: '/stepForm/step1',
                 component: resolve => require(['@/pages/stepFormSteps/step1'], resolve),
-                name: '开单',
+                name: '验证身份',
                 icon: 'el-icon-menu'
               },
               {
                 path: '/stepForm/step2',
                 component: resolve => require(['@/pages/stepFormSteps/step2'], resolve),
-                name: '代付款',
+                name: '设置新密码',
                 icon: 'el-icon-menu'
               },
               {
