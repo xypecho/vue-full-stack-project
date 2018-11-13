@@ -99,6 +99,7 @@ export default {
   created() {
     this.getHitokoto();
     this.getGithubCommitStatus();
+    console.log(this.$router.currentRoute);
   },
   data() {
     return {
