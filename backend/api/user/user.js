@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:47
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-12 21:22:28
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-13 10:29:06
  */
 const mysql = require('mysql');
 const url = require('url');
@@ -199,9 +199,11 @@ class user {
         let is_admin = uid != '1';
         if (is_admin) {
             await mysqlJs.queryFromMysql(`UPDATE users SET password = '${tool.md5(password)}' WHERE uid = ${uid}`);
+            let userData = await mysqlJs.queryFromMysql(`SELECT * FROM users WHERE uid = '${uid}'`);
             res = {
                 status: 200,
-                message: '密码修改成功'
+                message: '密码修改成功',
+                data: userData
             }
         } else {
             res = {

@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-12 22:33:15
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-13 10:35:13
  */
 <template>
     <div class="step3">
@@ -18,7 +18,6 @@ import { mapMutations, mapGetters } from 'vuex';
 export default {
   mounted() {
     this.CHANGEPAGENUMBER(3);
-    console.log(this.stepForm);
   },
   methods: {
     revise() {

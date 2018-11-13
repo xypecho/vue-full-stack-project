@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 21:00:17
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-12 21:24:55
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-13 10:38:17
  */
 <template>
   <div class="step2">
@@ -79,6 +79,7 @@ export default {
                     message: res.data.message
                   });
                 } else {
+                  this.SETUSERINFO(res.data.data[0]);
                   this.CHANGEPAGENUMBER(3);
                   this.$router.push('/stepForm/step3');
                 }
@@ -100,7 +101,8 @@ export default {
       this.$router.push('/stepForm/step1');
     },
     ...mapMutations({
-      CHANGEPAGENUMBER: 'changePageNumber'
+      CHANGEPAGENUMBER: 'changePageNumber',
+      SETUSERINFO: 'setUserInfo'
     })
   },
   computed: {

@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-10-19 21:26:54
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-13 10:12:18
  */
 <template>
   <div class="vHeader">
@@ -96,7 +96,9 @@ export default {
               type: 'success',
               message: '退出成功!'
             });
-            this.$router.push('/');
+            setTimeout(() => {
+              location.reload();
+            }, 500);
           });
           break;
         default:
