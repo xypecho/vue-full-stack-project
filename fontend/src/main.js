@@ -48,7 +48,6 @@ router.beforeEach((to, from, next) => {
       store.commit('setNewRouter', {
         newrouter: authRouter
       });
-      console.log(this.$router.options.routes);
     }
   }
   /* 动态路由相关js */
