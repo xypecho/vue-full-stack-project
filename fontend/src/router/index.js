@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-14 15:54:48
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-14 21:14:19
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -37,7 +37,6 @@ export const normalRouter = [
             path: '/stepForm',
             component: resolve => require(['@/pages/form/stepForm'], resolve),
             name: '分步表单',
-            icon: 'el-icon-menu',
             children: [
               {
                 path: '/', redirect: '/stepForm/step1'
@@ -45,20 +44,17 @@ export const normalRouter = [
               {
                 path: '/stepForm/step1',
                 component: resolve => require(['@/pages/stepFormSteps/step1'], resolve),
-                name: '验证身份',
-                icon: 'el-icon-menu'
+                name: '验证身份'
               },
               {
                 path: '/stepForm/step2',
                 component: resolve => require(['@/pages/stepFormSteps/step2'], resolve),
-                name: '设置新密码',
-                icon: 'el-icon-menu'
+                name: '设置新密码'
               },
               {
                 path: '/stepForm/step3',
                 component: resolve => require(['@/pages/stepFormSteps/step3'], resolve),
-                name: '完成',
-                icon: 'el-icon-menu'
+                name: '完成'
               }
             ]
           }
@@ -73,14 +69,17 @@ export const normalRouter = [
           {
             path: '/user',
             component: resolve => require(['@/pages/user/user'], resolve),
-            name: '用户管理',
-            icon: 'el-icon-menu'
+            name: '用户管理'
           },
           {
             path: '/account',
             component: resolve => require(['@/pages/account/account'], resolve),
-            name: '帐号设置',
-            icon: 'el-icon-menu'
+            name: '帐号设置'
+          },
+          {
+            path: '/log',
+            component: resolve => require(['@/pages/log/log'], resolve),
+            name: '操作日志'
           }
         ]
       },

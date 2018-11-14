@@ -85,9 +85,6 @@ router.beforeEach((to, from, next) => {
 const record = {};// 用来存储请求和响应的信息
 axios.interceptors.request.use(
   config => {
-    console.log('发起请求-----------------------------');
-    console.log(config);
-    console.log('发起请求=============================');
     record.request = config;
     return config;
   },
@@ -98,11 +95,11 @@ axios.interceptors.request.use(
 /* 添加响应拦截器,先注释，响应太快，基本看不到loading效果... */
 axios.interceptors.response.use(
   response => {
-    console.log('+++++++++++++++++++++++++++++++++++++');
-    console.log(response);
-    console.log('+++++++++++++++++++++++++++++++++++++');
     record.response = response;
     console.log(record);
+    // axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
+    //   console.log(res);
+    // });
     return response;
   },
   error =>

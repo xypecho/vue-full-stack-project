@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-12 16:10:22
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-14 22:20:32
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -14,6 +14,7 @@ const router = new Router();
 const user = require('./api/user/user');// 用户信息的接口
 const upload = require('./api/upload/upload');// 上传相关的接口
 const spider = require('./api/spider/spider');// 爬虫以及一言相关的接口
+const log = require('./api/log/log'); // 日志相关的接口
 const tool = require('./common/tool.js');
 
 /* 文件上传相关 */
@@ -80,6 +81,7 @@ router
     .post('/api/upload/image', uploadMiddleware.single('file'), upload.image)
     .post('/api/upload/deleteImage', upload.deleteImage)
     .post('/api/spider/hitokoto', spider.hitokoto)
+    .post('/api/log/operationLog', log.operationLog)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {
