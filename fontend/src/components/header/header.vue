@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-13 16:02:04
+ * @Last Modified time: 2018-11-14 15:26:24
  */
 <template>
   <div class="vHeader">
@@ -97,6 +97,7 @@ export default {
             //   message: '退出成功!'
             // });
             // this.$router.push('/');
+            // 退出登陆后，需要刷新页面，因为我们是通过addRoutes添加的，router没有deleteRoutes这个api，所以刷新页面是最保险的。
           });
           break;
         default:
