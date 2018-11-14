@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-13 22:32:37
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-14 15:54:48
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -36,7 +36,7 @@ export const normalRouter = [
           {
             path: '/stepForm',
             component: resolve => require(['@/pages/form/stepForm'], resolve),
-            name: '分布表单',
+            name: '分步表单',
             icon: 'el-icon-menu',
             children: [
               {

@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:44:26
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-14 15:26:24
+ * @Last Modified time: 2018-11-14 15:57:15
  */
 <template>
   <div class="vHeader">
@@ -36,7 +36,7 @@ import { mapMutations, mapGetters } from 'vuex';
 export default {
   data() {
     return {
-      isFullScreen: false // 为true则全屏，反正则退出全屏
+      isFullScreen: false // 为true则全屏，反之则退出全屏
     };
   },
   computed: {

@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-23 23:15:45
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-13 16:29:48
+ * @Last Modified time: 2018-11-14 15:31:34
  */
 <template>
     <div class="home-wrapper">
@@ -187,9 +187,8 @@ export default {
 }
 
 .home-header {
-    height: 150px;
+    padding-bottom: 28px;
     width: 100%;
-    border-bottom: 1px solid #e8e8e8;
     display: block;
 }
 
@@ -264,7 +263,7 @@ export default {
 }
 
 .grid-content {
-    padding-bottom: 10px;
+    padding: 0 70px 10px 0;
 
     p {
         display: inline-block;
