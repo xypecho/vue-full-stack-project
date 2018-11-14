@@ -91,12 +91,12 @@ export default {
             type: 'warning'
           }).then(() => {
             localStorage.clear();
-            this.setNewRouter([]);
-            this.$tips({
-              type: 'success',
-              message: '退出成功!'
-            });
-            this.$router.push('/');
+            location.reload();
+            // this.$tips({
+            //   type: 'success',
+            //   message: '退出成功!'
+            // });
+            // this.$router.push('/');
           });
           break;
         default:
@@ -104,8 +104,7 @@ export default {
       }
     },
     ...mapMutations({
-      CHANGECOLLAPSESTATUS: 'changeCollapseStatus',
-      setNewRouter: 'setNewRouter'
+      CHANGECOLLAPSESTATUS: 'changeCollapseStatus'
     })
   }
 };
