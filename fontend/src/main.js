@@ -82,27 +82,32 @@ router.beforeEach((to, from, next) => {
 });
 
 /* 添加请求拦截器 */
-// axios.interceptors.request.use(
-//   config => {
-//     console.log('发起请求-----------------------------');
-//     console.log(config);
-//     console.log('发起请求=============================');
-//     // store.commit('changeLoading');
-//     return config;
-//   },
-//   error =>
-//     Promise.reject(error)
-// );
+const record = {};// 用来存储请求和响应的信息
+axios.interceptors.request.use(
+  config => {
+    console.log('发起请求-----------------------------');
+    console.log(config);
+    console.log('发起请求=============================');
+    record.request = config;
+    return config;
+  },
+  error =>
+    Promise.reject(error)
+);
 
 /* 添加响应拦截器,先注释，响应太快，基本看不到loading效果... */
-// axios.interceptors.response.use(
-//   response => {
-//     store.commit('changeLoading');
-//     return response;
-//   },
-//   error =>
-//     Promise.reject(error)
-// );
+axios.interceptors.response.use(
+  response => {
+    console.log('+++++++++++++++++++++++++++++++++++++');
+    console.log(response);
+    console.log('+++++++++++++++++++++++++++++++++++++');
+    record.response = response;
+    console.log(record);
+    return response;
+  },
+  error =>
+    Promise.reject(error)
+);
 
 /* eslint-disable no-new */
 new Vue({
