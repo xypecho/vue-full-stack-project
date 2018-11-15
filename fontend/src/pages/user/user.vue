@@ -147,14 +147,14 @@ export default {
       });
     },
     deleteUser(data) {
-      const uid = data.uid;
-      const userUid = this.user.uid;
-      if (uid === 1) {
+      const uid = Number(data.uid);
+      const userUid = Number(this.user.uid);
+      if (uid === 1 && userUid === 1) {
         this.$tips({
           type: 'error',
           message: '管理员不可以删除'
         });
-      } else if (userUid !== '1') {
+      } else if (userUid !== 1 && uid !== 1) {
         this.$tips({
           type: 'error',
           message: '当前登录帐号无操作权限'
