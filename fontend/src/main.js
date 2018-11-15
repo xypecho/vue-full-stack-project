@@ -97,7 +97,7 @@ axios.interceptors.response.use(
   response => {
     record.response = response;
     console.log(record);
-    // axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
+    // axios.post('/api/log/operationLog', { record: 123 }).then(res => {
     //   console.log(res);
     // });
     return response;

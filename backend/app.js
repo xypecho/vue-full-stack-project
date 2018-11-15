@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-14 22:20:32
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-15 10:01:22
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -59,7 +59,7 @@ app.use(cors({
         }
     },
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
-    maxAge: 5,
+    maxAge: 600, // 缓存接口数据的最长时间,每一次请求都需要提供预检请求，即用OPTIONS请求进行检测,我们这边设置为10分钟,即10分钟内请求同一个接口不再会额外来一个options请求
     credentials: true,
     allowMethods: ['GET', 'POST', 'DELETE'],
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
