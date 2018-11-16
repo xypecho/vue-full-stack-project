@@ -83,8 +83,12 @@ router.beforeEach((to, from, next) => {
 
 /* 添加请求拦截器 */
 const record = {};// 用来存储请求和响应的信息
+const filterUrl = [`${process.env.BASE_URL}/api/log/operationLog`]; // 不需要拦截的请求的url
 axios.interceptors.request.use(
   config => {
+    if (filterUrl.indexOf(config.url) !== -1) {
+      return false;
+    }
     record.request = config;
     return config;
   },
@@ -96,15 +100,21 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     record.response = response;
-    console.log(record);
-    // axios.post('/api/log/operationLog', { record: 123 }).then(res => {
-    //   console.log(res);
-    // });
+    if (filterUrl.indexOf(response.config.url) === -1) {
+      axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
+        console.log(res.data);
+      });
+    }
     return response;
   },
   error =>
     Promise.reject(error)
 );
+
+/* 将接口的url和返回数据插入数据库 */
+// axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
+//   console.log(res);
+// });
 
 /* eslint-disable no-new */
 new Vue({

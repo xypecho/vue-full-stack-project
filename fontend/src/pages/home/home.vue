@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-23 23:15:45
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-14 15:31:34
+ * @Last Modified time: 2018-11-16 14:36:35
  */
 <template>
     <div class="home-wrapper">
@@ -99,7 +99,6 @@ export default {
   created() {
     this.getHitokoto();
     this.getGithubCommitStatus();
-    console.log(this.$router.currentRoute);
   },
   data() {
     return {
