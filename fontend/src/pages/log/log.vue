@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-14 21:06:51
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-14 22:02:10
+ * @Last Modified time: 2018-11-16 22:00:15
  */
 <template>
     <div class="log" v-loading='loading'>
@@ -57,7 +57,7 @@ export default {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-    }, 500);
+    }, this.globalVariable.duration);
   },
   methods: {
     handleSizeChange(val) {

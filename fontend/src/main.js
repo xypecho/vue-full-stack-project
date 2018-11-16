@@ -21,6 +21,9 @@ Vue.use(VCharts);
 Vue.config.productionTip = false;
 axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$axios = axios;
+Vue.prototype.globalVariable = {
+  duration: 500
+};
 Vue.prototype.$tips = ({ duration, type, message }) => {
   Vue.prototype.$message({
     duration: duration || 2000,

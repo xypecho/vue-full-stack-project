@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp
  * @Date: 2018-11-03 14:00:05
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-08 14:49:50
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-16 22:42:00
  */
 <template>
     <div class="admin">
@@ -12,7 +12,8 @@
         <div class="admin-right">
             <p>这是只有管理员账户才能看到的页面哦...</p>
             <span>只有管理员账户登录时才能进入此页面，非管理员账户点击时会跳转至404页面</span>
-            <p @click="$router.push('/')">返回工作台</p>
+            <p class="admin-right-tips" @click="$router.push('/')">返回工作台</p>
+            <p class="admin-right-tips" @click="$router.go(-1)">返回上一页</p>
         </div>
     </div>
 </template>
@@ -46,13 +47,14 @@ export default {};
             line-height: 24px;
             margin-bottom: 10px;
             font-weight: 700;
+        }
 
-            &:last-child {
-                color: #409eff;
-                font-size: 14px;
-                cursor: pointer;
-                font-weight: 100;
-            }
+        .admin-right-tips {
+            color: #409eff;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: 100;
+            width: 70px;
         }
 
         span {

@@ -1,12 +1,12 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-18 12:50:12
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-16 21:59:31
  */
 <template>
   <div class="account" v-loading='loading'>
-    <div class="account-left">
+    <div class="account-left" v-show='!loading'>
       <p class="account-header">帐号信息</p>
       <div class="account-content">
         <el-row>
@@ -72,7 +72,7 @@
       </div>
       <el-button type="primary" size='mini' style="margin-top:10px" @click="editUserInfo">提交修改</el-button>
     </div>
-    <div class="account-right">
+    <div class="account-right" v-show='!loading'>
       <p class="account-header">其他信息</p>
       <div class="account-content">
         <el-row>
@@ -155,17 +155,26 @@ export default {
     getUserInfo() {
       this.loading = true;
       const uid = this.user.uid;
-      this.$axios.get('/api/user/userInfo', { params: { uid } }).then(res => {
-        if (res.status === 200) {
-          this.userInfo = res.data.data;
-        } else {
-          this.$tips({
-            type: 'error',
-            message: res.message
-          });
-        }
-        this.loading = false;
-      });
+      this.$axios
+        .get('/api/user/userInfo', { params: { uid } })
+        .then(res => {
+          if (res.status === 200) {
+            this.userInfo = res.data.data;
+          } else {
+            this.$tips({
+              type: 'error',
+              message: res.message
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.loading = false;
+          }, this.globalVariable.duration);
+        });
     },
     deleteAccount(val) {
       if (!val) {

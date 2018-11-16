@@ -1,13 +1,13 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-06 14:07:50
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-16 22:00:28
  */
 <template>
   <div class="user" v-loading='loading'>
     <v-search @search='search' @reset="reset"></v-search>
-    <el-table :data="userList" style="width: 100%;height:100%">
+    <el-table :data="userList" style="width: 100%;height:100%" v-show="!loading">
       <el-table-column fixed prop="username" label="用户名" width="130">
       </el-table-column>
       <el-table-column prop="uid" label="id" width='50'>
@@ -104,7 +104,14 @@ export default {
               message: res.data.message
             });
           }
-          this.loading = false;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .then(() => {
+          setTimeout(() => {
+            this.loading = false;
+          }, this.globalVariable.duration);
         });
     },
     formatterUtype(row) {

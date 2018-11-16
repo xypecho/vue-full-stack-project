@@ -1,11 +1,11 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-06 20:17:56
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-11 15:09:52
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-16 22:22:28
  */
 <template>
-  <div class="stepForm">
+  <div class="stepForm" v-loading='loading'>
     <el-switch v-model="type" active-text="simple" inactive-text="normal" style="padding:20px">
     </el-switch>
     <div class="stepForm-content">
@@ -15,7 +15,7 @@
         <el-step title="完成"></el-step>
       </el-steps>
       <div class="stepForm-view">
-        <router-view></router-view>
+        <router-view v-show="!loading"></router-view>
       </div>
     </div>
   </div>
@@ -24,9 +24,18 @@
 import { mapGetters } from 'vuex';
 
 export default {
+  created() {
+    this.loading = true;
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, this.globalVariable.duration);
+  },
   data() {
     return {
-      type: false
+      type: false,
+      loading: false
     };
   },
   computed: {
