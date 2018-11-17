@@ -89,10 +89,10 @@ const record = {};// 用来存储请求和响应的信息
 const filterUrl = [`${process.env.BASE_URL}/api/log/operationLog`]; // 不需要拦截的请求的url
 axios.interceptors.request.use(
   config => {
-    if (filterUrl.indexOf(config.url) !== -1) {
-      return false;
+    if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1) {
+      const { data, url } = config;
+      record.request = { data, url };
     }
-    record.request = config;
     return config;
   },
   error =>
@@ -102,22 +102,19 @@ axios.interceptors.request.use(
 /* 添加响应拦截器,先注释，响应太快，基本看不到loading效果... */
 axios.interceptors.response.use(
   response => {
-    record.response = response;
     if (filterUrl.indexOf(response.config.url) === -1) {
-      axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
-        console.log(res.data);
-      });
+      const { data, status } = response;
+      const { uid, username } = store.getters.user;
+      record.response = { data, status };
+      record.user = { uid, username };
+      /* 将接口的url和返回数据插入数据库 */
+      axios.post('/api/log/operationLog', { record: JSON.stringify(record) });
     }
     return response;
   },
   error =>
     Promise.reject(error)
 );
-
-/* 将接口的url和返回数据插入数据库 */
-// axios.post('/api/log/operationLog', { record: JSON.stringify(record) }).then(res => {
-//   console.log(res);
-// });
 
 /* eslint-disable no-new */
 new Vue({
