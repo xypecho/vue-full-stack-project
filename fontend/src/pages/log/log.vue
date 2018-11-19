@@ -1,17 +1,17 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-14 21:06:51
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-19 16:49:10
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-19 20:44:57
  */
 <template>
   <div class="log" v-loading='loading'>
     <el-table :data="tableData" stripe style="width: 100%">
       <el-table-column prop="id" label="序号" width="80">
       </el-table-column>
-      <el-table-column prop="operator" label="操作人" width="140">
+      <el-table-column prop="operator" label="操作人" width="180">
       </el-table-column>
-      <el-table-column prop="operationTime" label="操作时间" width="240">
+      <el-table-column prop="operationTime" label="操作时间" width="240" :formatter="formatterOperationTime">
       </el-table-column>
       <el-table-column prop="operationDescription" label="操作描述">
       </el-table-column>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { formatterTime } from '@/tools/index';
+
 export default {
   data() {
     return {
@@ -35,11 +37,11 @@ export default {
     };
   },
   created() {
-    this.loading = true;
     this.getOperationLogList();
   },
   methods: {
     getOperationLogList() {
+      this.loading = true;
       this.$axios
         .post('/api/log/operationLogList', {
           currentPage: this.currentPage,
@@ -61,9 +63,15 @@ export default {
     },
     handleSizeChange(val) {
       this.pageSize = val;
+      this.currentPage = 1;
+      this.getOperationLogList();
     },
     handleCurrentChange(val) {
       this.currentPage = val;
+      this.getOperationLogList();
+    },
+    formatterOperationTime(row) {
+      return formatterTime(row.operationTime);
     }
   }
 };

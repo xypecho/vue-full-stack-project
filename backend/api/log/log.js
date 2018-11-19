@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-14 22:13:55
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-19 16:48:20
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-19 21:52:22
  */
 const mysqlJs = require('../../common/mysql.js');
 const tool = require('../../common/tool.js');
@@ -13,7 +13,7 @@ class log {
         console.log(record);
         let url = record.request.url;
         let status = record.response.data.status;
-        let operator = `${record.user.username}(uid:${record.user.uid})`
+        let operator = `${record.user.username}(uid:${record.user.uid})` || '';
         let operationTime = new Date().getTime();
         let currentPage = record.request.data.currentPage || '';
         let pageSize = record.request.data.pageSize || '';
@@ -41,7 +41,7 @@ class log {
         let res;
         let currentPage = ctx.request.body.currentPage;//当前是第几页
         let pageSize = ctx.request.body.pageSize;//每页显示多少条
-        let logList = await mysqlJs.queryFromMysql(`SELECT * FROM log LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`);
+        let logList = await mysqlJs.queryFromMysql(`SELECT * FROM log ORDER BY id DESC LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`);
         let total = JSON.parse(JSON.stringify(await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM log`)));
         if (logList && logList.length > 0) {
             res = {
@@ -52,7 +52,7 @@ class log {
         } else {
             res = {
                 status: 201,
-                message: '获取操作日志，请稍候重试'
+                message: '获取操作日志失败，请稍候重试'
             }
         }
         return ctx.body = res;
