@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-19 10:43:57
+ * @Last Modified time: 2018-11-19 15:28:51
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -81,7 +81,8 @@ router
     .post('/api/upload/image', uploadMiddleware.single('file'), upload.image)
     .post('/api/upload/deleteImage', upload.deleteImage)
     .post('/api/spider/hitokoto', spider.hitokoto)
-    .post('/api/log/operationLog', log.operationLog)
+    .post('/api/log/insertOperationLog', log.insertOperationLog)
+    .post('/api/log/operationLogList', log.operationLogList)
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {

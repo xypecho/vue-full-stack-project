@@ -86,10 +86,11 @@ router.beforeEach((to, from, next) => {
 
 /* 添加请求拦截器 */
 const record = {};// 用来存储请求和响应的信息
-const filterUrl = [`${process.env.BASE_URL}/api/log/operationLog`]; // 不需要拦截的请求的url
+const filterUrl = [`${process.env.BASE_URL}/api/log/insertOperationLog`, `${process.env.BASE_URL}/api/user/userLoginCount`, `${process.env.BASE_URL}/api/spider/hitokoto`, 'https://api.github.com/repos/xypecho/vue-full-stack-project/commits', `${process.env.BASE_URL}/api/user/md5Password`]; // 不需要拦截的请求的url
 axios.interceptors.request.use(
   config => {
-    if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1) {
+    if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1 && filterUrl.indexOf(`${config.url}`) === -1) {
+      console.log(config);
       const { data, url } = config;
       record.request = { data, url };
     }
@@ -103,12 +104,13 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     if (filterUrl.indexOf(response.config.url) === -1) {
+      console.log(response);
       const { data, status } = response;
       const { uid, username } = store.getters.user;
       record.response = { data, status };
       record.user = { uid, username };
       /* 将接口的url和返回数据插入数据库 */
-      axios.post('/api/log/operationLog', { record: JSON.stringify(record) });
+      axios.post('/api/log/insertOperationLog', { record: JSON.stringify(record) });
     }
     return response;
   },

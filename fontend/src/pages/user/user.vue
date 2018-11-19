@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-09 20:55:25
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-16 22:00:28
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-19 14:35:25
  */
 <template>
   <div class="user" v-loading='loading'>
@@ -127,6 +127,7 @@ export default {
       return formatterTime(row.last_login_time);
     },
     handleSizeChange(val) {
+      this.currentPage = 1;
       this.pageSize = val;
       this.getUserList();
     },
@@ -155,6 +156,7 @@ export default {
     },
     deleteUser(data) {
       const uid = Number(data.uid);
+      const username = data.username;
       const userUid = Number(this.user.uid);
       if (uid === 1 && userUid === 1) {
         this.$tips({
@@ -167,7 +169,7 @@ export default {
           message: '当前登录帐号无操作权限'
         });
       } else {
-        this.$axios.post('/api/user/delete', { uid }).then(res => {
+        this.$axios.post('/api/user/delete', { uid, username }).then(res => {
           this.$tips({
             type: `${res.data.status === 200 ? 'success' : 'error'}`,
             message: res.data.message
