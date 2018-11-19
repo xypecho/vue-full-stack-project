@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-15 10:01:22
+ * @Last Modified time: 2018-11-19 10:43:57
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -51,7 +51,7 @@ app.use(cors({
         if (ctx.url === '/test') {
             return "*"; // 允许来自所有域名请求
         } else {
-            if (tool.env() == 'production') {
+            if (tool.env() === 'production') {
                 return 'http://94.191.2.25';
             } else {
                 return 'http://localhost:8080'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了   
@@ -85,5 +85,5 @@ router
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8081, () => {
-    console.log(`You are running project in ${tool.env()} mode & koa starts at port 8081!`);
+    console.log(`You are running project in ${tool.env() === 'production' ? 'production' : 'development'} mode & koa starts at port 8081!`);
 })
