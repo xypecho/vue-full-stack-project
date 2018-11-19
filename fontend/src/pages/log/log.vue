@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-14 21:06:51
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-19 15:38:27
+ * @Last Modified time: 2018-11-19 16:49:10
  */
 <template>
   <div class="log" v-loading='loading'>
@@ -27,26 +27,7 @@
 export default {
   data() {
     return {
-      tableData: [
-        {
-          id: '1',
-          operator: '王小虎',
-          operationTime: '2018年11月14日 21:53:38',
-          operationDescription: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          id: '1',
-          operator: '王小虎',
-          operationTime: '2018年11月14日 21:53:41',
-          operationDescription: '上海市普陀区金沙江路 1518 弄'
-        },
-        {
-          id: '1',
-          operator: '王小虎',
-          operationTime: '2018年11月14日 21:53:43',
-          operationDescription: '上海市普陀区金沙江路 1518 弄'
-        }
-      ],
+      tableData: [],
       loading: false,
       currentPage: 1,
       pageSize: 5,
@@ -65,7 +46,9 @@ export default {
           pageSize: this.pageSize
         })
         .then(res => {
-          console.log(res);
+          console.log(res.data);
+          this.tableData = res.data.data;
+          this.total = res.data.total;
         })
         .catch(err => {
           console.log(err);
