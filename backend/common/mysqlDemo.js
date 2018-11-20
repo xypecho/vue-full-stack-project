@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-10-26 21:31:24
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-19 10:44:05
+ * @Last Modified time: 2018-11-20 16:17:34
  */
 const mysql = require('mysql');
 const tool = require('./tool.js');
@@ -12,7 +12,7 @@ db = mysql.createPool({
     host: 'localhost',
     post: '3306',
     user: 'root',
-    password: tool.env() === 'production' ? 'bu-gao-su-ni' : '123456',
+    password: tool.env() === 'production' ? 'bu-gao-su-ni' : '123456', // 'bu-gao-su-ni'是你线上数据库的密码，部署时记得修改
     database: 'test'
 });
 
