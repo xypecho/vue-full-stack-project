@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
 
 /* 添加请求拦截器 */
 const record = {};// 用来存储请求和响应的信息
-const filterUrl = [`${process.env.BASE_URL}/api/log/insertOperationLog`, `${process.env.BASE_URL}/api/user/userLoginCount`, `${process.env.BASE_URL}/api/spider/hitokoto`, 'https://api.github.com/repos/xypecho/vue-full-stack-project/commits', `${process.env.BASE_URL}/api/user/md5Password`]; // 不需要拦截的请求的url
+const filterUrl = [`${process.env.BASE_URL}/api/log/insertOperationLog`, `${process.env.BASE_URL}/api/user/userLoginCount`, `${process.env.BASE_URL}/api/spider/hitokoto`, 'https://api.github.com/repos/xypecho/vue-full-stack-project/commits', `${process.env.BASE_URL}/api/user/md5Password`, `${process.env.BASE_URL}/api/user/userInfo`]; // 不需要拦截的请求的url
 axios.interceptors.request.use(
   config => {
     if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1 && filterUrl.indexOf(`${config.url}`) === -1) {
