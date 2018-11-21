@@ -1,8 +1,8 @@
 /*
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-09-18 12:47:51
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-21 22:06:22
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -23,7 +23,7 @@ class upload {
         } else {
             res = {
                 status: 201,
-                message: '删除用户信息，请稍候重试'
+                message: '上传头像失败，请稍候重试'
             }
         }
         return ctx.body = res;
