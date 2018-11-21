@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-14 21:14:19
+ * @Last Modified time: 2018-11-21 21:43:52
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -57,6 +57,11 @@ export const normalRouter = [
                 name: '完成'
               }
             ]
+          },
+          {
+            path: '/fileUpload',
+            component: resolve => require(['@/pages/form/fileUpload'], resolve),
+            name: '文件上传'
           }
         ]
       },

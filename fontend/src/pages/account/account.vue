@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-21 21:25:34
+ * @Last Modified time: 2018-11-21 22:04:41
  */
 <template>
   <div class="account" v-loading='loading'>
@@ -150,7 +150,9 @@ export default {
   },
   methods: {
     actionUrl() {
-      return `http://94.191.2.25:8081/api/upload/image?uid=${this.user.uid}`;
+      return process.env.NODE_ENV === 'development'
+        ? `http://localhost:8081/api/upload/image?uid=${this.user.uid}`
+        : `http://94.191.2.25:8081/api/upload/image?uid=${this.user.uid}`;
     },
     getUserInfo() {
       this.loading = true;
