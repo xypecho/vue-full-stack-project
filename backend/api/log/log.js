@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-11-14 22:13:55
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-21 21:13:47
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2018-11-23 12:49:07
  */
 const mysqlJs = require('../../common/mysql.js');
 const tool = require('../../common/tool.js');
@@ -10,7 +10,7 @@ class log {
     async insertOperationLog(ctx) {
         let res;
         let record = JSON.parse(ctx.request.body.record);
-        console.log(record);
+        // console.log(record);
         let url = record.request.url;
         let status = record.response.data.status;
         let operator = `${record.user.username}(uid:${record.user.uid})` || '';
@@ -29,8 +29,8 @@ class log {
             ['/api/user/userInfo', [status === 200 ? `${record.user.username}查看了自己的资料` : `${record.user.username}想查看自己的资料未遂`]]
         ])
         if (operationDescription.get(url) && operationDescription.get(url)[0]) {
-            console.log(operationDescription.get(url)[0]);
-            console.log('======================================================');
+            // console.log(operationDescription.get(url)[0]);
+            // console.log('======================================================');
             await mysqlJs.queryFromMysql(`INSERT INTO log (operator,operationTime,operationDescription) VALUES ('${operator}','${operationTime}','${operationDescription.get(url)[0]}')`);
             res = '插入成功';
         } else {
