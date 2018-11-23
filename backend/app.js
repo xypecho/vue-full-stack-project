@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-23 16:17:50
+ * @Last Modified time: 2018-11-23 16:50:58
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -25,6 +25,7 @@ const static = require('koa-static');
 if (!fs.existsSync('upload')) {
     fs.mkdirSync('upload');
     fs.mkdirSync('upload/images');
+    fs.mkdirSync('upload/files');
 }
 var storage = multer.diskStorage({
     //文件保存路径
@@ -38,6 +39,18 @@ var storage = multer.diskStorage({
     }
 })
 var uploadMiddleware = multer({ storage: storage });
+
+// ‘文件上传’相关配置
+var fileStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'upload/files/')
+    },
+    filename: function (req, file, cb) {
+        var fileFormat = (file.originalname).split(".");
+        cb(null, Date.now() + "." + fileFormat[fileFormat.length - 1]);
+    }
+})
+var fileUploadMiddleware = multer({ storage: fileStorage });
 
 //设置静态资源的路径
 app.use(static(__dirname + '/upload/images'));
@@ -79,7 +92,7 @@ router
     .post('/api/user/md5Password', user.md5Password)
     .post('/api/user/changePassword', user.changePassword)
     .post('/api/upload/image', uploadMiddleware.single('file'), upload.image)
-    .post('/api/upload/uploadFile', uploadMiddleware.single('file'), upload.uploadFile)
+    .post('/api/upload/uploadFile', fileUploadMiddleware.array('file', 1000), upload.uploadFile)
     .post('/api/upload/deleteImage', upload.deleteImage)
     .post('/api/spider/hitokoto', spider.hitokoto)
     .post('/api/log/insertOperationLog', log.insertOperationLog)
