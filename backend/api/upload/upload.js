@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-23 13:07:20
+ * @Last Modified time: 2018-11-23 16:09:18
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -11,9 +11,6 @@ const fs = require('fs');
 class upload {
     async image(ctx) {
         let res;
-        console.log(ctx.request.body);
-        console.log('===============');
-        console.log(ctx.req.file);
         const file = ctx.req.file	// 获取上传文件
         res = ctx.request.header.host + '/' + file.filename;
         const uid = url.parse(ctx.request.url, true).query.uid;

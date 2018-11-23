@@ -2,14 +2,14 @@
  * @Author: xypecho
  * @Date: 2018-11-22 20:24:10
  * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-23 15:20:15
+ * @Last Modified time: 2018-11-23 16:22:54
  */
 <template>
   <div class="vUpload">
     <div class="vUpload-progress"></div>
     <div class="vUpload-button">
       <el-button type="primary" size='mini' @click='uploadFile'>上传文件</el-button>
-      <input type="file" style="display:none" ref="uploadBtn" @change="confirmUpload">
+      <input type="file" style="display:none" ref="uploadBtn" @change="confirmUpload" multiple>
     </div>
   </div>
 </template>
@@ -34,13 +34,9 @@ export default {
         const formData = new FormData();
         formData.append('file', this.$refs.uploadBtn.files[0]);
         this.$axios
-          .post(
-            '/api/upload/uploadFile',
-            { formData },
-            {
-              'Content-Type': 'multipart/form-data'
-            }
-          )
+          .post('/api/upload/uploadFile', formData, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          })
           .then(res => {
             console.log(res);
           });
