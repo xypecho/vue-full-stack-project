@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-23 16:50:58
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-11-29 19:59:22
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -27,6 +27,7 @@ if (!fs.existsSync('upload')) {
     fs.mkdirSync('upload/images');
     fs.mkdirSync('upload/files');
 }
+// 上传头像的相关配置
 var storage = multer.diskStorage({
     //文件保存路径
     destination: function (req, file, cb) {
@@ -40,7 +41,7 @@ var storage = multer.diskStorage({
 })
 var uploadMiddleware = multer({ storage: storage });
 
-// ‘文件上传’相关配置
+// 文件上传的相关配置
 var fileStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'upload/files/')
@@ -92,7 +93,7 @@ router
     .post('/api/user/md5Password', user.md5Password)
     .post('/api/user/changePassword', user.changePassword)
     .post('/api/upload/image', uploadMiddleware.single('file'), upload.image)
-    .post('/api/upload/uploadFile', fileUploadMiddleware.array('file', 1000), upload.uploadFile)
+    .post('/api/upload/uploadFile', fileUploadMiddleware.array('file', 666), upload.uploadFile)
     .post('/api/upload/deleteImage', upload.deleteImage)
     .post('/api/spider/hitokoto', spider.hitokoto)
     .post('/api/log/insertOperationLog', log.insertOperationLog)

@@ -2,39 +2,72 @@
  * @Author: xypecho
  * @Date: 2018-11-21 21:45:27
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-22 20:24:03
+ * @Last Modified time: 2018-11-29 18:48:26
  */
 <template>
-    <div class="fileUpload">
-        <v-upload></v-upload>
-        <el-table :data="tableData" style="width: 100%">
-            <el-table-column fixed prop="date" label="日期" width="150">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" >
-            </el-table-column>
-            <el-table-column prop="province" label="省份" >
-            </el-table-column>
-            <el-table-column prop="city" label="市区" >
-            </el-table-column>
-            <el-table-column prop="address" label="地址" width="300">
-            </el-table-column>
-            <el-table-column prop="zip" label="邮编" >
-            </el-table-column>
-            <el-table-column label="操作" width="100">
-                <template slot-scope="scope">
-                    <el-dropdown>
-                        <span class="el-dropdown-link" style="cursor:pointer;color:#409eff">
-                            操作
-                        </span>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>查看</el-dropdown-item>
-                            <el-dropdown-item>删除</el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </template>
-            </el-table-column>
-        </el-table>
-    </div>
+  <div
+    class='fileUpload'
+    v-loading='loading'
+  >
+    <v-upload></v-upload>
+    <el-table
+      :data='tableData'
+      style='width: 100%'
+    >
+      <el-table-column
+        fixed
+        prop='date'
+        label='日期'
+        width='150'
+      >
+      </el-table-column>
+      <el-table-column
+        prop='name'
+        label='姓名'
+      >
+      </el-table-column>
+      <el-table-column
+        prop='province'
+        label='省份'
+      >
+      </el-table-column>
+      <el-table-column
+        prop='city'
+        label='市区'
+      >
+      </el-table-column>
+      <el-table-column
+        prop='address'
+        label='地址'
+        width='300'
+      >
+      </el-table-column>
+      <el-table-column
+        prop='zip'
+        label='邮编'
+      >
+      </el-table-column>
+      <el-table-column
+        label='操作'
+        width='100'
+      >
+        <template slot-scope='scope'>
+          <el-dropdown>
+            <span
+              class='el-dropdown-link'
+              style='cursor:pointer;color:#409eff'
+            >
+              操作
+            </span>
+            <el-dropdown-menu slot='dropdown'>
+              <el-dropdown-item>查看</el-dropdown-item>
+              <el-dropdown-item>删除</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
@@ -49,6 +82,7 @@ export default {
 
   data() {
     return {
+      loading: false,
       tableData: [
         {
           date: '2016-05-03',
@@ -92,6 +126,6 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .fileUpload {
-    padding: 20px;
+  padding: 20px;
 }
 </style>
