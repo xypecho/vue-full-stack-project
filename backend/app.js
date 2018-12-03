@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-29 19:59:22
+ * @Last Modified time: 2018-12-03 21:39:20
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -54,7 +54,7 @@ var fileStorage = multer.diskStorage({
 var fileUploadMiddleware = multer({ storage: fileStorage });
 
 //设置静态资源的路径
-app.use(static(__dirname + '/upload/images'));
+app.use(static(__dirname));
 
 /* 文件上传相关 */
 

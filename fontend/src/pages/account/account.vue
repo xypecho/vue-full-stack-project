@@ -2,11 +2,17 @@
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-21 22:04:41
+ * @Last Modified time: 2018-12-03 21:08:47
  */
 <template>
-  <div class="account" v-loading='loading'>
-    <div class="account-left" v-show='!loading'>
+  <div
+    class="account"
+    v-loading='loading'
+  >
+    <div
+      class="account-left"
+      v-show='!loading'
+    >
       <p class="account-header">帐号信息</p>
       <div class="account-content">
         <el-row>
@@ -15,7 +21,12 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-input placeholder="请输入帐号名称" size='mini' suffix-icon="el-icon-edit-outline" v-model="userInfo.username">
+              <el-input
+                placeholder="请输入帐号名称"
+                size='mini'
+                suffix-icon="el-icon-edit-outline"
+                v-model="userInfo.username"
+              >
               </el-input>
             </div>
           </el-col>
@@ -38,7 +49,12 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-input placeholder="请输入邮箱" size='mini' suffix-icon="el-icon-message" v-model="userInfo.email">
+              <el-input
+                placeholder="请输入邮箱"
+                size='mini'
+                suffix-icon="el-icon-message"
+                v-model="userInfo.email"
+              >
               </el-input>
             </div>
           </el-col>
@@ -51,7 +67,14 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-switch v-model="userInfo.status" active-color="#13ce66" inactive-color="#ff4949" :active-value='1' :inactive-value='0' disabled>
+              <el-switch
+                v-model="userInfo.status"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                :active-value='1'
+                :inactive-value='0'
+                disabled
+              >
               </el-switch>
             </div>
           </el-col>
@@ -64,15 +87,30 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-switch v-model="userInfo.is_deleted" active-color="#13ce66" inactive-color="#ff4949" :active-value='0' :inactive-value='1' @change='deleteAccount'>
+              <el-switch
+                v-model="userInfo.is_deleted"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                :active-value='0'
+                :inactive-value='1'
+                @change='deleteAccount'
+              >
               </el-switch>
             </div>
           </el-col>
         </el-row>
       </div>
-      <el-button type="primary" size='mini' style="margin-top:10px" @click="editUserInfo">提交修改</el-button>
+      <el-button
+        type="primary"
+        size='mini'
+        style="margin-top:10px"
+        @click="editUserInfo"
+      >提交修改</el-button>
     </div>
-    <div class="account-right" v-show='!loading'>
+    <div
+      class="account-right"
+      v-show='!loading'
+    >
       <p class="account-header">其他信息</p>
       <div class="account-content">
         <el-row>
@@ -81,11 +119,23 @@
           </el-col>
           <el-col :span="20">
             <div class="grid-content bg-purple-light">
-              <el-upload :action='actionUrl()' :limit="1" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :before-upload="beforeAvatarUpload" :on-success="handleAvatarSuccess">
+              <el-upload
+                :action='actionUrl()'
+                :limit="1"
+                list-type="picture-card"
+                :on-preview="handlePictureCardPreview"
+                :on-remove="handleRemove"
+                :before-upload="beforeAvatarUpload"
+                :on-success="handleAvatarSuccess"
+              >
                 <i class="el-icon-plus"></i>
               </el-upload>
               <el-dialog :visible.sync="dialogVisible">
-                <img width="100%" :src="dialogImageUrl" alt="">
+                <img
+                  width="100%"
+                  :src="dialogImageUrl"
+                  alt=""
+                >
               </el-dialog>
             </div>
           </el-col>
@@ -188,7 +238,7 @@ export default {
     },
     handleAvatarSuccess(res) {
       if (res.status === 200) {
-        this.userInfo.avatar = `${document.location.protocol}//${res.data.res}`;
+        this.userInfo.avatar = `${document.location.protocol}//${res.data.res.substring(0, res.data.res.indexOf('/'))}/${res.data.path}`;
         this.imgPath = res.data.path;
         this.setUserInfo(this.userInfo);
         setLocalStorage(this.userInfo);

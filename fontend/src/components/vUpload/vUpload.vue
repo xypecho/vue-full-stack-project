@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-22 20:24:10
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-30 21:27:44
+ * @Last Modified time: 2018-12-03 21:24:26
  */
 <template>
   <div class='vUpload'>
@@ -51,9 +51,7 @@ export default {
       );
     },
     confirmUpload() {
-      console.log('点击了哦');
-      console.log(this.$refs.uploadBtn.files.length);
-      if (this.$refs.uploadBtn.files.length && this.$refs.uploadBtn.files.length < 20) {
+      if (this.$refs.uploadBtn.files.length) {
         const formData = new FormData();
         const allowType = ['image/jpeg', 'image/png', 'image/gif'];
         for (let i = 0; i < this.$refs.uploadBtn.files.length; i++) {
@@ -65,6 +63,7 @@ export default {
               message: `${this.$refs.uploadBtn.files[i].name}上传失败，只允许上传图片哦`,
               duration: `2${i}00`
             });
+            return;
           }
         }
         console.log(formData.getAll('file'));
@@ -73,13 +72,15 @@ export default {
           method: 'post',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           onUploadProgress: e => {
-            console.log('============================');
             this.percentage = Math.round((e.loaded / e.total) * 100);
-            console.log('============================');
           },
           data: formData
         }).then(res => {
           console.log(res);
+          this.$tips({
+            type: 'success',
+            message: `已成功上传张${this.$refs.uploadBtn.files.length}图片`
+          });
         }).catch(e => {
           console.log(e);
           this.$tips({
@@ -88,7 +89,6 @@ export default {
           });
         }).then(() => {
           this.percentage = 0;
-          console.log('上传完成');
         });
       } else {
         this.$tips({
