@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-03 21:36:50
+ * @Last Modified time: 2018-12-03 22:21:01
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -42,9 +42,9 @@ class upload {
         return ctx.body = res;
     }
     async uploadFile(ctx) {
-        console.log(ctx.request.body);
+        console.log(ctx.request.origin)
         console.log('===============');
-        console.log(ctx.req.file);
+        console.log(ctx.req.files);
         return ctx.body = 'test';
     }
 }
