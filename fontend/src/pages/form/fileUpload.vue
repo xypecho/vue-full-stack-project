@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-21 21:45:27
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-30 19:33:38
+ * @Last Modified time: 2018-12-04 22:04:31
  */
 <template>
   <div
@@ -15,44 +15,18 @@
       style='width: 100%'
     >
       <el-table-column
-        fixed
-        prop='date'
-        label='日期'
-        width='150'
+        prop='username'
+        label='上传者'
       >
       </el-table-column>
       <el-table-column
-        prop='name'
-        label='姓名'
+        prop='upload_time'
+        label='上传时间'
       >
       </el-table-column>
-      <el-table-column
-        prop='province'
-        label='省份'
-      >
-      </el-table-column>
-      <el-table-column
-        prop='city'
-        label='市区'
-      >
-      </el-table-column>
-      <el-table-column
-        prop='address'
-        label='地址'
-        width='300'
-      >
-      </el-table-column>
-      <el-table-column
-        prop='zip'
-        label='邮编'
-      >
-      </el-table-column>
-      <el-table-column
-        label='操作'
-        width='100'
-      >
+      <el-table-column label='操作'>
         <template slot-scope='scope'>
-          <el-dropdown>
+          <el-dropdown trigger="click">
             <span
               class='el-dropdown-link'
               style='cursor:pointer;color:#409eff'
@@ -74,46 +48,42 @@
 import vUpload from '@/components/vUpload/vUpload';
 
 export default {
+  created() {
+    this.getFileLIst();
+  },
   methods: {
     handleClick(row) {
       console.log(row);
+    },
+    getFileLIst() {
+      this.$axios.post('/api/upload/getFilesList').then(res => {
+        console.log(res.data);
+        this.tableData = res.data;
+      }).catch(err => {
+        console.error(err);
+      }).then(() => {
+        console.log('end');
+      });
     }
   },
-
   data() {
     return {
       loading: false,
       tableData: [
         {
           date: '2016-05-03',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         },
         {
           date: '2016-05-02',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         },
         {
           date: '2016-05-04',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         },
         {
           date: '2016-05-01',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }
       ]

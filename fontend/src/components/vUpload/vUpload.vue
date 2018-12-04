@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-22 20:24:10
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-03 21:24:26
+ * @Last Modified time: 2018-12-04 21:53:05
  */
 <template>
   <div class='vUpload'>
@@ -25,12 +25,15 @@
         ref='uploadBtn'
         @change='confirmUpload'
         multiple='multiple'
+        accept="image/*"
       >
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -40,19 +43,24 @@ export default {
   methods: {
     uploadFile() {
       this.$alert(
-        '上传文件功能仅供学习交流之用，所上传的文件将在24小时之内自动删除。(目前只能上传图片，请不要上传奇♂怪的东西哦→_→)',
+        '上传文件功能仅供学习交流之用，所上传的文件将在三个月之后自动删除。(目前只能上传图片，请不要上传奇♂怪的东西哦→_→)',
         '提示',
         {
           confirmButtonText: '确定',
-          callback: () => {
-            this.$refs.uploadBtn.click();
+          callback: action => {
+            if (action === 'confirm') {
+              this.$refs.uploadBtn.click();
+            }
           }
         }
       );
     },
     confirmUpload() {
-      if (this.$refs.uploadBtn.files.length) {
+      if (this.$refs.uploadBtn.files.length && this.$refs.uploadBtn.files.length < 99) {
         const formData = new FormData();
+        console.log(this.user);
+        formData.append('username', this.user.username);
+        formData.append('uid', this.user.uid);
         const allowType = ['image/jpeg', 'image/png', 'image/gif'];
         for (let i = 0; i < this.$refs.uploadBtn.files.length; i++) {
           if (allowType.indexOf(this.$refs.uploadBtn.files[i].type) !== -1) {
@@ -66,7 +74,6 @@ export default {
             return;
           }
         }
-        console.log(formData.getAll('file'));
         this.$axios({
           url: '/api/upload/uploadFile',
           method: 'post',
@@ -76,11 +83,12 @@ export default {
           },
           data: formData
         }).then(res => {
-          console.log(res);
-          this.$tips({
-            type: 'success',
-            message: `已成功上传张${this.$refs.uploadBtn.files.length}图片`
-          });
+          if (res.data.status === 200) {
+            this.$tips({
+              type: 'success',
+              message: `已成功上传张${this.$refs.uploadBtn.files.length}图片`
+            });
+          }
         }).catch(e => {
           console.log(e);
           this.$tips({
@@ -93,10 +101,13 @@ export default {
       } else {
         this.$tips({
           type: 'error',
-          message: '批量上传单次最多允许上传666张图片'
+          message: '批量上传单次最多允许上传99张图片'
         });
       }
     }
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 };
 </script>
