@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-22 20:24:10
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-04 21:53:05
+ * @Last Modified time: 2018-12-05 21:43:19
  */
 <template>
   <div class='vUpload'>
@@ -88,6 +88,7 @@ export default {
               type: 'success',
               message: `已成功上传张${this.$refs.uploadBtn.files.length}图片`
             });
+            this.$emit('successUpload');
           }
         }).catch(e => {
           console.log(e);

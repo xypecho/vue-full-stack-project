@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-04 22:02:57
+ * @Last Modified time: 2018-12-05 22:32:50
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -49,15 +49,12 @@ class upload {
         const username = ctx.req.body.username;
         const uid = ctx.req.body.uid;
         const upload_time = new Date().getTime();
+        const files_description = `${ctx.req.files[0].originalname}等${ctx.req.files.length}张图片`;
         let files = [];
         for (let i = 0; i < ctx.req.files.length; i++) {
-            files.push(`${ctx.request.origin}/${ctx.req.files[i].destination}/${ctx.req.files[i].filename}`)
+            files.push(`${ctx.request.origin}/${ctx.req.files[i].destination}${ctx.req.files[i].filename}`)
         }
-        console.log(files);
-        console.log(username);
-        console.log(uid);
-        console.log(upload_time);
-        let result = await mysqlJs.queryFromMysql(`INSERT INTO files (uid, username, files, upload_time) VALUES ('${uid}', '${username}', '${files.join(';')}', '${upload_time}')`);
+        let result = await mysqlJs.queryFromMysql(`INSERT INTO files (uid, username, files, files_description, upload_time) VALUES ('${uid}', '${username}', '${files.join(';')}', '${files_description}', '${upload_time}')`);
         if (result.affectedRows == 1) {
             res = {
                 status: 200,
@@ -72,10 +69,57 @@ class upload {
         return ctx.body = res;
     }
     // 获取上传文件列表
-    async getFilesList(ctx){
+    async getFilesList(ctx) {
         let res;
-        let fileList=await mysqlJs.queryFromMysql(`SELECT * FROM files`);
-        return ctx.body = fileList;
+        const currentPage = ctx.request.body.currentPage;//当前是第几页
+        const pageSize = ctx.request.body.pageSize;//每页显示多少条
+        let fileList = await mysqlJs.queryFromMysql(`SELECT * FROM files LIMIT ${(currentPage - 1) * pageSize}, ${pageSize}`);
+        let total = await mysqlJs.queryFromMysql(`SELECT COUNT(*) FROM files`);
+        if (fileList && fileList.length > 0) {
+            res = {
+                status: 200,
+                total: total[0]['COUNT(*)'],
+                data: fileList
+            };
+        } else {
+            res = {
+                status: 201,
+                total: total[0]['COUNT(*)'],
+                message: '获取文件列表失败，请稍候重试'
+            };
+        }
+        return ctx.body = res;
+    }
+    // 删除文件
+    async deleteFiles(ctx) {
+        let res;
+        const id = ctx.request.body.id;
+        let fileDetail = await mysqlJs.queryFromMysql(`SELECT * FROM files WHERE id = '${id}'`);
+        if (fileDetail && fileDetail.length === 1) {
+            await mysqlJs.queryFromMysql(`DELETE FROM files WHERE id = '${id}'`);
+            let filePath = JSON.parse(JSON.stringify(fileDetail))[0].files.split(';');
+            let index = filePath[0].lastIndexOf('/');
+            let newfilePath = filePath.map((k, v) => {
+                return k.substring(index - 12);
+            })
+            console.log(filePath)
+            console.log(newfilePath)
+            try {
+                newfilePath.map((k, v) => {
+                    fs.unlinkSync(k);
+                })
+                res = {
+                    status: 200,
+                    message: '文件删除成功'
+                }
+            } catch (error) {
+                res = {
+                    status: 201,
+                    message: '删除文件失败，请稍候重试'
+                }
+            }
+        }
+        return ctx.body = res;
     }
 }
 module.exports = new upload();
