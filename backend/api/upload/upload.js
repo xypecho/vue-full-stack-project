@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-05 22:32:50
+ * @Last Modified time: 2018-12-06 21:11:02
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -94,28 +94,36 @@ class upload {
     async deleteFiles(ctx) {
         let res;
         const id = ctx.request.body.id;
+        const uid = ctx.request.body.uid;
         let fileDetail = await mysqlJs.queryFromMysql(`SELECT * FROM files WHERE id = '${id}'`);
-        if (fileDetail && fileDetail.length === 1) {
-            await mysqlJs.queryFromMysql(`DELETE FROM files WHERE id = '${id}'`);
-            let filePath = JSON.parse(JSON.stringify(fileDetail))[0].files.split(';');
-            let index = filePath[0].lastIndexOf('/');
-            let newfilePath = filePath.map((k, v) => {
-                return k.substring(index - 12);
-            })
-            console.log(filePath)
-            console.log(newfilePath)
-            try {
-                newfilePath.map((k, v) => {
-                    fs.unlinkSync(k);
+        if (+uid !== 1) {
+            res = {
+                status: 201,
+                message: '当前用户没有删除文件的权限哦'
+            }
+        } else {
+            if (fileDetail && fileDetail.length === 1) {
+                await mysqlJs.queryFromMysql(`DELETE FROM files WHERE id = '${id}'`);
+                let filePath = JSON.parse(JSON.stringify(fileDetail))[0].files.split(';');
+                let index = filePath[0].lastIndexOf('/');
+                let newfilePath = filePath.map((k, v) => {
+                    return k.substring(index - 12);
                 })
-                res = {
-                    status: 200,
-                    message: '文件删除成功'
-                }
-            } catch (error) {
-                res = {
-                    status: 201,
-                    message: '删除文件失败，请稍候重试'
+                // console.log(filePath)
+                // console.log(newfilePath)
+                try {
+                    newfilePath.map((k, v) => {
+                        fs.unlinkSync(k);
+                    })
+                    res = {
+                        status: 200,
+                        message: '文件删除成功'
+                    }
+                } catch (error) {
+                    res = {
+                        status: 201,
+                        message: '删除文件失败，请稍候重试'
+                    }
                 }
             }
         }

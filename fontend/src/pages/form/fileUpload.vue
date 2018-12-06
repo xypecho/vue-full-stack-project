@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-21 21:45:27
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-05 22:37:23
+ * @Last Modified time: 2018-12-06 21:06:36
  */
 <template>
   <div
@@ -17,12 +17,14 @@
       <el-table-column
         prop='username'
         label='上传者'
+        width='180'
       >
       </el-table-column>
       <el-table-column
         prop='upload_time'
         label='上传时间'
         :formatter='formatterTime'
+        width='280'
       >
       </el-table-column>
       <el-table-column
@@ -69,6 +71,7 @@
 <script>
 import vUpload from '@/components/vUpload/vUpload';
 import { formatterTime } from '@/tools/index';
+import { mapGetters } from 'vuex';
 
 export default {
   created() {
@@ -122,12 +125,14 @@ export default {
       console.log(row);
     },
     deleteFile(row) {
-      this.$axios.post('/api/upload/deleteFiles', { id: row.id }).then(res => {
+      this.$axios.post('/api/upload/deleteFiles', { id: row.id, uid: this.user.uid }).then(res => {
         this.$tips({
           type: `${res.data.status === 200 ? 'success' : 'error'}`,
           message: res.data.message
         });
-        this.getFileLIst();
+        if (res.data.status === 200) {
+          this.getFileLIst();
+        }
       }).catch(err => {
         console.error(err);
       });
@@ -135,6 +140,9 @@ export default {
   },
   components: {
     vUpload
+  },
+  computed: {
+    ...mapGetters(['user'])
   }
 };
 </script>
