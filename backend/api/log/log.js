@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-14 22:13:55
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-06 21:19:33
+ * @Last Modified time: 2018-12-07 19:38:12
  */
 const mysqlJs = require('../../common/mysql.js');
 const tool = require('../../common/tool.js');
@@ -10,7 +10,7 @@ class log {
     async insertOperationLog(ctx) {
         let res;
         let record = JSON.parse(ctx.request.body.record);
-        console.log(record);
+        // console.log(record);
         let url = record.request.url;
         let status = record.response.data.status;
         let operator = `${record.user.username}(uid:${record.user.uid})` || '';
@@ -32,7 +32,7 @@ class log {
         ])
         if (operationDescription.get(url) && operationDescription.get(url)[0]) {
             // console.log(operationDescription.get(url)[0]);
-            console.log('======================================================');
+            // console.log('======================================================');
             await mysqlJs.queryFromMysql(`INSERT INTO log (operator,operationTime,operationDescription) VALUES ('${operator}','${operationTime}','${operationDescription.get(url)[0]}')`);
             res = '插入成功';
         } else {
