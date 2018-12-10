@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-06 21:11:02
+ * @Last Modified time: 2018-12-10 21:09:11
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -113,6 +113,7 @@ class upload {
                 // console.log(newfilePath)
                 try {
                     newfilePath.map((k, v) => {
+                        console.log(k);
                         fs.unlinkSync(k);
                     })
                     res = {
@@ -120,11 +121,31 @@ class upload {
                         message: '文件删除成功'
                     }
                 } catch (error) {
+                    console.log(error);
                     res = {
                         status: 201,
-                        message: '删除文件失败，请稍候重试'
+                        message: '删除文件失败，请稍候重试',
+                        data: error
                     }
                 }
+            }
+        }
+        return ctx.body = res;
+    }
+    // 获取文件详情
+    async getFileDetails(ctx) {
+        let res;
+        const id = ctx.request.body.id;
+        const fileDetails = await mysqlJs.queryFromMysql(`SELECT * FROM files WHERE id = '${id}'`);
+        if (fileDetails && fileDetails.length === 1) {
+            res = {
+                status: 200,
+                data: fileDetails
+            }
+        } else {
+            res = {
+                status: 201,
+                message: '获取文件详情失败，请稍候重试'
             }
         }
         return ctx.body = res;

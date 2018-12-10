@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-05 22:04:16
+ * @Last Modified time: 2018-12-10 21:05:46
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -97,6 +97,7 @@ router
     .post('/api/upload/getFilesList', upload.getFilesList)
     .post('/api/upload/deleteImage', upload.deleteImage)
     .post('/api/upload/deleteFiles', upload.deleteFiles)
+    .post('/api/upload/getFileDetails', upload.getFileDetails)
     .post('/api/spider/hitokoto', spider.hitokoto)
     .post('/api/log/insertOperationLog', log.insertOperationLog)
     .post('/api/log/operationLogList', log.operationLogList)

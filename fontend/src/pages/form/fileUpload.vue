@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-11-21 21:45:27
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-06 21:06:36
+ * @Last Modified time: 2018-12-10 20:47:00
  */
 <template>
   <div
@@ -65,6 +65,7 @@
       >
       </el-pagination>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -123,6 +124,7 @@ export default {
     },
     getFileDetail(row) {
       console.log(row);
+      this.$router.push(`/uploadFileDetail?id=${row.id}`);
     },
     deleteFile(row) {
       this.$axios.post('/api/upload/deleteFiles', { id: row.id, uid: this.user.uid }).then(res => {
@@ -149,6 +151,7 @@ export default {
 <style lang='stylus' scoped>
 .fileUpload {
   padding: 20px;
+  position: relative;
 
   .block {
     text-align: right;

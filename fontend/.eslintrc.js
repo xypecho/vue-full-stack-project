@@ -1,4 +1,7 @@
 // https://eslint.org/docs/user-guide/configuring
+// "off" 或者0——不检查这个规则
+// "warn"或者1——开启这个规则，规则生效时，作为提醒告诉用户
+// "error"或者2——开启这个规则，规则生效时，作为错误告诉用户
 
 module.exports = {
   root: true,
@@ -71,6 +74,7 @@ module.exports = {
     "import/no-dynamic-require": 0,
     "import/prefer-default-export": 0,
     "no-restricted-syntax": 0,
-    "no-param-reassign": 0 // 允许更改数组中的某个值
+    "no-param-reassign": 0, // 允许更改数组中的某个值
+    "no-shadow": 0 // 外部作用域中的变量不能与它所包含的作用域中的变量或参数同名
   }
 }

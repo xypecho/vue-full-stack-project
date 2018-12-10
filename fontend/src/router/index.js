@@ -2,11 +2,12 @@
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-11-21 21:43:52
+ * @Last Modified time: 2018-12-10 20:40:12
  */
 import Vue from 'vue';
 import Router from 'vue-router';
 import login from '@/pages/login/login';
+// import { resolve } from 'url';
 
 Vue.use(Router);
 
@@ -61,7 +62,14 @@ export const normalRouter = [
           {
             path: '/fileUpload',
             component: resolve => require(['@/pages/form/fileUpload'], resolve),
-            name: '文件上传'
+            name: '文件上传',
+            children: [
+              {
+                path: '/uploadFileDetail',
+                component: resolve => require(['@/pages/details/uploadFileDetail'], resolve),
+                name: '文件详情'
+              }
+            ]
           }
         ]
       },
