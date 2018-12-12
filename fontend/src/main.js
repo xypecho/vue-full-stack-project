@@ -90,7 +90,7 @@ const filterUrl = [`${process.env.BASE_URL}/api/log/insertOperationLog`, `${proc
 axios.interceptors.request.use(
   config => {
     if (filterUrl.indexOf(`${config.baseURL}${config.url}`) === -1 && filterUrl.indexOf(`${config.url}`) === -1) {
-      console.log(config);
+      // console.log(config);
       const { data, url } = config;
       record.request = { data, url };
     }
@@ -104,7 +104,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     if (filterUrl.indexOf(response.config.url) === -1) {
-      console.log(response);
+      // console.log(response);
       const { data, status } = response;
       const { uid, username } = store.getters.user;
       record.response = { data, status };

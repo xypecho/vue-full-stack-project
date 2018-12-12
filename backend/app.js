@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-10 21:05:46
+ * @Last Modified time: 2018-12-12 17:30:27
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -48,7 +48,7 @@ var fileStorage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         var fileFormat = (file.originalname).split(".");
-        cb(null, Date.now() + "_file." + fileFormat[fileFormat.length - 1]);
+        cb(null, Date.now() + `file${Math.floor(Math.random() * 10)}.` + fileFormat[fileFormat.length - 1]);
     }
 })
 var fileUploadMiddleware = multer({ storage: fileStorage });

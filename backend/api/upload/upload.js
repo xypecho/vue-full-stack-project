@@ -2,7 +2,7 @@
  * @Author: xueyp 
  * @Date: 2018-09-13 09:52:39 
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-10 21:09:11
+ * @Last Modified time: 2018-12-12 17:12:59
  */
 const url = require('url');
 const mysqlJs = require('../../common/mysql.js')
@@ -110,10 +110,9 @@ class upload {
                     return k.substring(index - 12);
                 })
                 // console.log(filePath)
-                // console.log(newfilePath)
+                console.log(newfilePath)
                 try {
                     newfilePath.map((k, v) => {
-                        console.log(k);
                         fs.unlinkSync(k);
                     })
                     res = {

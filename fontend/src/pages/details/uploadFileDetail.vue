@@ -2,10 +2,13 @@
  * @Author: xypecho
  * @Date: 2018-12-10 19:58:29
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-11 21:32:48
+ * @Last Modified time: 2018-12-12 22:08:24
  */
 <template>
-  <div class="uploadFileDetail">
+  <div
+    class="uploadFileDetail"
+    ref="uploadFileDetail"
+  >
     <div class="back_btn">
       <el-button
         type='primary'
@@ -29,35 +32,50 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
       id: this.$route.query.id,
-      files: []
+      files: [],
+      wrapperWidth: 0
     };
+  },
+  created() {
+    this.getFiles();
   },
   mounted() {
     this.getFileDetails();
   },
+  watch: {
+    isCollapse() {
+      this.getFileDetails();
+    }
+  },
   methods: {
-    getFileDetails() {
+    getFiles() {
       this.$axios.post('/api/upload/getFileDetails', { id: this.id }).then(res => {
         this.files = res.data.data[0].files.split(';');
-        this.$nextTick(() => {
-          const filesBox = this.$refs.waterfalls_wrapper.getElementsByClassName('waterfalls_item');
-          for (let i = 0; i < filesBox.length; i++) {
-            this.setElementCss(filesBox[i], this.files[i], i);
-          }
-        });
       }).catch(err => {
         console.error(err);
       });
     },
-    setElementCss(element, file, index) {
-      console.log('============');
-      console.log(element, file, index);
-      console.log('============');
+    getFileDetails() {
+      this.wrapperWidth = document.querySelector('.uploadFileDetail').clientWidth;
+      this.$nextTick(() => {
+        const filesBox = this.$refs.waterfalls_wrapper.getElementsByClassName('waterfalls_item');
+        for (let i = 0; i < filesBox.length; i++) {
+          this.setElementStyle(filesBox[i], this.files[i], i);
+        }
+      });
+    },
+    setElementStyle(element, file, index) {
+      element.style.left = `${index * 150}px`;
     }
+  },
+  computed: {
+    ...mapGetters(['isCollapse'])
   }
 };
 </script>
@@ -80,14 +98,20 @@ export default {
   .waterfalls_wrapper {
     clear: both;
     position: relative;
+    background: #fff;
 
     .waterfalls_item {
-      background: #fff;
       position: absolute;
       padding: 3px;
       font-size: 0;
       box-sizing: border-box;
       transition: all 0.3s ease;
+      background: #fff;
+
+      & img {
+        width: 200px;
+        margin: 20px;
+      }
     }
   }
 }
