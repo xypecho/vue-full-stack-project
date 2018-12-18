@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      heightArr: [] // 存储第行所有图片的高度
+      heightArr: [] // 存储每行所有图片的高度
     };
   },
   mounted() {
@@ -70,20 +70,14 @@ export default {
     setWaterfallsStyle(element, file, index) {
       if (index < this.column) {
         element.style.left = `${index * (this.fileWidth + 20)}px`;
-        this.heightArr[index] = this.heightArr[index] ? this.heightArr[index] + element.offsetHeight : element.offsetHeight;
+        this.heightArr[index] = element.offsetHeight;
       } else {
-        let minHeight = {};
-        for (let i = 0; i < this.heightArr.length; i++) {
-          if (minHeight.value && (minHeight.value > this.heightArr[i])) {
-            minHeight = { index: i, value: this.heightArr[i] };
-          } else {
-            minHeight = { index: i, value: this.heightArr[i] };
-          }
-        }
-        element.style.left = `${this.$refs.waterfalls.getElementsByClassName('waterfalls-items')[minHeight.index].offsetLeft}px`;
-        element.style.top = `${minHeight.value}px`;
-        this.$refs.waterfalls.style.height = `${element.offsetTop * 2}px`;
-        this.heightArr[minHeight.index] = 800;
+        const minValue = Math.min(...this.heightArr); // 找出第一行高度最小的
+        const minIndex = this.heightArr.findIndex(item => item === minValue); // 找出高度最小的值的索引
+        element.style.left = `${this.$refs.waterfalls.getElementsByClassName('waterfalls-items')[minIndex].offsetLeft}px`;
+        element.style.top = `${minValue}px`;
+        this.heightArr[minIndex] = minValue + element.clientHeight;
+        this.$refs.waterfalls.style.height = `${minValue}px`;
       }
     }
   },
