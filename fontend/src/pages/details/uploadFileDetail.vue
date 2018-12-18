@@ -38,11 +38,11 @@ export default {
       fileWidth: 280
     };
   },
-  beforeMount() {
-    this.setWaterfallsStyle();
+  created() {
+    this.getFiles();
   },
   mounted() {
-    this.getFiles();
+    this.setWaterfallsStyle();
   },
   watch: {
     isCollapse() {

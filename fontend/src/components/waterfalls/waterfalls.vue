@@ -50,18 +50,46 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      heightArr: [] // 存储第行所有图片的高度
+    };
+  },
   mounted() {
     this.initWaterfalls();
   },
   methods: {
     initWaterfalls() {
-      const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
-      for (let i = 0; i < item.length; i++) {
-        this.setWaterfallsStyle(item[i], this.files[i], i);
-      }
+      setTimeout(() => {
+        const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
+        for (let i = 0; i < item.length; i++) {
+          this.setWaterfallsStyle(item[i], this.files[i], i);
+        }
+      }, 500);
     },
     setWaterfallsStyle(element, file, index) {
-      element.style.left = `${index * (this.fileWidth + 20)}px`;
+      if (index < this.column) {
+        element.style.left = `${index * (this.fileWidth + 20)}px`;
+        this.heightArr[index] = this.heightArr[index] ? this.heightArr[index] + element.offsetHeight : element.offsetHeight;
+      } else {
+        let minHeight = {};
+        for (let i = 0; i < this.heightArr.length; i++) {
+          if (minHeight.value && (minHeight.value > this.heightArr[i])) {
+            minHeight = { index: i, value: this.heightArr[i] };
+          } else {
+            minHeight = { index: i, value: this.heightArr[i] };
+          }
+        }
+        element.style.left = `${this.$refs.waterfalls.getElementsByClassName('waterfalls-items')[minHeight.index].offsetLeft}px`;
+        element.style.top = `${minHeight.value}px`;
+        this.$refs.waterfalls.style.height = `${element.offsetTop * 2}px`;
+        this.heightArr[minHeight.index] = 800;
+      }
+    }
+  },
+  watch: {
+    column() {
+      this.initWaterfalls();
     }
   }
 };
@@ -76,7 +104,8 @@ export default {
 
   .waterfalls-items {
     position: absolute;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
+    background: #fff;
   }
 }
 </style>
