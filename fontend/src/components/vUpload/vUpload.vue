@@ -56,7 +56,7 @@ export default {
       );
     },
     confirmUpload() {
-      if (this.$refs.uploadBtn.files.length && this.$refs.uploadBtn.files.length < 99) {
+      if (this.$refs.uploadBtn.files.length && this.$refs.uploadBtn.files.length < 250) {
         const formData = new FormData();
         console.log(this.user);
         formData.append('username', this.user.username);
@@ -103,7 +103,7 @@ export default {
       } else {
         this.$tips({
           type: 'error',
-          message: '批量上传单次最多允许上传99张图片'
+          message: '批量上传单次最多允许上传250张图片'
         });
       }
     }

@@ -35,7 +35,7 @@ export default {
       id: this.$route.query.id,
       files: [],
       column: 0,
-      fileWidth: 280
+      fileWidth: 222
     };
   },
   created() {

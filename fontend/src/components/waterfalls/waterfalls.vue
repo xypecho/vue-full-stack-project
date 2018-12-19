@@ -23,6 +23,7 @@
     >
       <img
         :src="item"
+        :data-src='item'
         alt=""
         :width="fileWidth"
       >
@@ -60,6 +61,7 @@ export default {
   },
   methods: {
     initWaterfalls() {
+      this.$refs.waterfalls.style.width = `${(this.column * (this.fileWidth + 20)) + 20}px`;
       setTimeout(() => {
         const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
         for (let i = 0; i < item.length; i++) {
@@ -92,9 +94,8 @@ export default {
 .waterfalls {
   clear: both;
   background: #fff;
-  width: 100%;
-  height: 100%;
   position: relative;
+  margin: 0 auto;
 
   .waterfalls-items {
     position: absolute;
