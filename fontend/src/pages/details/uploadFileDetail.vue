@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-12-10 19:58:29
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-13 22:32:11
+ * @Last Modified time: 2018-12-20 20:43:17
  */
 <template>
   <div
@@ -21,6 +21,7 @@
       :files='files'
       :column='column'
       :fileWidth='fileWidth'
+      :defaultImg='defaultImg'
     ></waterfalls>
   </div>
 </template>
@@ -28,6 +29,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import waterfalls from '@/components/waterfalls/waterfalls';
+import lazyLoadingImg from '../../assets/images/lazy_loading.gif';
 
 export default {
   data() {
@@ -35,7 +37,8 @@ export default {
       id: this.$route.query.id,
       files: [],
       column: 0,
-      fileWidth: 222
+      fileWidth: 222,
+      defaultImg: lazyLoadingImg
     };
   },
   created() {

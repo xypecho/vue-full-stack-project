@@ -2,7 +2,7 @@
  * @Author: xypecho
  * @Date: 2018-12-13 20:36:46
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-13 22:40:04
+ * @Last Modified time: 2018-12-20 20:43:04
  */
  <!--
  @component name: 瀑布流组件
@@ -10,6 +10,7 @@
  @param name: fileWidth 单张图片的宽度
  @param name: column 一行展示多少列
  @param name: lazy 是否启用懒加载
+ @param name: defaultImg 加载时显示的默认图片
  -->
 <template>
   <div
@@ -22,7 +23,7 @@
       :key='index'
     >
       <img
-        :src="item"
+        :src="defaultImg"
         :data-src='item'
         alt=""
         :width="fileWidth"
@@ -32,6 +33,8 @@
 </template>
 
 <script>
+import lazyLoadingImg from '../../assets/images/lazy_loading.gif';
+
 export default {
   props: {
     files: {
@@ -49,6 +52,10 @@ export default {
     lazy: {
       type: Boolean,
       default: true
+    },
+    defaultImg: {
+      type: String,
+      default: lazyLoadingImg
     }
   },
   data() {
@@ -62,6 +69,7 @@ export default {
   methods: {
     initWaterfalls() {
       this.$refs.waterfalls.style.width = `${(this.column * (this.fileWidth + 20)) + 20}px`;
+      // this.juageISVisible();
       setTimeout(() => {
         const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
         for (let i = 0; i < item.length; i++) {
@@ -82,6 +90,10 @@ export default {
         this.$refs.waterfalls.style.height = `${minValue}px`;
       }
     }
+    // juageISVisible() {
+    //   // 用来判断图片是否出现在网页可见区域
+    //   let
+    // }
   },
   watch: {
     column() {
