@@ -2,15 +2,14 @@
  * @Author: xypecho
  * @Date: 2018-12-13 20:36:46
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-20 20:43:04
+ * @Last Modified time: 2018-12-20 21:49:45
  */
  <!--
  @component name: 瀑布流组件
  @param name: files 图片数组
  @param name: fileWidth 单张图片的宽度
  @param name: column 一行展示多少列
- @param name: lazy 是否启用懒加载
- @param name: defaultImg 加载时显示的默认图片
+ @param name: defaultImg 懒加载时显示的默认图片
  -->
 <template>
   <div
@@ -49,10 +48,6 @@ export default {
       type: Number,
       default: 5
     },
-    lazy: {
-      type: Boolean,
-      default: true
-    },
     defaultImg: {
       type: String,
       default: lazyLoadingImg
@@ -65,11 +60,11 @@ export default {
   },
   mounted() {
     this.initWaterfalls();
+    window.addEventListener('scroll', this.juageISVisible, true);
   },
   methods: {
     initWaterfalls() {
       this.$refs.waterfalls.style.width = `${(this.column * (this.fileWidth + 20)) + 20}px`;
-      // this.juageISVisible();
       setTimeout(() => {
         const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
         for (let i = 0; i < item.length; i++) {
@@ -89,11 +84,24 @@ export default {
         this.heightArr[minIndex] = minValue + element.clientHeight;
         this.$refs.waterfalls.style.height = `${minValue}px`;
       }
+      console.log(element.getBoundingClientRect().top);
+      const windowHeight = document.body.clientHeight; // 网页窗口高度
+      if (element.getBoundingClientRect().top <= windowHeight) {
+        element.children[0].src = element.children[0].dataset.src;
+      }
+    },
+    juageISVisible(e) {
+      // 用来判断图片是否出现在网页可见区域，公式为元素到内容顶部的距离 <= 滚动距离 + 窗口高度
+      const windowHeight = document.body.clientHeight; // 网页窗口高度
+      const scrollHeight = e.target.scrollTop;
+      const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
+      for (let i = 0; i < item.length; i++) {
+        if (item[i].getBoundingClientRect().top <= windowHeight) {
+          item[i].children[0].src = item[i].children[0].dataset.src;
+        }
+      }
+      // console.log(windowHeight, scrollHeight);
     }
-    // juageISVisible() {
-    //   // 用来判断图片是否出现在网页可见区域
-    //   let
-    // }
   },
   watch: {
     column() {
