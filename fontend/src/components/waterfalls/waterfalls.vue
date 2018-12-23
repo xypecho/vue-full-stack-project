@@ -84,23 +84,20 @@ export default {
         this.heightArr[minIndex] = minValue + element.clientHeight;
         this.$refs.waterfalls.style.height = `${minValue}px`;
       }
-      console.log(element.getBoundingClientRect().top);
       const windowHeight = document.body.clientHeight; // 网页窗口高度
       if (element.getBoundingClientRect().top <= windowHeight) {
         element.children[0].src = element.children[0].dataset.src;
       }
     },
-    juageISVisible(e) {
+    juageISVisible() {
       // 用来判断图片是否出现在网页可见区域，公式为元素到内容顶部的距离 <= 滚动距离 + 窗口高度
       const windowHeight = document.body.clientHeight; // 网页窗口高度
-      const scrollHeight = e.target.scrollTop;
       const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
       for (let i = 0; i < item.length; i++) {
         if (item[i].getBoundingClientRect().top <= windowHeight) {
           item[i].children[0].src = item[i].children[0].dataset.src;
         }
       }
-      // console.log(windowHeight, scrollHeight);
     }
   },
   watch: {
