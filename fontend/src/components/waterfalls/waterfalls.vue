@@ -91,7 +91,6 @@ export default {
     },
     juageISVisible() {
       // 用来判断图片是否出现在网页可见区域，公式为元素到内容顶部的距离 <= 滚动距离 + 窗口高度
-      // 没思路了
       const windowHeight = document.body.clientHeight; // 网页窗口高度
       const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
       for (let i = 0; i < item.length; i++) {
