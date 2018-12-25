@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
- * @Last Modified by: xueyp
- * @Last Modified time: 2018-11-09 09:29:08
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-12-25 20:25:59
  */
 
 // 设置localStorage
@@ -13,6 +13,7 @@ export const setLocalStorage = (obj) => {
   const currentTime = new Date().getTime();
   localStorage.setItem('currentTime', currentTime);
 };
+
 
 // 将时间戳格式化为 yy-mm-dd hh:mm:ss
 export const formatterTime = (timestamp, type) => {
@@ -37,6 +38,7 @@ export const formatterTime = (timestamp, type) => {
   return res;
 };
 
+
 // 计算两个时间戳之间间隔的时间
 export const timeDifference = (pastTime, currentTime) => {
   const diff = (currentTime - pastTime) / 1000;
@@ -46,11 +48,13 @@ export const timeDifference = (pastTime, currentTime) => {
   return { day, hours, minute };
 };
 
+
 // 格式化日期，将2018年9月28格式化为2018-9-28
 export const transformToTimestamp = (data) => {
   const time = data.match(/\d+/g);
   return time.join('-');
 };
+
 
 // 15天内新增注册用户数据,预期的数据格式为  [{ data: '2018-05-22', count: 32371 },{ data: '2018-05-23', count: 12328 }]
 export const formatterUserLoginData = (data) => {
@@ -81,3 +85,16 @@ export const formatterUserLoginData = (data) => {
   }
   return result;
 };
+
+
+// 获取图片宽高
+export const getImgWidthAndHeight = (image) => new Promise((resolve) => {
+  const img = new Image();
+  img.src = image;
+  img.onload = () => {
+    resolve({
+      width: img.width,
+      height: img.height
+    });
+  };
+});
