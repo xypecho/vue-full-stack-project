@@ -123,7 +123,6 @@ export default {
       });
     },
     getFileDetail(row) {
-      console.log(row);
       this.$router.push(`/uploadFileDetail?id=${row.id}`);
     },
     deleteFile(row) {

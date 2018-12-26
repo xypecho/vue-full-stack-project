@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      imgHeight: [], // 所有图片的高度
+      imgHeight: [], // 所有图片的单个的高度
       heightArr: [] // 存储每行所有图片的高度
     };
   },
@@ -71,12 +71,12 @@ export default {
     async getImageSize() {
       await Promise.all(this.files.map(async (file) => {
         const size = await getImgWidthAndHeight(file);
+        // this.imgHeight[key] = size.height * (this.fileWidth / size.width);
         this.imgHeight.push(size.height * (this.fileWidth / size.width));
       }));
     },
     initWaterfalls() {
-      // if (this.files.length === this.imgHeight.length) {
-      console.log('执行了哦');
+      this.heightArr = [];
       this.$refs.waterfalls.style.width = `${(this.column * (this.fileWidth + 20)) + 20}px`;
       setTimeout(() => {
         const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
@@ -84,11 +84,11 @@ export default {
           this.setWaterfallsStyle(item[i], this.files[i], i);
         }
       }, 500);
-      // }
     },
     setWaterfallsStyle(element, file, index) {
       if (index < this.column) {
         element.style.left = `${index * (this.fileWidth + 20)}px`;
+        element.style.top = '0px';
         this.heightArr[index] = element.offsetHeight;
       } else {
         const minValue = Math.min(...this.heightArr); // 找出第一行高度最小的
@@ -107,7 +107,7 @@ export default {
       if (this.files.length === this.imgHeight.length) {
         // 用来判断图片是否出现在网页可见区域，公式为元素到内容顶部的距离 <= 滚动距离 + 窗口高度
         const windowHeight = document.body.clientHeight; // 网页窗口高度
-        const item = this.$refs.waterfalls.getElementsByClassName('waterfalls-items');
+        const item = document.getElementsByClassName('waterfalls-items');
         for (let i = 0; i < item.length; i++) {
           if (item[i].getBoundingClientRect().top <= windowHeight) {
             item[i].children[0].src = item[i].children[0].dataset.src;
@@ -118,7 +118,9 @@ export default {
   },
   watch: {
     column() {
-      this.initWaterfalls();
+      if (this.files.length === this.imgHeight.length) {
+        this.initWaterfalls();
+      }
     },
     imgHeight(val) {
       if (val === this.files.length) {
