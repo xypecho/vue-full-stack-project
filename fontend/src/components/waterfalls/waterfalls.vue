@@ -35,6 +35,8 @@
 import { getImgWidthAndHeight } from '@/tools/index';
 import lazyLoadingImg from '../../assets/images/lazy_loading.gif';
 
+const _ = require('lodash');
+
 export default {
   props: {
     files: {
@@ -62,16 +64,15 @@ export default {
   },
   created() {
     this.getImageSize();
+    this.resizeImg = _.debounce(this.initWaterfalls, 500);
   },
   mounted() {
-    this.initWaterfalls();
     window.addEventListener('scroll', this.juageISVisible, true);
   },
   methods: {
     async getImageSize() {
       await Promise.all(this.files.map(async (file) => {
         const size = await getImgWidthAndHeight(file);
-        // this.imgHeight[key] = size.height * (this.fileWidth / size.width);
         this.imgHeight.push(size.height * (this.fileWidth / size.width));
       }));
     },
@@ -122,12 +123,8 @@ export default {
         this.initWaterfalls();
       }
     },
-    imgHeight(val) {
-      if (val === this.files.length) {
-        setTimeout(() => {
-          this.initWaterfalls();
-        }, 500);
-      }
+    imgHeight() {
+      this.resizeImg();
     }
   }
 };
