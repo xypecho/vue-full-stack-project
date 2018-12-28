@@ -97,7 +97,7 @@ export default {
         element.style.left = `${this.$refs.waterfalls.getElementsByClassName('waterfalls-items')[minIndex].offsetLeft}px`;
         element.style.top = `${minValue}px`;
         this.heightArr[minIndex] = minValue + element.clientHeight;
-        this.$refs.waterfalls.style.height = `${minValue}px`;
+        this.$refs.waterfalls.style.height = `${minValue + element.clientHeight}px`;
       }
       const windowHeight = document.body.clientHeight; // 网页窗口高度
       if (element.getBoundingClientRect().top <= windowHeight) {
