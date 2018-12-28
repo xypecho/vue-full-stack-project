@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
  * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-10 20:40:12
+ * @Last Modified time: 2018-12-28 21:26:27
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -83,6 +83,11 @@ export const normalRouter = [
             path: '/user',
             component: resolve => require(['@/pages/user/user'], resolve),
             name: '用户管理'
+          },
+          {
+            path: '/menu',
+            component: resolve => require(['@/pages/menu/menuList'], resolve),
+            name: '菜单管理'
           },
           {
             path: '/account',

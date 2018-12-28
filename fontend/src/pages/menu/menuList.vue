@@ -1,25 +1,30 @@
 /*
  * @Author: xypecho
+ * @Date: 2018-12-28 21:26:06
+ * @Last Modified by: xypecho
+ * @Last Modified time: 2018-12-28 22:05:00
+ */
+/*
+ * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
  * @Last Modified by: xypecho
  * @Last Modified time: 2018-12-28 21:31:44
  */
 <template>
   <div
-    class="account"
+    class="menuList"
     v-loading='loading'
   >
     <div
-      class="account-left"
+      class="menuList-left"
       v-show='!loading'
     >
-      <p class="account-header">帐号信息</p>
-      <div class="account-content">
+      <div class="menuList-content">
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple inputClass">帐号名称</div>
+          <el-col :span="8">
+            <div class="grid-content bg-purple inputClass">父级菜单</div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="grid-content bg-purple-light">
               <el-input
                 placeholder="请输入帐号名称"
@@ -32,22 +37,22 @@
           </el-col>
         </el-row>
       </div>
-      <div class="account-content">
+      <div class="menuList-content">
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple">角色</div>
+          <el-col :span="8">
+            <div class="grid-content bg-purple">名称</div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="grid-content bg-purple-light">{{ userInfo.utype | formatterUtype }}</div>
           </el-col>
         </el-row>
       </div>
-      <div class="account-content">
+      <div class="menuList-content">
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple inputClass">邮箱</div>
+          <el-col :span="8">
+            <div class="grid-content bg-purple inputClass">URL</div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="grid-content bg-purple-light">
               <el-input
                 placeholder="请输入邮箱"
@@ -60,12 +65,12 @@
           </el-col>
         </el-row>
       </div>
-      <div class="account-content">
+      <div class="menuList-content">
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple switchClass">是否启用</div>
+          <el-col :span="8">
+            <div class="grid-content bg-purple switchClass">是否创建页面模版</div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="grid-content bg-purple-light">
               <el-switch
                 v-model="userInfo.status"
@@ -80,12 +85,12 @@
           </el-col>
         </el-row>
       </div>
-      <div class="account-content">
+      <div class="menuList-content">
         <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple switchClass">是否注销</div>
+          <el-col :span="8">
+            <div class="grid-content bg-purple switchClass">模版页面内容</div>
           </el-col>
-          <el-col :span="20">
+          <el-col :span="16">
             <div class="grid-content bg-purple-light">
               <el-switch
                 v-model="userInfo.is_deleted"
@@ -106,61 +111,6 @@
         style="margin-top:10px"
         @click="editUserInfo"
       >提交修改</el-button>
-    </div>
-    <div
-      class="account-right"
-      v-show='!loading'
-    >
-      <p class="account-header">其他信息</p>
-      <div class="account-content">
-        <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple switchClass">头像</div>
-          </el-col>
-          <el-col :span="20">
-            <div class="grid-content bg-purple-light">
-              <el-upload
-                :action='actionUrl()'
-                :limit="1"
-                list-type="picture-card"
-                :on-preview="handlePictureCardPreview"
-                :on-remove="handleRemove"
-                :before-upload="beforeAvatarUpload"
-                :on-success="handleAvatarSuccess"
-              >
-                <i class="el-icon-plus"></i>
-              </el-upload>
-              <el-dialog :visible.sync="dialogVisible">
-                <img
-                  width="100%"
-                  :src="dialogImageUrl"
-                  alt=""
-                >
-              </el-dialog>
-            </div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="account-content">
-        <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple">注册时间</div>
-          </el-col>
-          <el-col :span="20">
-            <div class="grid-content bg-purple-light">{{ userInfo.register_time | formatterRegisterTime }}</div>
-          </el-col>
-        </el-row>
-      </div>
-      <div class="account-content">
-        <el-row>
-          <el-col :span="4">
-            <div class="grid-content bg-purple">近期登陆</div>
-          </el-col>
-          <el-col :span="20">
-            <div class="grid-content bg-purple-light">{{ userInfo.last_login_time | formatterLastLoginTime }}</div>
-          </el-col>
-        </el-row>
-      </div>
     </div>
   </div>
 </template>
@@ -318,24 +268,23 @@ export default {
 };
 </script>
 <style lang='stylus' scoped>
-.account {
+.menuList {
   padding: 20px;
   font-size: 14px;
-  display: flex;
   padding-bottom: 70px;
 }
 
-.account-left, .account-right {
-  flex: 1;
-  margin: 0 20px;
+.menuList-left, .menuList-right {
+  width: 50%;
+  margin: 0 auto;
 
-  & .account-header {
+  & .menuList-header {
     border-bottom: 1px solid #e5e5e5;
     padding-bottom: 12px;
   }
 }
 
-.account-content {
+.menuList-content {
   color: #606266;
   font-size: 14px;
   width: 100%;
@@ -357,3 +306,4 @@ export default {
   line-height: 20px;
 }
 </style>
+
