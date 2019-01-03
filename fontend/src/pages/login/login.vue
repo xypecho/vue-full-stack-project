@@ -182,7 +182,7 @@ export default {
                 if (this.signInForm.username === 'admin') {
                   this.$notify({
                     title: '温馨提示',
-                    message: '管理员的账户密码为:123456'
+                    message: '管理员的账户密码是:123456'
                   });
                 }
               }
