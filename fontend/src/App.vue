@@ -11,22 +11,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'App',
+  name: "App",
   watch: {
     isLoadComplete() {
       if (
-        document.getElementById('Loading-wrapper') &&
-        (this.isLoadComplete === 'true' || this.isLoadComplete === true)
+        document.getElementById("Loading-wrapper") &&
+        (this.isLoadComplete === "true" || this.isLoadComplete === true)
       ) {
-        document.body.removeChild(document.getElementById('Loading-wrapper'));
+        document.body.removeChild(document.getElementById("Loading-wrapper"));
       }
     }
   },
   computed: {
-    ...mapGetters(['isLoadComplete'])
+    ...mapGetters(["isLoadComplete"])
   }
 };
 </script>
