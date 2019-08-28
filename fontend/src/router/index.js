@@ -2,7 +2,7 @@
  * @Author: xueyp
  * @Date: 2018-09-11 17:07:52
  * @Last Modified by: xueyp
- * @Last Modified time: 2019-01-01 13:28:58
+ * @Last Modified time: 2019-08-27 20:29:55
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -118,6 +118,7 @@ export const normalRouter = [
 
 
 export default new Router({
+  base: '/vue/',
   routes: normalRouter
 });
 

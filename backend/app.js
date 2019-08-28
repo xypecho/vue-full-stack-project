@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-08 21:45:02
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-12 17:30:27
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2019-08-27 22:03:20
  */
 const Koa = require('koa');
 const logger = require('koa-logger');
@@ -66,7 +66,7 @@ app.use(cors({
             return "*"; // 允许来自所有域名请求
         } else {
             if (tool.env() === 'production') {
-                return 'http://94.191.2.25';
+                return 'http://106.53.78.195';
             } else {
                 return 'http://localhost:8080'; // 这样就能只允许 http:/ / localhost: 8080 这个域名的请求了   
             }

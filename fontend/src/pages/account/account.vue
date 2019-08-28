@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-11 21:48:05
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-28 21:31:44
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2019-08-27 22:07:10
  */
 <template>
   <div
@@ -189,7 +189,7 @@ export default {
     actionUrl() {
       return process.env.NODE_ENV === 'development'
         ? `http://localhost:8081/api/upload/image?uid=${this.user.uid}`
-        : `http://94.191.2.25:8081/api/upload/image?uid=${this.user.uid}`;
+        : `http://106.53.78.195:8081/api/upload/image?uid=${this.user.uid}`;
     },
     getUserInfo() {
       this.loading = true;
