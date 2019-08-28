@@ -1,8 +1,8 @@
 /*
  * @Author: xypecho
  * @Date: 2018-09-07 21:03:17
- * @Last Modified by: xypecho
- * @Last Modified time: 2018-12-25 20:25:59
+ * @Last Modified by: xueyp
+ * @Last Modified time: 2019-07-04 11:35:48
  */
 
 // 设置localStorage
@@ -15,7 +15,7 @@ export const setLocalStorage = (obj) => {
 };
 
 
-// 将时间戳格式化为 yy-mm-dd hh:mm:ss
+// 将时间戳格式化为1 yy-mm-dd hh:mm:ss
 export const formatterTime = (timestamp, type) => {
   if (!timestamp || typeof timestamp !== 'number') {
     return '暂无数据';
