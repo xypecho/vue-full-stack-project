@@ -15,7 +15,7 @@
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.2.0-rc.1",
     "element-ui": "^2.4.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "v-charts": "^1.17.10",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
